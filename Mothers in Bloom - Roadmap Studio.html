@@ -344,6 +344,20 @@
   .fp-trend{margin-top:16px}
   .fp-trow{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
   .pos{color:#5F7D4F}.neg{color:#B23A48}
+  /* resources, referrals & benefits */
+  .rf-top{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+  .rf-cat{flex:1;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;background:#fff;font-weight:600}
+  .rf-org,.rf-out{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;background:#fff;margin-bottom:8px}
+  .rf-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+  .rf-grid label{display:flex;flex-direction:column;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);gap:3px}
+  .rf-grid input,.rf-grid select{border:1px solid var(--line);border-radius:8px;padding:7px 8px;font-size:12.5px;font-family:inherit;background:#fff;text-transform:none;letter-spacing:0;font-weight:400}
+  .bn-list{display:flex;flex-direction:column;gap:6px;margin-bottom:4px}
+  .bn-row{display:grid;grid-template-columns:1.1fr .9fr 1.3fr 26px;gap:8px;align-items:center}
+  .bn-name{font-weight:600;font-size:13px}
+  .bn-custom{border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:13px;font-family:inherit;background:#fff;font-weight:600}
+  .bn-status{border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12.5px;font-family:inherit;background:#fff;font-weight:600}
+  .bn-note{border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12.5px;font-family:inherit;background:#fff}
+  .s-Current{color:#5F7D4F}.s-Applied{color:#C9972B}.s-Denied{color:#B23A48}.s-Expired,.s-NoLongerNeeded{color:#8A7B68}
   .pfilter input,.pfilter select{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;font-family:inherit;background:#fffdf9}
   .bt-overlay{position:fixed;inset:0;background:rgba(40,30,20,.55);display:flex;align-items:flex-start;justify-content:center;z-index:200;padding:24px;overflow:auto}
   .bt-modal{background:var(--cream);border-radius:16px;max-width:720px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);margin:auto}
@@ -780,6 +794,9 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
     credit:{target:680,history:[{id:"cs1",date:"2026-02-10",score:612},{id:"cs2",date:"2026-04-12",score:628},{id:"cs3",date:"2026-06-14",score:641}],factors:{"Payment history":"All on time the last 6 months.","Amounts owed":"Cards ~60% utilized — paying down Visa first."}},
     housing:{checklist:[{label:"Stable income (2+ yrs)",done:true},{label:"Credit score 620+",done:true},{label:"Debt-to-income under 43%",done:true},{label:"Down payment saved",done:false},{label:"Budget for ownership costs",done:false},{label:"Mortgage pre-approval",done:false},{label:"Homebuyer education class",done:false}],downGoal:8000,downSaved:1500,referrals:"Referred to FOC homeownership track 6/26.",note:"On track — next focus: down payment + credit to 680."},
     budgetActuals:{"2026-05":{income:2380,fixed:1450,variable:560,savings:200,debt:285,note:"Extra shift helped cover a car repair."}},
+    referrals:[{id:"rf1",category:"Childcare",org:"United Way 211 — childcare subsidy",date:"2026-06-20",status:"In progress",outcome:"Application submitted; awaiting eligibility.",followUp:"2026-07-05"},{id:"rf2",category:"Financial Coaching",org:"FOC at CACF",date:"2026-06-14",status:"Connected",outcome:"Meets biweekly with her coach.",followUp:""}],
+    benefits:{"SNAP":{status:"Current",note:""},"Medicaid":{status:"Current",note:"Kids covered."},"Childcare Assistance":{status:"Applied",note:"Pending county review."},"WIC":{status:"No Longer Needed",note:"Youngest aged out."}},
+    benefitsOther:[],
     budget:{
       income:[{label:"Take-home pay",amount:1900},{label:"Monthly gift",amount:500}],
       fixed:[{label:"Rent",amount:1100},{label:"Utilities",amount:160},{label:"Phone",amount:60},{label:"Car insurance",amount:120}],
@@ -857,7 +874,7 @@ function renderRoster(){
   }).join("") + `<div class="addcard" onclick="addClient()">＋ Add participant</div>`;
 }
 function todayISO(){ return new Date().toISOString().slice(0,10); }
-function newClientObj(){ return {id:uid(), draft:true, name:"", type:"Mothers in Bloom Cohort Member", created:Date.now(), last:null, answers:{q3:todayISO()}, intakeNotes:"", budget:{income:[],fixed:[],variable:[],savings:[],debt:[]}, nww:{needs:[],wants:[],wishes:[]}, goals:[], savings:[], debts:[], debtPlan:{method:"avalanche",extra:""}, dti:{income:"",debt:""}, credit:{target:"",history:[],factors:{}}, housing:{}, budgetActuals:{}}; }
+function newClientObj(){ return {id:uid(), draft:true, name:"", type:"Mothers in Bloom Cohort Member", created:Date.now(), last:null, answers:{q3:todayISO()}, intakeNotes:"", budget:{income:[],fixed:[],variable:[],savings:[],debt:[]}, nww:{needs:[],wants:[],wishes:[]}, goals:[], savings:[], debts:[], debtPlan:{method:"avalanche",extra:""}, dti:{income:"",debt:""}, credit:{target:"",history:[],factors:{}}, housing:{}, budgetActuals:{}, referrals:[], benefits:{}, benefitsOther:[]}; }
 function addClient(){
   const c=newClientObj(); DB.clients[c.id]=c; draftId=c.id; activeId=c.id; activeStage=0;
   showOnly('viewWorkspace'); hideChip(); setBack("← Cancel", discardDraft);
@@ -912,19 +929,23 @@ function renderProfile(){
       <button class="btn" onclick="exportJSON()">Back up (JSON)</button>
       <button class="btn" style="margin-left:auto;color:var(--terracotta-d)" onclick="deleteClient(activeId)">Delete</button>
     </div></div>`;
-  h+=`<div class="tools-h">Tools</div><div class="tool-grid">`;
   const b=c.budget||{}; const binc=budSum(b.income),bnet=binc-(budSum(b.fixed)+budSum(b.variable)+budSum(b.savings)+budSum(b.debt));
-  h+=toolCard('budget','💰 Budget', budgetFilled(c)?(money(binc)+" in · "+(bnet>=0?"+":"")+money(bnet)+"/mo"):"not started");
   const n=c.nww||{needs:[],wants:[],wishes:[]}; const nc=(n.needs||[]).length+(n.wants||[]).length+(n.wishes||[]).length;
-  h+=toolCard('nww','🌸 Needs · Wants · Wishes', nc+" item"+(nc===1?"":"s"));
   const gc=(c.goals||[]).length, gopen=(c.goals||[]).filter(g=>goalPct(g)<100).length;
+  h+=`<div class="tools-h">Roadmap</div><div class="tool-grid">`;
+  h+=toolCard('budget','💰 Budget', budgetFilled(c)?(money(binc)+" in · "+(bnet>=0?"+":"")+money(bnet)+"/mo"):"not started");
+  h+=toolCard('nww','🌸 Needs · Wants · Wishes', nc+" item"+(nc===1?"":"s"));
   h+=toolCard('goals','🎯 Goals', gc+" goal"+(gc===1?"":"s")+" · "+gopen+" open");
+  h+=`</div><div class="tools-h">Financial planning</div><div class="tool-grid">`;
   h+=toolCard('savings','🏦 Savings', savingsSummary(c));
   h+=toolCard('debt','💳 Debt payoff', debtSummary(c));
   h+=toolCard('dti','📐 Debt-to-income', dtiSummary(c));
   h+=toolCard('credit','📈 Credit', creditSummary(c));
   h+=toolCard('housing','🏠 Housing journey', housingSummary(c));
   h+=toolCard('actual','📊 Planned vs actual', actualSummary(c));
+  h+=`</div><div class="tools-h">Connections</div><div class="tool-grid">`;
+  h+=toolCard('referrals','🤝 Resources & referrals', referralSummary(c));
+  h+=toolCard('benefits','🏛️ Government assistance', benefitSummary(c));
   h+=`</div>`;
   document.getElementById("profilePanel").innerHTML=h;
 }
@@ -934,8 +955,8 @@ function openTool(kind){ workTool=kind; nwwEditing=null; let o=document.getEleme
 function closeTool(){ const o=document.getElementById('workModal'); if(o) o.remove(); workTool=null; nwwEditing=null; if(currentView==='profile') renderProfile(); else if(currentView==='workspace') renderStage(); }
 function renderWorkModal(){ const o=document.getElementById('workModal'); if(!o) return; const c=cur(); if(!c){ closeTool(); return; }
   const open=snapshotOpen(o);
-  const titles={nww:'🌸 Needs · Wants · Wishes',goals:'🎯 Goals',budget:'💰 Budget',savings:'🏦 Savings Tracker',debt:'💳 Debt Payoff Planner',dti:'📐 Debt-to-Income',credit:'📈 Credit Tracking',housing:'🏠 Housing Journey',actual:'📊 Planned vs Actual'};
-  const R={nww:renderNWW,goals:renderGoals,savings:renderSavings,debt:renderDebtTool,dti:renderDTI,credit:renderCredit,housing:renderHousing,actual:renderActual};
+  const titles={nww:'🌸 Needs · Wants · Wishes',goals:'🎯 Goals',budget:'💰 Budget',savings:'🏦 Savings Tracker',debt:'💳 Debt Payoff Planner',dti:'📐 Debt-to-Income',credit:'📈 Credit Tracking',housing:'🏠 Housing Journey',actual:'📊 Planned vs Actual',referrals:'🤝 Resources & Referrals',benefits:'🏛️ Government Assistance'};
+  const R={nww:renderNWW,goals:renderGoals,savings:renderSavings,debt:renderDebtTool,dti:renderDTI,credit:renderCredit,housing:renderHousing,actual:renderActual,referrals:renderReferrals,benefits:renderBenefits};
   const body = workTool==='budget'?renderBudget(c.budget):(R[workTool]?R[workTool](c):renderBudget(c.budget));
   o.innerHTML=`<div class="bt-modal" style="max-width:880px"><div class="bt-head"><b>${titles[workTool]||'Tool'}</b><span style="flex:1"></span><button class="btn sm" onclick="closeTool()">✕ Done</button></div><div class="bt-body">${body}</div></div>`;
   restoreOpen(o,open);
@@ -1357,6 +1378,50 @@ function renderActual(c){
 }
 function actualSetMonth(k){ actualMonth=k; rerender(); }
 function actualEdit(mk,f,v){ const a=actualData(cur()); a[mk]=a[mk]||{}; a[mk][f]=v; scheduleSave(); if(f!=='note'){ const planned=budSum((cur().budget||{})[f]); const actual=v!==''?fnum(v):null; const variance=pvaVariance(f,planned,actual); const cell=document.querySelector('#workModal .fp-var[data-cat="'+f+'"]'); if(cell){ cell.textContent=variance==null?'—':((variance>=0?'+':'')+money(variance)); cell.className='fp-var '+(variance==null?'':(variance>=0?'pos':'neg')); cell.setAttribute('data-cat',f); } } }
+
+/* ============================ RESOURCES, REFERRALS & BENEFITS ============================ */
+const REFERRAL_CATS=["United Way Family Investment Program","Housing","Employment","Education","Mental Health","Childcare","Transportation","Healthcare","Government Assistance","Financial Coaching","Entrepreneurship","Other"];
+const REFERRAL_STATUS=["Referred","In progress","Connected","Completed","Declined","No response"];
+function referralList(c){ c.referrals=c.referrals||[]; return c.referrals; }
+function referralSummary(c){ const r=c.referrals||[]; if(!r.length) return "not started"; const open=r.filter(x=>x.status&&['Completed','Declined','No response'].indexOf(x.status)<0).length; return r.length+" referral"+(r.length===1?"":"s")+(open?(" · "+open+" open"):""); }
+function renderReferrals(c){
+  const rs=referralList(c);
+  let h=`<p class="fp-intro">Track every referral out — to partners, programs, and services — with its status, outcome, and follow-up date.</p><div class="fp-list">`;
+  if(!rs.length) h+=`<p class="help">No referrals yet.</p>`;
+  rs.forEach((r,i)=>{ h+=`<div class="fp-card">
+    <div class="rf-top"><select class="rf-cat" onchange="refEdit(${i},'category',this.value)"><option value="">Category…</option>${REFERRAL_CATS.map(o=>`<option ${r.category===o?'selected':''}>${esc(o)}</option>`).join("")}</select><button class="xrm" onclick="refDel(${i})">✕</button></div>
+    <input class="rf-org" placeholder="Organization / contact" value="${esc(r.org||'')}" oninput="refEdit(${i},'org',this.value)">
+    <div class="rf-grid">
+      <label>Referred<input type="date" value="${esc(r.date||'')}" oninput="refEdit(${i},'date',this.value)"></label>
+      <label>Status<select onchange="refEdit(${i},'status',this.value)"><option value="">—</option>${REFERRAL_STATUS.map(o=>`<option ${r.status===o?'selected':''}>${o}</option>`).join("")}</select></label>
+      <label>Follow-up<input type="date" value="${esc(r.followUp||'')}" oninput="refEdit(${i},'followUp',this.value)"></label>
+    </div>
+    <input class="rf-out" placeholder="Outcome / notes" value="${esc(r.outcome||'')}" oninput="refEdit(${i},'outcome',this.value)"></div>`; });
+  h+=`</div><button class="add" onclick="refAdd()">＋ add referral</button>`;
+  return h;
+}
+function refAdd(){ referralList(cur()).push({id:uid(),category:"",org:"",date:todayISO(),status:"Referred",outcome:"",followUp:""}); persist(); rerender(); }
+function refDel(i){ referralList(cur()).splice(i,1); persist(); rerender(); }
+function refEdit(i,f,v){ const r=referralList(cur())[i]; if(!r) return; r[f]=v; scheduleSave(); }
+
+const BENEFIT_PROGRAMS=["SNAP","WIC","Medicaid","TANF","Childcare Assistance","Housing Assistance","Energy Assistance","SSI"];
+const BENEFIT_STATUS=["Current","Applied","Denied","Expired","No Longer Needed"];
+function benefitMap(c){ c.benefits=c.benefits||{}; return c.benefits; }
+function benefitOther(c){ c.benefitsOther=c.benefitsOther||[]; return c.benefitsOther; }
+function benefitSummary(c){ const m=c.benefits||{}, o=c.benefitsOther||[]; const cur=Object.values(m).filter(x=>x&&x.status==='Current').length+o.filter(x=>x.status==='Current').length; const tracked=Object.values(m).filter(x=>x&&x.status).length+o.filter(x=>x.status).length; return tracked?(cur+" current · "+tracked+" tracked"):"not started"; }
+function bnStatusSel(val,handler){ return `<select class="bn-status s-${(val||'none').replace(/\s+/g,'')}" onchange="${handler}"><option value="">—</option>${BENEFIT_STATUS.map(o=>`<option ${val===o?'selected':''}>${o}</option>`).join("")}</select>`; }
+function renderBenefits(c){
+  const m=benefitMap(c), others=benefitOther(c);
+  let h=`<p class="fp-intro">Track participation in public benefits. Set each to where she stands — Current, Applied, Denied, Expired, or No Longer Needed.</p><div class="bn-list">`;
+  BENEFIT_PROGRAMS.forEach(p=>{ const d=m[p]||{}; h+=`<div class="bn-row"><span class="bn-name">${p}</span>${bnStatusSel(d.status,`benefitSet('${p}','status',this.value)`)}<input class="bn-note" placeholder="note" value="${esc(d.note||'')}" oninput="benefitSet('${p}','note',this.value)"><span></span></div>`; });
+  others.forEach((o,i)=>{ h+=`<div class="bn-row"><input class="bn-name bn-custom" placeholder="Program name" value="${esc(o.name||'')}" oninput="benefitOtherEdit(${i},'name',this.value)">${bnStatusSel(o.status,`benefitOtherEdit(${i},'status',this.value)`)}<input class="bn-note" placeholder="note" value="${esc(o.note||'')}" oninput="benefitOtherEdit(${i},'note',this.value)"><button class="xrm" onclick="benefitOtherDel(${i})">✕</button></div>`; });
+  h+=`</div><button class="add" onclick="benefitOtherAdd()">＋ add other program</button>`;
+  return h;
+}
+function benefitSet(prog,f,v){ const m=benefitMap(cur()); m[prog]=m[prog]||{}; m[prog][f]=v; if(f==='status'){ persist(); rerender(); } else scheduleSave(); }
+function benefitOtherAdd(){ benefitOther(cur()).push({id:uid(),name:"",status:"",note:""}); persist(); rerender(); }
+function benefitOtherDel(i){ benefitOther(cur()).splice(i,1); persist(); rerender(); }
+function benefitOtherEdit(i,f,v){ const o=benefitOther(cur())[i]; if(!o) return; o[f]=v; if(f==='status'){ persist(); rerender(); } else scheduleSave(); }
 
 function renderNWW(c){
   const n=c.nww||(c.nww={needs:[],wants:[],wishes:[]});
