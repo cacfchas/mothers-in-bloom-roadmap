@@ -221,7 +221,7 @@
   .pc-head h3{font-size:16px;margin:0;color:var(--terracotta-d)}
   .pc-sub{font-size:12px;color:var(--ink-soft)}
   .pbar{height:8px;border-radius:6px;background:var(--cream2);overflow:hidden;margin-top:10px}
-  .pbar>i{display:block;height:100%;background:linear-gradient(90deg,var(--sage),var(--terracotta));border-radius:6px;transition:width .3s}
+  .pbar>i{display:block;height:100%;background-image:linear-gradient(90deg,#C46A43,#D89A3C,#8AA86E,#5F7D4F);background-repeat:no-repeat;border-radius:6px;transition:width .3s}
   .tools-h{font-size:15px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.5px;margin:6px 0 10px}
   .tool-grid{display:flex;flex-direction:column;gap:12px}
   details.tooltool{padding:0;overflow:hidden}
@@ -292,7 +292,7 @@
   .fp-grid3 label,.fp-grid2 label{display:flex;flex-direction:column;font-size:11px;font-weight:700;color:var(--ink-soft);gap:4px;text-transform:uppercase;letter-spacing:.4px}
   .fp-grid3 input,.fp-grid2 input{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;font-family:inherit;background:#fff;font-weight:400;text-transform:none;letter-spacing:0}
   .fp-bar{height:9px;background:#EFE3D2;border-radius:6px;overflow:hidden;margin:10px 0 6px}
-  .fp-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--sage),var(--terracotta));border-radius:6px;transition:width .3s}
+  .fp-bar i{display:block;height:100%;background-image:linear-gradient(90deg,#C46A43,#D89A3C,#8AA86E,#5F7D4F);background-repeat:no-repeat;border-radius:6px;transition:width .3s}
   .fp-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);flex-wrap:wrap;gap:6px}
   .fp-meta b{color:var(--ink)}
   .fp-debt-head,.fp-debt-row{display:grid;grid-template-columns:1.4fr 1fr .7fr 1fr 26px;gap:6px;align-items:center}
@@ -888,6 +888,35 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
       {id:uid(),goal:"Raise credit score by 40 points",cat:"Financial",pri:"Medium",dueMonth:"2027-03",dueDay:"",binary:false,done:false,measure:"credit score points gained",start:0,current:0,target:40,align:"Improve credit score",notes:[],smart:{}}
     ]
   };
+  /* ---- extra examples so the caseload dashboard has spread to test ---- */
+  (function(){
+    const ITEMS=[]; STAGES.forEach(s=>s.sections.forEach(sec=>{ if(sec.items) sec.items.forEach(it=>ITEMS.push(it)); }));
+    const ago=d=>{ const t=new Date(); t.setDate(t.getDate()-d); return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0'); };
+    const fut=d=>ago(-d);
+    function ex(s){
+      const c=newClientObj(); c.draft=false; c.example=true; c.id='ex_'+s.key; c.name=s.name+' (Example)'; c.type=s.type;
+      c.answers={}; const k=Math.round(ITEMS.length*(s.intake||0)); ITEMS.slice(0,k).forEach(it=>{ c.answers[it.id]='—'; }); c.answers.q2=c.name; c.answers.q5=s.type;
+      if(s.lastAgo!=null){ c.last=ago(s.lastAgo); c.answers.q3=ago(s.lastAgo); c.checkins=[{id:uid(),date:ago(s.lastAgo),notes:s.note||'Coaching session.',wins:s.win||'',challenges:'',homework:'',nextSteps:s.next||'',followUp:s.cfu!=null?fut(s.cfu):''}]; }
+      if(s.savings) c.savings=[{id:uid(),name:'Emergency fund',target:s.savings[1],current:s.savings[0],monthly:50}];
+      if(s.debt){ c.debts=[{id:uid(),name:'Credit card',balance:s.debt,apr:22,minPayment:Math.max(25,Math.round(s.debt*0.03))}]; c.debtPlan={method:'avalanche',extra:50}; }
+      if(s.credit) c.credit={target:680,history:[{id:uid(),date:ago(40),score:s.credit}],factors:{}};
+      if(s.goals) for(let i=0;i<s.goals;i++) c.goals.push({id:uid(),goal:'Goal '+(i+1),cat:'Financial',pri:'Medium',dueMonth:'',mode:'measure',measure:'',start:0,current:(s.goalsDone&&i<s.goalsDone)?100:30,target:100,milestones:[],align:[],notes:[],smart:{}});
+      if(s.refOpen) c.referrals=[{id:uid(),category:'Housing',org:'Local housing partner',date:ago(10),status:'In progress',outcome:'',followUp:s.rfu!=null?fut(s.rfu):''}];
+      if(s.benefit) c.benefits={SNAP:{status:'Current',note:''}};
+      if(s.appt!=null) c.planner.appointments.push({id:uid(),title:'Coaching session',date:fut(s.appt),time:'10:00 AM',note:'Zoom'});
+      if(s.deadline!=null) c.planner.deadlines.push({id:uid(),label:'Document deadline',date:fut(s.deadline)});
+      if(s.taskDue!=null) c.actionPlan.push({id:uid(),task:'Follow up on paperwork',owner:'Participant',due:s.taskDue>=0?fut(s.taskDue):ago(-s.taskDue),priority:'High',done:false,notes:''});
+      DB.clients[c.id]=c;
+    }
+    [
+      {key:'aisha',name:'Aisha Rivera',type:'Mothers in Bloom Cohort Member',intake:0.85,lastAgo:6,savings:[850,2000],debt:1800,credit:655,goals:3,goalsDone:1,refOpen:true,benefit:true,appt:3,taskDue:4,note:'Reviewed budget; strong momentum.',next:'Set up savings auto-transfer.'},
+      {key:'destiny',name:'Destiny Carter',type:'Mothers in Bloom Cohort Member',intake:0.55,lastAgo:14,savings:[200,1500],debt:5200,credit:600,goals:2,refOpen:true,rfu:5,deadline:9,appt:12,taskDue:-3,note:'Working through debt options.'},
+      {key:'brianna',name:'Brianna Cole',type:'Original Mothers in Bloom Member',intake:0.95,lastAgo:3,savings:[3200,3000],credit:702,goals:4,goalsDone:3,benefit:true,appt:8,note:'Nearly graduated — homeownership next.',next:'Mortgage pre-approval.'},
+      {key:'nia',name:'Nia Washington',type:'Mothers in Bloom Cohort Member',intake:0.35,lastAgo:38,debt:3400,credit:580,goals:1,taskDue:-8,note:'Hard to reach lately.'},
+      {key:'gloria',name:'Gloria Mendez',type:'Steering Committee Member',intake:0.7,lastAgo:9,savings:[1400,2500],goals:2,goalsDone:1,refOpen:true,deadline:2,benefit:true,appt:6,note:'Steady progress.'},
+      {key:'shantel',name:'Shantel Brooks',type:'Mothers in Bloom Cohort Member',intake:0.2,note:'Just enrolled — intake pending.',appt:1,taskDue:6}
+    ].forEach(ex);
+  })();
   persist();
 }
 
@@ -996,7 +1025,7 @@ function renderProfile(){
       <div class="ph-meta">${c.last?("Last session "+new Date(c.last).toLocaleDateString()):"No sessions yet"} · ${pct}% of intake</div>
     </div></div>`;
   h+=`<div class="card profcard"><div class="pc-head"><h3>📝 Intake</h3><span class="pc-sub">${pct}% complete</span></div>
-    <div class="pbar"><i style="width:${pct}%"></i></div>
+    <div class="pbar"><i style="width:${pct}%;background-size:${pct>0?Math.round(10000/pct):100}% 100%"></i></div>
     <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
       <button class="btn primary" onclick="openIntake(0)">${pct>0?'Continue intake':'Start intake'} →</button>
       <button class="btn" onclick="summaryOptions()">📄 Summary (PDF)</button>
@@ -1335,7 +1364,7 @@ let _drag=null, nwwEditing=null;
 function nwwCost(v){ const s=String(v==null?"":v).trim(); if(s==="") return ""; return /^\d/.test(s)?("$"+s):esc(s); }
 /* ============================ FINANCIAL PLANNING SYSTEM ============================ */
 function fnum(v){ const n=Number(v); return isFinite(n)?n:0; }
-function pctBar(pct){ pct=Math.max(0,Math.min(100,Math.round(pct||0))); return `<div class="fp-bar"><i style="width:${pct}%"></i></div>`; }
+function pctBar(pct){ pct=Math.max(0,Math.min(100,Math.round(pct||0))); return `<div class="fp-bar"><i style="width:${pct}%;background-size:${pct>0?Math.round(10000/pct):100}% 100%"></i></div>`; }
 function monthsToDateLabel(m){ if(!m||m<=0) return "—"; const d=new Date(); d.setMonth(d.getMonth()+Math.round(m)); return d.toLocaleDateString(undefined,{month:'short',year:'numeric'}); }
 
 /* ---------- Savings Tracker ---------- */
