@@ -372,6 +372,37 @@
   .ck-f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft)}
   .ck-f textarea{min-height:52px;border:1px solid var(--line);border-radius:8px;padding:8px;font-family:inherit;font-size:13px;background:#fff;resize:vertical;font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink)}
   .ck-f input{border:1px solid var(--line);border-radius:8px;padding:8px;font-family:inherit;font-size:13px;background:#fff;font-weight:400;text-transform:none;letter-spacing:0;align-self:flex-start}
+  /* progress snapshot */
+  .pg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px}
+  .pg-tile{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fffdf9}
+  .pg-label{font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);font-weight:700}
+  .pg-val{font-size:22px;font-weight:800;color:var(--ink);margin-top:2px}
+  .pg-val .pos,.pg-val .neg{font-size:13px}
+  .pg-sub{font-size:11.5px;color:var(--ink-soft);margin-top:2px}
+  .pg-tile .fp-bar{margin:8px 0 2px}
+  /* action plan */
+  .ap-list{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+  .ap-row{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fffdf9}
+  .ap-row.done{opacity:.6}
+  .ap-row.done .ap-task{text-decoration:line-through}
+  .ap-check{margin-top:4px;width:17px;height:17px;flex:none;accent-color:var(--sage);cursor:pointer}
+  .ap-main{flex:1;min-width:0}
+  .ap-task{width:100%;box-sizing:border-box;border:1px solid transparent;border-radius:6px;padding:4px 6px;font-size:14px;font-weight:600;font-family:inherit;background:transparent;color:var(--ink)}
+  .ap-task:focus{border-color:var(--line);background:#fff;outline:none}
+  .ap-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .ap-meta select,.ap-meta input{border:1px solid var(--line);border-radius:7px;padding:5px 7px;font-size:12px;font-family:inherit;background:#fff}
+  .ap-note{flex:1;min-width:100px}
+  .ap-pri.pri-high{color:#B23A48;font-weight:700}.ap-pri.pri-medium{color:#C9972B;font-weight:600}.ap-pri.pri-low{color:#5F7D4F}
+  /* planner */
+  .pl-sec{margin-bottom:18px}
+  .pl-sec>b{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);font-weight:700;display:block;margin-bottom:8px}
+  .pl-row{display:flex;gap:8px;margin-bottom:6px}
+  .pl-row input{flex:1;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;background:#fff}
+  .pl-appt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;align-items:center}
+  .pl-appt input{border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12.5px;font-family:inherit;background:#fff}
+  .pl-t{flex:1;min-width:140px;font-weight:600}
+  .pl-time{width:92px}
+  .pl-n{flex:1;min-width:120px}
   .pfilter input,.pfilter select{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;font-family:inherit;background:#fffdf9}
   .bt-overlay{position:fixed;inset:0;background:rgba(40,30,20,.55);display:flex;align-items:flex-start;justify-content:center;z-index:200;padding:24px;overflow:auto}
   .bt-modal{background:var(--cream);border-radius:16px;max-width:720px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);margin:auto}
@@ -815,6 +846,13 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
       {id:"ck1",date:"2026-05-14",notes:"First roadmap session. Walked the budget and Needs·Wants·Wishes together. She lit up talking about owning a home someday.",wins:"Opened a separate savings account.",challenges:"Childcare costs spiking with summer.",homework:"Gather last 2 pay stubs; list all debts.",nextSteps:"Build the debt payoff plan next time.",followUp:"2026-05-28"},
       {id:"ck2",date:"2026-06-14",notes:"Built the avalanche debt payoff plan and set the emergency-fund goal. Reviewed DTI — healthy at 12%.",wins:"Paid Visa down $200; credit up to 641.",challenges:"Tempted to pause savings to cover a car repair.",homework:"Automate $200/mo into savings.",nextSteps:"Connect with the FOC homeownership track.",followUp:"2026-06-28"}
     ],
+    actionPlan:[
+      {id:"t1",task:"Gather last 2 pay stubs and list all debts",owner:"Participant",due:"2026-06-13",priority:"High",done:true,notes:""},
+      {id:"t2",task:"Automate $200/mo into the emergency fund",owner:"Participant",due:"2026-07-01",priority:"High",done:false,notes:"Set up at the credit union."},
+      {id:"t3",task:"Send childcare subsidy documents to United Way",owner:"Participant",due:"2026-07-05",priority:"Medium",done:false,notes:""},
+      {id:"t4",task:"Schedule FOC homeownership intro call",owner:"Coach",due:"2026-07-10",priority:"Medium",done:false,notes:""}
+    ],
+    planner:{priorities:["Lock in the childcare subsidy","Hit $200/mo savings","Keep credit climbing toward 680"],appointments:[{id:"ap1",title:"Biweekly coaching session",date:"2026-06-28",time:"10:00 AM",note:"Zoom"},{id:"ap2",title:"FOC homeownership intro",date:"2026-07-10",time:"2:00 PM",note:"Phone"}],deadlines:[{id:"dl1",label:"Childcare subsidy documents due",date:"2026-07-05"},{id:"dl2",label:"Recertify Medicaid",date:"2026-08-15"}]},
     budget:{
       income:[{label:"Take-home pay",amount:1900},{label:"Monthly gift",amount:500}],
       fixed:[{label:"Rent",amount:1100},{label:"Utilities",amount:160},{label:"Phone",amount:60},{label:"Car insurance",amount:120}],
@@ -892,7 +930,7 @@ function renderRoster(){
   }).join("") + `<div class="addcard" onclick="addClient()">＋ Add participant</div>`;
 }
 function todayISO(){ return new Date().toISOString().slice(0,10); }
-function newClientObj(){ return {id:uid(), draft:true, name:"", type:"Mothers in Bloom Cohort Member", created:Date.now(), last:null, answers:{q3:todayISO()}, intakeNotes:"", budget:{income:[],fixed:[],variable:[],savings:[],debt:[]}, nww:{needs:[],wants:[],wishes:[]}, goals:[], savings:[], debts:[], debtPlan:{method:"avalanche",extra:""}, dti:{income:"",debt:""}, credit:{target:"",history:[],factors:{}}, housing:{}, budgetActuals:{}, referrals:[], benefits:{}, benefitsOther:[], checkins:[]}; }
+function newClientObj(){ return {id:uid(), draft:true, name:"", type:"Mothers in Bloom Cohort Member", created:Date.now(), last:null, answers:{q3:todayISO()}, intakeNotes:"", budget:{income:[],fixed:[],variable:[],savings:[],debt:[]}, nww:{needs:[],wants:[],wishes:[]}, goals:[], savings:[], debts:[], debtPlan:{method:"avalanche",extra:""}, dti:{income:"",debt:""}, credit:{target:"",history:[],factors:{}}, housing:{}, budgetActuals:{}, referrals:[], benefits:{}, benefitsOther:[], checkins:[], actionPlan:[], planner:{priorities:[],appointments:[],deadlines:[]}}; }
 function addClient(){
   const c=newClientObj(); DB.clients[c.id]=c; draftId=c.id; activeId=c.id; activeStage=0;
   showOnly('viewWorkspace'); hideChip(); setBack("← Cancel", discardDraft);
@@ -950,8 +988,12 @@ function renderProfile(){
   const b=c.budget||{}; const binc=budSum(b.income),bnet=binc-(budSum(b.fixed)+budSum(b.variable)+budSum(b.savings)+budSum(b.debt));
   const n=c.nww||{needs:[],wants:[],wishes:[]}; const nc=(n.needs||[]).length+(n.wants||[]).length+(n.wishes||[]).length;
   const gc=(c.goals||[]).length, gopen=(c.goals||[]).filter(g=>goalPct(g)<100).length;
-  h+=`<div class="tools-h">Coaching &amp; accountability</div><div class="tool-grid">`;
+  h+=`<div class="tools-h">Overview</div><div class="tool-grid">`;
+  h+=toolCard('progress','📊 Progress snapshot', progressSummary(c));
+  h+=`</div><div class="tools-h">Coaching &amp; accountability</div><div class="tool-grid">`;
   h+=toolCard('checkins','🗓️ Check-ins', checkinSummary(c));
+  h+=toolCard('action','✅ Action plan', actionSummary(c));
+  h+=toolCard('planner','📅 Planner', plannerSummary(c));
   h+=`</div><div class="tools-h">Roadmap</div><div class="tool-grid">`;
   h+=toolCard('budget','💰 Budget', budgetFilled(c)?(money(binc)+" in · "+(bnet>=0?"+":"")+money(bnet)+"/mo"):"not started");
   h+=toolCard('nww','🌸 Needs · Wants · Wishes', nc+" item"+(nc===1?"":"s"));
@@ -975,8 +1017,8 @@ function openTool(kind){ workTool=kind; nwwEditing=null; let o=document.getEleme
 function closeTool(){ const o=document.getElementById('workModal'); if(o) o.remove(); workTool=null; nwwEditing=null; if(currentView==='profile') renderProfile(); else if(currentView==='workspace') renderStage(); }
 function renderWorkModal(){ const o=document.getElementById('workModal'); if(!o) return; const c=cur(); if(!c){ closeTool(); return; }
   const open=snapshotOpen(o);
-  const titles={nww:'🌸 Needs · Wants · Wishes',goals:'🎯 Goals',budget:'💰 Budget',savings:'🏦 Savings Tracker',debt:'💳 Debt Payoff Planner',dti:'📐 Debt-to-Income',credit:'📈 Credit Tracking',housing:'🏠 Housing Journey',actual:'📊 Planned vs Actual',referrals:'🤝 Resources & Referrals',benefits:'🏛️ Government Assistance',checkins:'🗓️ Check-ins & Coaching'};
-  const R={nww:renderNWW,goals:renderGoals,savings:renderSavings,debt:renderDebtTool,dti:renderDTI,credit:renderCredit,housing:renderHousing,actual:renderActual,referrals:renderReferrals,benefits:renderBenefits,checkins:renderCheckins};
+  const titles={nww:'🌸 Needs · Wants · Wishes',goals:'🎯 Goals',budget:'💰 Budget',savings:'🏦 Savings Tracker',debt:'💳 Debt Payoff Planner',dti:'📐 Debt-to-Income',credit:'📈 Credit Tracking',housing:'🏠 Housing Journey',actual:'📊 Planned vs Actual',referrals:'🤝 Resources & Referrals',benefits:'🏛️ Government Assistance',checkins:'🗓️ Check-ins & Coaching',progress:'📊 Progress Snapshot',action:'✅ Action Plan',planner:'📅 Planner'};
+  const R={nww:renderNWW,goals:renderGoals,savings:renderSavings,debt:renderDebtTool,dti:renderDTI,credit:renderCredit,housing:renderHousing,actual:renderActual,referrals:renderReferrals,benefits:renderBenefits,checkins:renderCheckins,progress:renderProgress,action:renderActionPlan,planner:renderPlanner};
   const body = workTool==='budget'?renderBudget(c.budget):(R[workTool]?R[workTool](c):renderBudget(c.budget));
   o.innerHTML=`<div class="bt-modal" style="max-width:880px"><div class="bt-head"><b>${titles[workTool]||'Tool'}</b><span style="flex:1"></span><button class="btn sm" onclick="closeTool()">✕ Done</button></div><div class="bt-body">${body}</div></div>`;
   restoreOpen(o,open);
@@ -1398,6 +1440,75 @@ function renderActual(c){
 }
 function actualSetMonth(k){ actualMonth=k; rerender(); }
 function actualEdit(mk,f,v){ const a=actualData(cur()); a[mk]=a[mk]||{}; a[mk][f]=v; scheduleSave(); if(f!=='note'){ const planned=budSum((cur().budget||{})[f]); const actual=v!==''?fnum(v):null; const variance=pvaVariance(f,planned,actual); const cell=document.querySelector('#workModal .fp-var[data-cat="'+f+'"]'); if(cell){ cell.textContent=variance==null?'—':((variance>=0?'+':'')+money(variance)); cell.className='fp-var '+(variance==null?'':(variance>=0?'pos':'neg')); cell.setAttribute('data-cat',f); } } }
+
+/* ============================ PROGRESS SNAPSHOT ============================ */
+function progressSummary(c){ return overallPct(c)+"% intake · "+((c.goals||[]).length)+" goals · "+((c.checkins||[]).length)+" check-ins"; }
+function statTile(label,value,sub,pct){ return `<div class="pg-tile"><div class="pg-label">${label}</div><div class="pg-val">${value}</div>${pct!=null?pctBar(pct):''}${sub?`<div class="pg-sub">${sub}</div>`:''}</div>`; }
+function renderProgress(c){
+  let h=`<p class="fp-intro">A snapshot of where she is today — pulled live from every tool.</p><div class="pg-grid">`;
+  h+=statTile('Intake', overallPct(c)+'%', null, overallPct(c));
+  const gs=c.goals||[]; const gAvg=gs.length?Math.round(gs.reduce((x,g)=>x+goalPct(g),0)/gs.length):0; h+=statTile('Goals', gs.length||'—', gs.length?(gAvg+'% avg progress'):'none yet', gs.length?gAvg:null);
+  const sv=c.savings||[]; if(sv.length){ const st=sv.reduce((x,g)=>x+fnum(g.target),0),sc=sv.reduce((x,g)=>x+fnum(g.current),0),sp=st>0?Math.round(100*sc/st):0; h+=statTile('Savings', money(sc), 'of '+money(st), sp); }
+  const dd=(c.debts||[]).filter(x=>fnum(x.balance)>0); if(dd.length){ const r=simulateDebtPayoff(c.debts,(c.debtPlan||{}).method,(c.debtPlan||{}).extra); h+=statTile('Debt', money(r.totalBal), r.payable?(r.months+' mo to debt-free'):'raise payment', null); }
+  const dr=dtiCalc(c); if(dr.inc) h+=statTile('Debt-to-income', dr.ratio.toFixed(0)+'%', dr.ratio<=36?'healthy':(dr.ratio<=43?'manageable':'high'), Math.min(100,dr.ratio));
+  const cl=creditLatest(c); if(cl!==''){ const hist=(c.credit||{}).history||[]; const first=hist.length?hist[0].score:null; const delta=first!=null?cl-first:0; h+=statTile('Credit', cl+(delta?` <span class="${delta>0?'pos':'neg'}">${delta>0?'▲':'▼'}${Math.abs(delta)}</span>`:''), (c.credit||{}).target?('target '+(c.credit||{}).target):null, null); }
+  const hh=c.housing; if(hh&&hh.checklist){ const done=hh.checklist.filter(x=>x.done).length; h+=statTile('Housing', done+'/'+hh.checklist.length, 'milestones ready', Math.round(100*done/hh.checklist.length)); }
+  const rf=c.referrals||[]; if(rf.length){ const open=rf.filter(x=>x.status&&['Completed','Declined','No response'].indexOf(x.status)<0).length; h+=statTile('Referrals', rf.length, open+' open', null); }
+  const bm=c.benefits||{},bo=c.benefitsOther||[]; const benCur=Object.values(bm).filter(x=>x&&x.status==='Current').length+bo.filter(x=>x.status==='Current').length, benTr=Object.values(bm).filter(x=>x&&x.status).length+bo.filter(x=>x.status).length; if(benTr) h+=statTile('Benefits', benCur+' current', benTr+' tracked', null);
+  const ap=c.actionPlan||[]; if(ap.length){ const done=ap.filter(t=>t.done).length; h+=statTile('Action items', (ap.length-done)+' open', done+' done', Math.round(100*done/ap.length)); }
+  const ck=c.checkins||[]; const last=ck.map(x=>x.date).filter(Boolean).sort().pop(); h+=statTile('Check-ins', ck.length||'—', last?('last '+last):'none yet', null);
+  h+=`</div>`;
+  return h;
+}
+
+/* ============================ ACTION PLAN (master task list) ============================ */
+const TASK_PRI=["High","Medium","Low"];
+const TASK_OWNERS=["Participant","Coach","Both","Partner org"];
+function actionList(c){ c.actionPlan=c.actionPlan||[]; return c.actionPlan; }
+function actionSummary(c){ const ap=c.actionPlan||[]; if(!ap.length) return "no tasks yet"; const open=ap.filter(t=>!t.done).length; return open+" open · "+(ap.length-open)+" done"; }
+function actionSorted(c){ return actionList(c).slice().sort((a,b)=>{ if(!!a.done!==!!b.done) return a.done?1:-1; return (a.due||'9999').localeCompare(b.due||'9999'); }); }
+function renderActionPlan(c){
+  const ts=actionSorted(c);
+  let h=`<p class="fp-intro">Her master action plan — the concrete tasks between sessions. Check them off as she completes them.</p>`;
+  h+=`<button class="btn primary" onclick="taskAdd()">＋ add task</button><div class="ap-list">`;
+  if(!ts.length) h+=`<p class="help" style="margin-top:10px">No tasks yet.</p>`;
+  ts.forEach(t=>{ h+=`<div class="ap-row ${t.done?'done':''}">
+    <input type="checkbox" class="ap-check" ${t.done?'checked':''} onchange="taskEdit('${t.id}','done',this.checked)">
+    <div class="ap-main"><input class="ap-task" placeholder="What needs to happen?" value="${esc(t.task||'')}" oninput="taskEdit('${t.id}','task',this.value)">
+      <div class="ap-meta"><select onchange="taskEdit('${t.id}','owner',this.value)"><option value="">Owner…</option>${TASK_OWNERS.map(o=>`<option ${t.owner===o?'selected':''}>${o}</option>`).join("")}</select>
+        <input type="date" value="${esc(t.due||'')}" onchange="taskEdit('${t.id}','due',this.value)">
+        <select class="ap-pri pri-${(t.priority||'').toLowerCase()}" onchange="taskEdit('${t.id}','priority',this.value)"><option value="">Priority…</option>${TASK_PRI.map(o=>`<option ${t.priority===o?'selected':''}>${o}</option>`).join("")}</select>
+        <input class="ap-note" placeholder="note" value="${esc(t.notes||'')}" oninput="taskEdit('${t.id}','notes',this.value)"></div></div>
+    <button class="xrm" onclick="taskDel('${t.id}')">✕</button></div>`; });
+  h+=`</div>`;
+  return h;
+}
+function taskAdd(){ actionList(cur()).push({id:uid(),task:"",owner:"Participant",due:"",priority:"Medium",done:false,notes:""}); persist(); rerender(); }
+function taskDel(id){ const c=cur(); c.actionPlan=actionList(c).filter(x=>x.id!==id); persist(); rerender(); }
+function taskEdit(id,f,v){ const t=actionList(cur()).find(x=>x.id===id); if(!t) return; t[f]=v; if(f==='done'||f==='priority'||f==='due'){ persist(); rerender(); } else scheduleSave(); }
+
+/* ============================ TIME MANAGEMENT (planner) ============================ */
+function plannerData(c){ c.planner=c.planner||{}; const p=c.planner; p.priorities=p.priorities||[]; p.appointments=p.appointments||[]; p.deadlines=p.deadlines||[]; return p; }
+function plannerSummary(c){ const p=c.planner||{}; const ap=(p.appointments||[]).length, dl=(p.deadlines||[]).length, pr=(p.priorities||[]).length; if(!ap&&!dl&&!pr) return "not started"; return ap+" appt"+(ap===1?"":"s")+" · "+dl+" deadline"+(dl===1?"":"s"); }
+function renderPlanner(c){
+  const p=plannerData(c);
+  let h=`<p class="fp-intro">Her planner — monthly priorities, upcoming appointments, and important deadlines.</p>`;
+  h+=`<div class="pl-sec"><b>🎯 Monthly priorities</b>`;
+  p.priorities.forEach((t,i)=>{ h+=`<div class="pl-row"><input value="${esc(t)}" placeholder="A focus for this month" oninput="planEdit('priorities',${i},this.value)"><button class="xrm" onclick="planDel('priorities',${i})">✕</button></div>`; });
+  h+=`<button class="add" onclick="planAdd('priorities')">＋ add priority</button></div>`;
+  h+=`<div class="pl-sec"><b>📅 Upcoming appointments</b>`;
+  p.appointments.slice().sort((a,b)=>(a.date||'').localeCompare(b.date||'')).forEach(ap=>{ const i=p.appointments.indexOf(ap); h+=`<div class="pl-appt"><input class="pl-t" placeholder="Appointment" value="${esc(ap.title||'')}" oninput="planEditObj('appointments',${i},'title',this.value)"><input type="date" value="${esc(ap.date||'')}" onchange="planEditObj('appointments',${i},'date',this.value)"><input class="pl-time" placeholder="time" value="${esc(ap.time||'')}" oninput="planEditObj('appointments',${i},'time',this.value)"><input class="pl-n" placeholder="location / note" value="${esc(ap.note||'')}" oninput="planEditObj('appointments',${i},'note',this.value)"><button class="xrm" onclick="planDel('appointments',${i})">✕</button></div>`; });
+  h+=`<button class="add" onclick="planAddObj('appointments')">＋ add appointment</button></div>`;
+  h+=`<div class="pl-sec"><b>⏰ Important deadlines</b>`;
+  p.deadlines.slice().sort((a,b)=>(a.date||'').localeCompare(b.date||'')).forEach(dl=>{ const i=p.deadlines.indexOf(dl); h+=`<div class="pl-appt"><input class="pl-t" placeholder="Deadline" value="${esc(dl.label||'')}" oninput="planEditObj('deadlines',${i},'label',this.value)"><input type="date" value="${esc(dl.date||'')}" onchange="planEditObj('deadlines',${i},'date',this.value)"><button class="xrm" onclick="planDel('deadlines',${i})">✕</button></div>`; });
+  h+=`<button class="add" onclick="planAddObj('deadlines')">＋ add deadline</button></div>`;
+  return h;
+}
+function planAdd(list){ plannerData(cur())[list].push(""); persist(); rerender(); }
+function planAddObj(list){ plannerData(cur())[list].push(list==='appointments'?{id:uid(),title:"",date:"",time:"",note:""}:{id:uid(),label:"",date:""}); persist(); rerender(); }
+function planDel(list,i){ plannerData(cur())[list].splice(i,1); persist(); rerender(); }
+function planEdit(list,i,v){ plannerData(cur())[list][i]=v; scheduleSave(); }
+function planEditObj(list,i,f,v){ const o=plannerData(cur())[list][i]; if(o){ o[f]=v; scheduleSave(); } }
 
 /* ============================ COACHING & ACCOUNTABILITY (check-in history) ============================ */
 function checkinList(c){ c.checkins=c.checkins||[]; return c.checkins; }
