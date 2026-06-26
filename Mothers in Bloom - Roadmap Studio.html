@@ -281,6 +281,69 @@
   .databar-note{font-size:11.5px;color:var(--ink-soft);flex:1;min-width:180px}
   .btn.danger{color:#B23A48;border-color:#E7C3C3}
   .btn.danger:hover{background:#FBEDED;border-color:#B23A48}
+  /* financial planning tools */
+  .fp-intro{font-size:12.5px;color:var(--ink-soft);margin:0 0 14px;line-height:1.5}
+  .fp-list{display:flex;flex-direction:column;gap:12px}
+  .fp-card{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fffdf9}
+  .fp-row2{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+  .fp-name{flex:1;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;font-weight:600;font-family:inherit;background:#fff}
+  .fp-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .fp-grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .fp-grid3 label,.fp-grid2 label{display:flex;flex-direction:column;font-size:11px;font-weight:700;color:var(--ink-soft);gap:4px;text-transform:uppercase;letter-spacing:.4px}
+  .fp-grid3 input,.fp-grid2 input{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;font-family:inherit;background:#fff;font-weight:400;text-transform:none;letter-spacing:0}
+  .fp-bar{height:9px;background:#EFE3D2;border-radius:6px;overflow:hidden;margin:10px 0 6px}
+  .fp-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--sage),var(--terracotta));border-radius:6px;transition:width .3s}
+  .fp-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);flex-wrap:wrap;gap:6px}
+  .fp-meta b{color:var(--ink)}
+  .fp-debt-head,.fp-debt-row{display:grid;grid-template-columns:1.4fr 1fr .7fr 1fr 26px;gap:6px;align-items:center}
+  .fp-debt-head{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);font-weight:700;margin-bottom:4px;padding:0 2px}
+  .fp-debt-row{margin-bottom:6px}
+  .fp-debt-row input{border:1px solid var(--line);border-radius:8px;padding:8px;font-size:13px;font-family:inherit;width:100%;box-sizing:border-box;background:#fff}
+  .fp-strategy{margin:16px 0;display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end}
+  .fp-seg{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .fp-seg b{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);font-weight:700;margin-right:2px}
+  .seg{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 12px;cursor:pointer;font-weight:600;font-size:13px;color:var(--ink)}
+  .seg small{font-weight:400;color:var(--ink-soft);display:block;font-size:10.5px}
+  .seg.on{background:color-mix(in srgb,var(--terracotta) 12%,#fff);border-color:var(--terracotta);color:var(--terracotta-d)}
+  .fp-extra{display:flex;flex-direction:column;gap:4px;font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);font-weight:700}
+  .fp-extra input{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;width:120px;font-family:inherit;background:#fff;font-weight:400}
+  .fp-result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px;margin-top:8px}
+  .fp-order{margin-top:10px;font-size:12.5px;color:var(--ink-soft);line-height:2}
+  .fp-chip{display:inline-block;background:#F3E8D6;border-radius:20px;padding:3px 10px;font-size:12px;color:var(--ink);margin:2px}
+  .fp-hint{font-size:11px;color:var(--terracotta);cursor:pointer;text-decoration:underline;margin-top:3px;text-transform:none;letter-spacing:0;font-weight:600}
+  .fp-dti-big{font-size:44px;font-weight:800;text-align:center;line-height:1;margin:8px 0 2px}
+  .fp-dti-big small{display:block;font-size:11px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
+  .fp-dti-msg{text-align:center;font-size:13px;font-weight:600;margin:4px 0 12px}
+  .fp-ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--ink-soft);margin-top:-2px}
+  .fp-score{font-size:30px;font-weight:800;color:var(--terracotta-d);display:flex;align-items:baseline;gap:8px}
+  .fp-delta{font-size:13px;font-weight:700}
+  .fp-add-score{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:14px 0;padding:12px;border:1px dashed var(--line);border-radius:10px}
+  .fp-add-score b{font-size:12px}
+  .fp-add-score input{border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:13px;font-family:inherit;background:#fff}
+  .fp-history{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+  .fp-hrow{display:grid;grid-template-columns:1fr auto 26px;gap:10px;align-items:center;padding:6px 10px;background:#fffdf9;border:1px solid var(--line);border-radius:8px;font-size:13px}
+  .fp-hrow b{font-size:15px}
+  .fp-factors b,.fp-check b,.fp-down b,.fp-block b,.fp-trend b,.fp-month b{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);font-weight:700;display:block;margin-bottom:6px}
+  .fp-frow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .fp-flabel{font-weight:600;font-size:13px}
+  .fp-frow input{border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:13px;width:48%;font-family:inherit;background:#fff}
+  .fp-house-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .fp-checkrow{display:flex;align-items:center;gap:8px;padding:8px 9px;border:1px solid var(--line);border-radius:8px;margin-bottom:6px;font-size:13px;cursor:pointer;background:#fff}
+  .fp-checkrow.on{background:color-mix(in srgb,var(--sage) 12%,#fff);border-color:var(--sage)}
+  .fp-block{display:block;margin-top:14px}
+  .fp-block textarea{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:inherit;font-size:13px;min-height:60px;background:#fff;resize:vertical;margin-top:6px}
+  .fp-month{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .fp-month b{margin-bottom:0}
+  .fp-month select,.fp-pva input{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;background:#fff}
+  .fp-pva-head,.fp-pva-row{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:8px;align-items:center}
+  .fp-pva-head{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);font-weight:700;margin-bottom:6px}
+  .fp-pva-row{margin-bottom:6px}
+  .fp-pva-row input{width:100%;box-sizing:border-box}
+  .fp-plan{color:var(--ink-soft);font-size:13px}
+  .fp-var{font-weight:700;font-size:13px}
+  .fp-trend{margin-top:16px}
+  .fp-trow{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .pos{color:#5F7D4F}.neg{color:#B23A48}
   .pfilter input,.pfilter select{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;font-family:inherit;background:#fffdf9}
   .bt-overlay{position:fixed;inset:0;background:rgba(40,30,20,.55);display:flex;align-items:flex-start;justify-content:center;z-index:200;padding:24px;overflow:auto}
   .bt-modal{background:var(--cream);border-radius:16px;max-width:720px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);margin:auto}
@@ -710,6 +773,13 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
       q84:"Yes"
     },
     intakeNotes:"Anxious about childcare costs eating into extra-shift income. Lit up talking about homeownership — connect with the FOC homeownership track next session. Wants help automating savings.",
+    savings:[{id:"sv1",name:"Emergency fund",target:3000,current:1100,monthly:200}],
+    debts:[{id:"db1",name:"Visa",balance:2400,apr:24.99,minPayment:75},{id:"db2",name:"Car loan",balance:6800,apr:9.5,minPayment:210}],
+    debtPlan:{method:"avalanche",extra:150},
+    dti:{income:"",debt:""},
+    credit:{target:680,history:[{id:"cs1",date:"2026-02-10",score:612},{id:"cs2",date:"2026-04-12",score:628},{id:"cs3",date:"2026-06-14",score:641}],factors:{"Payment history":"All on time the last 6 months.","Amounts owed":"Cards ~60% utilized — paying down Visa first."}},
+    housing:{checklist:[{label:"Stable income (2+ yrs)",done:true},{label:"Credit score 620+",done:true},{label:"Debt-to-income under 43%",done:true},{label:"Down payment saved",done:false},{label:"Budget for ownership costs",done:false},{label:"Mortgage pre-approval",done:false},{label:"Homebuyer education class",done:false}],downGoal:8000,downSaved:1500,referrals:"Referred to FOC homeownership track 6/26.",note:"On track — next focus: down payment + credit to 680."},
+    budgetActuals:{"2026-05":{income:2380,fixed:1450,variable:560,savings:200,debt:285,note:"Extra shift helped cover a car repair."}},
     budget:{
       income:[{label:"Take-home pay",amount:1900},{label:"Monthly gift",amount:500}],
       fixed:[{label:"Rent",amount:1100},{label:"Utilities",amount:160},{label:"Phone",amount:60},{label:"Car insurance",amount:120}],
@@ -787,7 +857,7 @@ function renderRoster(){
   }).join("") + `<div class="addcard" onclick="addClient()">＋ Add participant</div>`;
 }
 function todayISO(){ return new Date().toISOString().slice(0,10); }
-function newClientObj(){ return {id:uid(), draft:true, name:"", type:"Mothers in Bloom Cohort Member", created:Date.now(), last:null, answers:{q3:todayISO()}, intakeNotes:"", budget:{income:[],fixed:[],variable:[],savings:[],debt:[]}, nww:{needs:[],wants:[],wishes:[]}, goals:[]}; }
+function newClientObj(){ return {id:uid(), draft:true, name:"", type:"Mothers in Bloom Cohort Member", created:Date.now(), last:null, answers:{q3:todayISO()}, intakeNotes:"", budget:{income:[],fixed:[],variable:[],savings:[],debt:[]}, nww:{needs:[],wants:[],wishes:[]}, goals:[], savings:[], debts:[], debtPlan:{method:"avalanche",extra:""}, dti:{income:"",debt:""}, credit:{target:"",history:[],factors:{}}, housing:{}, budgetActuals:{}}; }
 function addClient(){
   const c=newClientObj(); DB.clients[c.id]=c; draftId=c.id; activeId=c.id; activeStage=0;
   showOnly('viewWorkspace'); hideChip(); setBack("← Cancel", discardDraft);
@@ -849,6 +919,12 @@ function renderProfile(){
   h+=toolCard('nww','🌸 Needs · Wants · Wishes', nc+" item"+(nc===1?"":"s"));
   const gc=(c.goals||[]).length, gopen=(c.goals||[]).filter(g=>goalPct(g)<100).length;
   h+=toolCard('goals','🎯 Goals', gc+" goal"+(gc===1?"":"s")+" · "+gopen+" open");
+  h+=toolCard('savings','🏦 Savings', savingsSummary(c));
+  h+=toolCard('debt','💳 Debt payoff', debtSummary(c));
+  h+=toolCard('dti','📐 Debt-to-income', dtiSummary(c));
+  h+=toolCard('credit','📈 Credit', creditSummary(c));
+  h+=toolCard('housing','🏠 Housing journey', housingSummary(c));
+  h+=toolCard('actual','📊 Planned vs actual', actualSummary(c));
   h+=`</div>`;
   document.getElementById("profilePanel").innerHTML=h;
 }
@@ -858,8 +934,9 @@ function openTool(kind){ workTool=kind; nwwEditing=null; let o=document.getEleme
 function closeTool(){ const o=document.getElementById('workModal'); if(o) o.remove(); workTool=null; nwwEditing=null; if(currentView==='profile') renderProfile(); else if(currentView==='workspace') renderStage(); }
 function renderWorkModal(){ const o=document.getElementById('workModal'); if(!o) return; const c=cur(); if(!c){ closeTool(); return; }
   const open=snapshotOpen(o);
-  const titles={nww:'🌸 Needs · Wants · Wishes',goals:'🎯 Goals',budget:'💰 Budget'};
-  const body = workTool==='nww'?renderNWW(c):(workTool==='goals'?renderGoals(c):renderBudget(c.budget));
+  const titles={nww:'🌸 Needs · Wants · Wishes',goals:'🎯 Goals',budget:'💰 Budget',savings:'🏦 Savings Tracker',debt:'💳 Debt Payoff Planner',dti:'📐 Debt-to-Income',credit:'📈 Credit Tracking',housing:'🏠 Housing Journey',actual:'📊 Planned vs Actual'};
+  const R={nww:renderNWW,goals:renderGoals,savings:renderSavings,debt:renderDebtTool,dti:renderDTI,credit:renderCredit,housing:renderHousing,actual:renderActual};
+  const body = workTool==='budget'?renderBudget(c.budget):(R[workTool]?R[workTool](c):renderBudget(c.budget));
   o.innerHTML=`<div class="bt-modal" style="max-width:880px"><div class="bt-head"><b>${titles[workTool]||'Tool'}</b><span style="flex:1"></span><button class="btn sm" onclick="closeTool()">✕ Done</button></div><div class="bt-body">${body}</div></div>`;
   restoreOpen(o,open);
 }
@@ -1110,6 +1187,177 @@ const NWW_COLS=[["needs","Needs","#C25E3A"],["wants","Wants","#E0A93B"],["wishes
 const NWW_PRI=["Today","This week","This month","This year","Someday","Other"];
 let _drag=null, nwwEditing=null;
 function nwwCost(v){ const s=String(v==null?"":v).trim(); if(s==="") return ""; return /^\d/.test(s)?("$"+s):esc(s); }
+/* ============================ FINANCIAL PLANNING SYSTEM ============================ */
+function fnum(v){ const n=Number(v); return isFinite(n)?n:0; }
+function pctBar(pct){ pct=Math.max(0,Math.min(100,Math.round(pct||0))); return `<div class="fp-bar"><i style="width:${pct}%"></i></div>`; }
+function monthsToDateLabel(m){ if(!m||m<=0) return "—"; const d=new Date(); d.setMonth(d.getMonth()+Math.round(m)); return d.toLocaleDateString(undefined,{month:'short',year:'numeric'}); }
+
+/* ---------- Savings Tracker ---------- */
+function savingsList(c){ c.savings=c.savings||[]; return c.savings; }
+function savingsSummary(c){ const s=c.savings||[]; if(!s.length) return "not started"; const t=s.reduce((a,x)=>a+fnum(x.target),0),cu=s.reduce((a,x)=>a+fnum(x.current),0),pct=t>0?Math.round(100*cu/t):0; return s.length+" goal"+(s.length===1?"":"s")+" · "+money(cu)+" of "+money(t)+" ("+pct+"%)"; }
+function savProgHTML(g){ const t=fnum(g.target),cu=fnum(g.current),pct=t>0?100*cu/t:0,remain=Math.max(0,t-cu),months=fnum(g.monthly)>0&&remain>0?Math.ceil(remain/fnum(g.monthly)):0;
+  return pctBar(pct)+`<div class="fp-meta"><span>${money(cu)} of ${money(t)} · <b>${Math.round(pct)}%</b></span><span>${remain>0?(money(remain)+" to go"):"🎉 reached"}${months>0?(" · ~"+months+" mo ("+monthsToDateLabel(months)+")"):""}</span></div>`; }
+function renderSavings(c){
+  const s=savingsList(c);
+  let h=`<p class="fp-intro">Track savings goals like an emergency fund or a cushion. Set a target and current balance; add a monthly amount to project when she'll reach it.</p><div class="fp-list">`;
+  if(!s.length) h+=`<p class="help">No savings goals yet.</p>`;
+  s.forEach((g,i)=>{ h+=`<div class="fp-card">
+    <div class="fp-row2"><input class="fp-name" placeholder="Goal (e.g. Emergency fund)" value="${esc(g.name||'')}" oninput="savEdit(${i},'name',this.value)"><button class="xrm" onclick="savDel(${i})">✕</button></div>
+    <div class="fp-grid3">
+      <label>Target<input type="number" placeholder="0" value="${g.target!=null&&g.target!==''?g.target:''}" oninput="savEdit(${i},'target',this.value)"></label>
+      <label>Saved so far<input type="number" placeholder="0" value="${g.current!=null&&g.current!==''?g.current:''}" oninput="savEdit(${i},'current',this.value)"></label>
+      <label>Monthly add<input type="number" placeholder="0" value="${g.monthly!=null&&g.monthly!==''?g.monthly:''}" oninput="savEdit(${i},'monthly',this.value)"></label>
+    </div>
+    <div class="fp-prog" data-i="${i}">${savProgHTML(g)}</div></div>`; });
+  h+=`</div><button class="add" onclick="savAdd()">＋ add savings goal</button>`;
+  return h;
+}
+function savAdd(){ savingsList(cur()).push({id:uid(),name:"",target:"",current:"",monthly:""}); persist(); rerender(); }
+function savDel(i){ savingsList(cur()).splice(i,1); persist(); rerender(); }
+function savEdit(i,f,v){ const g=savingsList(cur())[i]; if(!g) return; g[f]=v; scheduleSave(); const box=document.querySelector('#workModal .fp-prog[data-i="'+i+'"]'); if(box) box.innerHTML=savProgHTML(g); }
+
+/* ---------- Debt Payoff Planner (snowball / avalanche) ---------- */
+function debtList(c){ c.debts=c.debts||[]; c.debtPlan=c.debtPlan||{method:"avalanche",extra:""}; return c.debts; }
+function simulateDebtPayoff(debts, method, extra){
+  let ds=(debts||[]).filter(d=>fnum(d.balance)>0).map(d=>({name:d.name||"Debt", bal:fnum(d.balance), apr:fnum(d.apr), min:fnum(d.minPayment)}));
+  if(!ds.length) return {months:0,totalInterest:0,payable:true,totalBal:0,totalMin:0,pool:0,order:[]};
+  const totalBal=ds.reduce((a,d)=>a+d.bal,0), totalMin=ds.reduce((a,d)=>a+d.min,0), pool=totalMin+fnum(extra);
+  const order=ds.slice().sort((a,b)=> method==='snowball'?(a.bal-b.bal):(b.apr-a.apr)).map(d=>d.name);
+  let months=0,totalInterest=0; const MAX=1200;
+  while(ds.some(d=>d.bal>0.005) && months<MAX){
+    months++;
+    ds.forEach(d=>{ if(d.bal>0.005){ const it=d.bal*(d.apr/100/12); d.bal+=it; totalInterest+=it; } });
+    let avail=pool;
+    ds.forEach(d=>{ if(d.bal>0.005){ const pay=Math.min(d.min,d.bal,avail); d.bal-=pay; avail-=pay; } });
+    const ord=ds.map((d,i)=>i).filter(i=>ds[i].bal>0.005).sort((a,b)=> method==='snowball'?(ds[a].bal-ds[b].bal):(ds[b].apr-ds[a].apr));
+    for(const i of ord){ if(avail<=0.005) break; const pay=Math.min(avail,ds[i].bal); ds[i].bal-=pay; avail-=pay; }
+  }
+  return {months,totalInterest,payable:months<MAX,totalBal,totalMin,pool,order};
+}
+function debtSummary(c){ const d=(c.debts||[]).filter(x=>fnum(x.balance)>0); if(!d.length) return "not started"; const bal=d.reduce((a,x)=>a+fnum(x.balance),0),r=simulateDebtPayoff(c.debts,(c.debtPlan||{}).method,(c.debtPlan||{}).extra); return money(bal)+" · "+(r.payable?(r.months+" mo to payoff"):"raise payment"); }
+function debtResultHTML(c){
+  const r=simulateDebtPayoff(c.debts,(c.debtPlan||{}).method,(c.debtPlan||{}).extra);
+  if(!r.totalBal) return `<div class="help">Add a debt to see the payoff plan.</div>`;
+  if(!r.payable) return `<div class="fp-result-grid"><div class="box"><span>Total balance</span><b>${money(r.totalBal)}</b></div><div class="box"><span>Paying</span><b>${money(r.pool)}/mo</b></div></div><p class="help" style="color:#B23A48">The minimums plus extra barely cover the interest — bump "Extra payment" to start making real progress.</p>`;
+  return `<div class="fp-result-grid">
+    <div class="box"><span>Total balance</span><b>${money(r.totalBal)}</b></div>
+    <div class="box"><span>Paying</span><b>${money(r.pool)}/mo</b></div>
+    <div class="box net"><span>Debt-free in</span><b class="pos">${r.months} mo · ${monthsToDateLabel(r.months)}</b></div>
+    <div class="box"><span>Total interest</span><b>${money(r.totalInterest)}</b></div></div>
+    <div class="fp-order"><b>Order of attack:</b> ${r.order.map((n,i)=>`<span class="fp-chip">${i+1}. ${esc(n)}</span>`).join(" ")}</div>`;
+}
+function renderDebtTool(c){
+  const ds=debtList(c), plan=c.debtPlan;
+  let h=`<p class="fp-intro">List each debt with its balance, rate, and minimum. Pick a strategy and add any extra she can put toward it monthly — we'll project the payoff date and total interest.</p>`;
+  h+=`<div class="fp-debt-rows"><div class="fp-debt-head"><span>Debt</span><span>Balance</span><span>APR %</span><span>Min/mo</span><span></span></div>`;
+  if(!ds.length) h+=`<p class="help">No debts added.</p>`;
+  ds.forEach((d,i)=>{ h+=`<div class="fp-debt-row">
+    <input placeholder="e.g. Visa" value="${esc(d.name||'')}" oninput="debtEdit(${i},'name',this.value)">
+    <input type="number" placeholder="0" value="${d.balance!==''&&d.balance!=null?d.balance:''}" oninput="debtEdit(${i},'balance',this.value)">
+    <input type="number" placeholder="0" value="${d.apr!==''&&d.apr!=null?d.apr:''}" oninput="debtEdit(${i},'apr',this.value)">
+    <input type="number" placeholder="0" value="${d.minPayment!==''&&d.minPayment!=null?d.minPayment:''}" oninput="debtEdit(${i},'minPayment',this.value)">
+    <button class="xrm" onclick="debtDel(${i})">✕</button></div>`; });
+  h+=`<button class="add" onclick="debtAdd()">＋ add debt</button></div>`;
+  h+=`<div class="fp-strategy"><div class="fp-seg"><b>Strategy</b>
+      <button class="seg ${plan.method==='avalanche'?'on':''}" onclick="debtMethod('avalanche')">Avalanche <small>highest rate first</small></button>
+      <button class="seg ${plan.method==='snowball'?'on':''}" onclick="debtMethod('snowball')">Snowball <small>smallest balance first</small></button></div>
+    <label class="fp-extra">Extra / mo<input type="number" placeholder="0" value="${plan.extra!==''&&plan.extra!=null?plan.extra:''}" oninput="debtExtra(this.value)"></label></div>`;
+  h+=`<div class="fp-debt-result">${debtResultHTML(c)}</div>`;
+  return h;
+}
+function debtAdd(){ debtList(cur()).push({id:uid(),name:"",balance:"",apr:"",minPayment:""}); persist(); rerender(); }
+function debtDel(i){ debtList(cur()).splice(i,1); persist(); rerender(); }
+function debtEdit(i,f,v){ const d=debtList(cur())[i]; if(!d) return; d[f]=v; scheduleSave(); updateDebtResult(); }
+function debtMethod(m){ const c=cur(); c.debtPlan=c.debtPlan||{}; c.debtPlan.method=m; persist(); rerender(); }
+function debtExtra(v){ const c=cur(); c.debtPlan=c.debtPlan||{}; c.debtPlan.extra=v; scheduleSave(); updateDebtResult(); }
+function updateDebtResult(){ const box=document.querySelector('#workModal .fp-debt-result'); if(box) box.innerHTML=debtResultHTML(cur()); }
+
+/* ---------- Debt-to-Income ---------- */
+function dtiData(c){ c.dti=c.dti||{income:"",debt:""}; return c.dti; }
+function dtiCalc(c){ const d=c.dti||{}; const inc=d.income!==''&&d.income!=null?fnum(d.income):budSum((c.budget||{}).income); const debt=d.debt!==''&&d.debt!=null?fnum(d.debt):(c.debts||[]).reduce((a,x)=>a+fnum(x.minPayment),0); return {inc,debt,ratio:inc>0?100*debt/inc:0}; }
+function dtiSummary(c){ const r=dtiCalc(c); if(!r.inc) return "not started"; return r.ratio.toFixed(0)+"% debt-to-income"; }
+function dtiBand(r){ if(r.ratio<=36) return ["#5F7D4F","At or below 36% — lenders see this as healthy."]; if(r.ratio<=43) return ["#C9972B","36–43% — manageable, but tighten where you can."]; return ["#B23A48","Above 43% — most mortgages get hard to qualify for here."]; }
+function dtiResultHTML(c){
+  const r=dtiCalc(c); if(!r.inc) return `<div class="help">Enter income to calculate.</div>`;
+  const [color,msg]=dtiBand(r), afford28=r.inc*0.28, roomFor=Math.max(0,r.inc*0.36-r.debt);
+  return `<div class="fp-dti-big" style="color:${color}">${r.ratio.toFixed(0)}%<small>debt-to-income</small></div>
+    ${pctBar(Math.min(100,r.ratio))}<div class="fp-ticks"><span>0%</span><span>36% goal</span><span>43%</span><span>100%</span></div>
+    <p class="fp-dti-msg" style="color:${color}">${msg}</p>
+    <div class="fp-result-grid"><div class="box"><span>Income / mo</span><b>${money(r.inc)}</b></div><div class="box"><span>Debt / mo</span><b>${money(r.debt)}</b></div><div class="box"><span>Housing budget (28%)</span><b>${money(afford28)}</b></div><div class="box"><span>Room under 36%</span><b>${money(roomFor)}</b></div></div>`;
+}
+function renderDTI(c){
+  const d=dtiData(c), bInc=budSum((c.budget||{}).income), dMin=(c.debts||[]).reduce((a,x)=>a+fnum(x.minPayment),0);
+  let h=`<p class="fp-intro">Debt-to-income compares monthly debt payments to gross monthly income — lenders use it for mortgages, and under 36% is the goal.</p>`;
+  h+=`<div class="fp-grid2">
+    <label>Gross monthly income<input type="number" placeholder="0" value="${d.income!=null&&d.income!==''?d.income:''}" oninput="dtiEdit('income',this.value)">${bInc>0?`<span class="fp-hint" onclick="dtiAutofill('income')">use budget income (${money(bInc)})</span>`:''}</label>
+    <label>Monthly debt payments<input type="number" placeholder="0" value="${d.debt!=null&&d.debt!==''?d.debt:''}" oninput="dtiEdit('debt',this.value)">${dMin>0?`<span class="fp-hint" onclick="dtiAutofill('debt')">use debt minimums (${money(dMin)})</span>`:''}</label></div>`;
+  h+=`<div class="fp-dti-result">${dtiResultHTML(c)}</div>`;
+  return h;
+}
+function dtiEdit(f,v){ dtiData(cur())[f]=v; scheduleSave(); const box=document.querySelector('#workModal .fp-dti-result'); if(box) box.innerHTML=dtiResultHTML(cur()); }
+function dtiAutofill(f){ const c=cur(); dtiData(c); if(f==='income') c.dti.income=Math.round(budSum((c.budget||{}).income)); else c.dti.debt=Math.round((c.debts||[]).reduce((a,x)=>a+fnum(x.minPayment),0)); persist(); rerender(); }
+
+/* ---------- Credit Tracking ---------- */
+const CREDIT_FACTORS=[["Payment history","On-time payments (35%)"],["Amounts owed","Credit utilization (30%)"],["Length of history","Age of accounts (15%)"],["Credit mix","Types of credit (10%)"],["New credit","Recent inquiries (10%)"]];
+function creditData(c){ c.credit=c.credit||{target:"",history:[],factors:{}}; c.credit.history=c.credit.history||[]; c.credit.factors=c.credit.factors||{}; return c.credit; }
+function creditLatest(c){ const h=(c.credit&&c.credit.history)||[]; return h.length?h[h.length-1].score:""; }
+function creditSummary(c){ const l=creditLatest(c); if(l==="") return "not started"; const t=(c.credit||{}).target; return "score "+l+(t?(" → "+t):""); }
+function renderCredit(c){
+  const cd=creditData(c), latest=creditLatest(c), first=cd.history.length?cd.history[0].score:null, delta=(latest!==''&&first!=null)?(latest-first):null;
+  let h=`<p class="fp-intro">Log her score each month to watch it climb toward a target. Note what's driving each factor so coaching stays concrete.</p>`;
+  h+=`<div class="fp-grid2"><label>Latest score<div class="fp-score">${latest!==''?latest:'—'}${delta!=null&&delta!==0?`<span class="fp-delta ${delta>0?'pos':'neg'}">${delta>0?'▲':'▼'}${Math.abs(delta)}</span>`:''}</div></label>
+    <label>Target score<input type="number" placeholder="e.g. 680" value="${cd.target!=null&&cd.target!==''?cd.target:''}" oninput="creditEdit('target',this.value)"></label></div>`;
+  h+=`<div class="fp-add-score"><b>Add a score</b><input type="date" id="crDate" value="${todayISO()}"><input type="number" id="crScore" placeholder="score"><button class="btn sm" onclick="creditAddScore()">Log</button></div>`;
+  if(cd.history.length) h+=`<div class="fp-history">`+cd.history.map((e,i)=>({e,i})).reverse().map(({e,i})=>`<div class="fp-hrow"><span>${esc(e.date||'')}</span><b>${esc(String(e.score))}</b><button class="xrm" onclick="creditDelScore(${i})">✕</button></div>`).join("")+`</div>`;
+  h+=`<div class="fp-factors"><b>Credit factors</b>`+CREDIT_FACTORS.map(([k,desc])=>`<div class="fp-frow"><div><div class="fp-flabel">${k}</div><div class="help">${desc}</div></div><input placeholder="note / status" value="${esc(cd.factors[k]||'')}" oninput="creditFactor('${esc(k)}',this.value)"></div>`).join("")+`</div>`;
+  return h;
+}
+function creditEdit(f,v){ creditData(cur())[f]=v; scheduleSave(); }
+function creditAddScore(){ const c=cur(); const date=document.getElementById('crDate').value||todayISO(); const score=document.getElementById('crScore').value; if(score==='') return; creditData(c).history.push({id:uid(),date,score:fnum(score)}); c.credit.history.sort((a,b)=>(a.date||'').localeCompare(b.date||'')); persist(); rerender(); }
+function creditDelScore(i){ creditData(cur()).history.splice(i,1); persist(); rerender(); }
+function creditFactor(k,v){ creditData(cur()).factors[k]=v; scheduleSave(); }
+
+/* ---------- Housing Journey ---------- */
+const HOUSING_CHECK=["Stable income (2+ yrs)","Credit score 620+","Debt-to-income under 43%","Down payment saved","Budget for ownership costs","Mortgage pre-approval","Homebuyer education class"];
+function housingData(c){ c.housing=c.housing||{}; const hh=c.housing; if(!hh.checklist) hh.checklist=HOUSING_CHECK.map(t=>({label:t,done:false})); hh.downGoal=hh.downGoal||""; hh.downSaved=hh.downSaved||""; hh.referrals=hh.referrals||""; hh.note=hh.note||""; return hh; }
+function housingSummary(c){ const hh=c.housing; if(!hh||!hh.checklist) return "not started"; const done=hh.checklist.filter(x=>x.done).length; return done+"/"+hh.checklist.length+" milestones"; }
+function houseDownHTML(hh){ const pct=fnum(hh.downGoal)>0?100*fnum(hh.downSaved)/fnum(hh.downGoal):0,remain=Math.max(0,fnum(hh.downGoal)-fnum(hh.downSaved)); return pctBar(pct)+`<div class="fp-meta"><span>${money(fnum(hh.downSaved))} of ${money(fnum(hh.downGoal))} · <b>${Math.round(pct)}%</b></span><span>${remain>0?money(remain)+" to go":"🎉 reached"}</span></div>`; }
+function renderHousing(c){
+  const hh=housingData(c);
+  let h=`<p class="fp-intro">The path to homeownership: readiness milestones, a down-payment goal, and a place to track partner referrals.</p>`;
+  h+=`<div class="fp-house-grid"><div class="fp-check"><b>Homeownership readiness</b>`+hh.checklist.map((it,i)=>`<label class="fp-checkrow ${it.done?'on':''}"><input type="checkbox" ${it.done?'checked':''} onchange="houseCheck(${i})"><span>${esc(it.label)}</span></label>`).join("")+`</div>`;
+  h+=`<div class="fp-down"><b>Down payment goal</b><div class="fp-grid2"><label>Goal<input type="number" placeholder="0" value="${hh.downGoal!==''?hh.downGoal:''}" oninput="houseEdit('downGoal',this.value)"></label><label>Saved<input type="number" placeholder="0" value="${hh.downSaved!==''?hh.downSaved:''}" oninput="houseEdit('downSaved',this.value)"></label></div><div class="fp-down-prog">${houseDownHTML(hh)}</div></div></div>`;
+  h+=`<label class="fp-block"><b>Partner referrals</b><textarea placeholder="e.g. referred to FOC homeownership track on 6/26" oninput="houseEdit('referrals',this.value)">${esc(hh.referrals)}</textarea></label>`;
+  h+=`<label class="fp-block"><b>Notes (mortgage readiness, next steps)</b><textarea placeholder="Where she is on the journey…" oninput="houseEdit('note',this.value)">${esc(hh.note)}</textarea></label>`;
+  return h;
+}
+function houseCheck(i){ const hh=housingData(cur()); hh.checklist[i].done=!hh.checklist[i].done; persist(); rerender(); }
+function houseEdit(f,v){ housingData(cur())[f]=v; scheduleSave(); if(f==='downGoal'||f==='downSaved'){ const box=document.querySelector('#workModal .fp-down-prog'); if(box) box.innerHTML=houseDownHTML(cur().housing); } }
+
+/* ---------- Planned vs Actual ---------- */
+const PVA_CATS=[["income","Income"],["fixed","Fixed expenses"],["variable","Variable expenses"],["savings","Savings"],["debt","Debt payments"]];
+let actualMonth=null;
+function actualData(c){ c.budgetActuals=c.budgetActuals||{}; return c.budgetActuals; }
+function pvaMonthKey(){ const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,'0'); }
+function pvaMonthLabel(k){ const p=k.split('-'); return new Date(Number(p[0]),Number(p[1])-1,1).toLocaleDateString(undefined,{month:'long',year:'numeric'}); }
+function pvaMonthOptions(){ const out=[]; const d=new Date(); for(let i=0;i<12;i++){ const m=new Date(d.getFullYear(),d.getMonth()-i,1); out.push([m.getFullYear()+"-"+String(m.getMonth()+1).padStart(2,'0'), m.toLocaleDateString(undefined,{month:'long',year:'numeric'})]); } return out; }
+function pvaVariance(cat,planned,actual){ if(actual==null) return null; return (cat==='income'||cat==='savings'||cat==='debt')?(actual-planned):(planned-actual); }
+function actualSummary(c){ const a=c.budgetActuals||{}; const n=Object.keys(a).length; return n?(n+" month"+(n===1?"":"s")+" tracked"):"not started"; }
+function renderActual(c){
+  const a=actualData(c), mk=actualMonth||pvaMonthKey(), mo=a[mk]||{}, b=c.budget||{};
+  let h=`<p class="fp-intro">Compare the plan to what actually happened each month. On spending, positive variance means she came in under plan.</p>`;
+  h+=`<div class="fp-month"><b>Month</b><select onchange="actualSetMonth(this.value)">${pvaMonthOptions().map(o=>`<option value="${o[0]}" ${o[0]===mk?'selected':''}>${o[1]}</option>`).join("")}</select></div>`;
+  h+=`<div class="fp-pva"><div class="fp-pva-head"><span>Category</span><span>Planned</span><span>Actual</span><span>Variance</span></div>`;
+  PVA_CATS.forEach(o=>{ const k=o[0]; const planned=budSum(b[k]); const actual=mo[k]!=null&&mo[k]!==''?fnum(mo[k]):null; const v=pvaVariance(k,planned,actual);
+    h+=`<div class="fp-pva-row"><span>${o[1]}</span><span class="fp-plan">${money(planned)}</span><input type="number" placeholder="—" value="${mo[k]!=null&&mo[k]!==''?mo[k]:''}" oninput="actualEdit('${mk}','${k}',this.value)"><span class="fp-var ${v==null?'':(v>=0?'pos':'neg')}" data-cat="${k}">${v==null?'—':((v>=0?'+':'')+money(v))}</span></div>`; });
+  h+=`</div>`;
+  h+=`<label class="fp-block"><b>Notes for ${esc(pvaMonthLabel(mk))}</b><textarea placeholder="What happened this month?" oninput="actualEdit('${mk}','note',this.value)">${esc(mo.note||'')}</textarea></label>`;
+  const keys=Object.keys(a).sort(); if(keys.length){ h+=`<div class="fp-trend"><b>Trend (spending vs plan)</b>`+keys.map(k=>{ const m=a[k]; const v=(budSum(b.fixed)+budSum(b.variable))-(fnum(m.fixed)+fnum(m.variable)); return `<div class="fp-trow"><span>${esc(pvaMonthLabel(k))}</span><span class="${v>=0?'pos':'neg'}">${(v>=0?'+':'')+money(v)}</span></div>`; }).join("")+`</div>`; }
+  return h;
+}
+function actualSetMonth(k){ actualMonth=k; rerender(); }
+function actualEdit(mk,f,v){ const a=actualData(cur()); a[mk]=a[mk]||{}; a[mk][f]=v; scheduleSave(); if(f!=='note'){ const planned=budSum((cur().budget||{})[f]); const actual=v!==''?fnum(v):null; const variance=pvaVariance(f,planned,actual); const cell=document.querySelector('#workModal .fp-var[data-cat="'+f+'"]'); if(cell){ cell.textContent=variance==null?'—':((variance>=0?'+':'')+money(variance)); cell.className='fp-var '+(variance==null?'':(variance>=0?'pos':'neg')); cell.setAttribute('data-cat',f); } } }
+
 function renderNWW(c){
   const n=c.nww||(c.nww={needs:[],wants:[],wishes:[]});
   let html=`<div class="nww">`;
