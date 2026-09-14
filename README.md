@@ -9,7 +9,8 @@ program for mothers transitioning into CACF. Built for Janasha "Jay" Bradford to
 A single self-contained HTML file — no build step, no server, no dependencies to install.
 It runs entirely in the browser and is hosted as a static site on **GitHub Pages**.
 
-- **Intake** — Jay's verbatim intake form (10 sections, Q1–Q84) in her exact order
+- **Intake** — Jay's intake, organised as **before / during / after the meeting**: she prefills and then verifies the pre-meeting block with the participant, works through the conversation, and codes the visit afterwards. Question wording is verbatim from her form
+- **Check-ins** — a repeating template that is a short subset of the intake, with per-participant history. The intake counts as check-in #1
 - **Tools** — Budget builder, Needs · Wants · Wishes board, and Goals, opened from each participant's profile
 - **Summary PDF** — a branded export with a "what to include" picker; the Blooming Roadmap graphic is the last page
 - **Standalone Budget Builder** under the 🧰 Tools menu
@@ -39,6 +40,9 @@ entered it. Nothing is uploaded or shared. Two devices = two separate datasets. 
 
 ## Roadmap (next)
 
-Deeper finance tools (savings/debt/DTI/credit), longitudinal session history, and the
-participant-facing portal with real logins (V2). Integrations route the hard parts to existing
-systems: C-Suite (records/reporting), Planner (tasks/reminders), SharePoint (secure docs).
+From Jay's feedback session: the budget rebuild in her wants-versus-needs layout, goal "idea"
+cards, reporting and cohort export, and the printout redesign. Then the participant-facing
+portal with real logins (V2). Integrations route the hard parts to existing systems:
+C-Suite (records/reporting), Planner (tasks/reminders), SharePoint (secure docs).
+
+See `CONTINUE.md` for what shipped in each round and what is still waiting on Jay.
