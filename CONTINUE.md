@@ -7,12 +7,12 @@ A self-contained handoff so this work can be picked up on any machine (by a pers
 ## TL;DR — pick up on another machine
 
 ```bash
-git clone https://github.com/chasmanning/mothers-in-bloom-roadmap.git
+git clone https://github.com/cacfchas/mothers-in-bloom-roadmap.git
 cd mothers-in-bloom-roadmap
 open "Mothers in Bloom - Roadmap Studio.html"   # runs standalone — no build, no install
 ```
 
-- **Live site:** https://chasmanning.github.io/mothers-in-bloom-roadmap/
+- **Live site:** https://cacfchas.github.io/mothers-in-bloom-roadmap/
 - **Access code:** the word you chose (stored only as a djb2 hash in `GATE_HASH` near the bottom of the HTML — deliberately not written here so it stays out of the public repo).
 - **To change the app:** edit the one HTML file → `git commit -am "..."` → `git push`. GitHub Pages redeploys in ~1 minute.
 
