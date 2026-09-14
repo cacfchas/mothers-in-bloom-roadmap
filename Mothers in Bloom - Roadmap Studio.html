@@ -125,6 +125,7 @@
   .fld{margin:14px 0}
   .fld > label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
   .fld .qn{color:var(--ink-soft);font-weight:700;margin-right:6px}
+  .help{font-size:12px;color:var(--ink-soft);line-height:1.5}
   .fld .help{font-size:12px;color:var(--ink-soft);margin:-2px 0 6px}
   .req{color:var(--terracotta);margin-left:3px}
   input[type=text],input[type=number],input[type=date],textarea,select{
@@ -372,6 +373,56 @@
   .ck-f{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft)}
   .ck-f textarea{min-height:52px;border:1px solid var(--line);border-radius:8px;padding:8px;font-family:inherit;font-size:13px;background:#fff;resize:vertical;font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink)}
   .ck-f input{border:1px solid var(--line);border-radius:8px;padding:8px;font-family:inherit;font-size:13px;background:#fff;font-weight:400;text-transform:none;letter-spacing:0;align-self:flex-start}
+  .ck-f .opts{text-transform:none;letter-spacing:0;font-weight:400}
+  .ck-f>.pick-edit{text-transform:none;letter-spacing:0;font-weight:400}
+  .ck-tag{flex:none;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft);
+    background:var(--cream2);border-radius:20px;padding:3px 9px}
+  .ck-intake{background:#fbf7ef;border-style:dashed}
+  .ck-intake .ck-tag{background:var(--gold);color:#5b4a16}
+  .ck-ro{font-size:13px;line-height:1.5;color:var(--ink)}
+  .ck-ro span{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft)}
+  .ck-verify,.ck-more{border:1px solid var(--line);border-radius:10px;background:#fff}
+  .ck-verify>summary,.ck-more>summary{list-style:none;cursor:pointer;padding:9px 12px;font-size:12.5px;font-weight:600}
+  .ck-verify>summary::-webkit-details-marker,.ck-more>summary::-webkit-details-marker{display:none}
+  .ck-verify>summary b.ok{color:#5F7D4F;font-size:11px;margin-left:6px}
+  .ck-verify>summary b.todo{color:var(--terracotta-d);font-size:11px;margin-left:6px}
+  .ckv-body{padding:0 12px 12px;display:flex;flex-direction:column;gap:8px}
+  .ckv-f{display:grid;grid-template-columns:190px 1fr;gap:10px;align-items:center;font-size:12px;color:var(--ink-soft)}
+  .ckv-f input,.ckv-f select{border:1px solid var(--line);border-radius:8px;padding:7px 8px;font-family:inherit;font-size:13px;background:#fff;color:var(--ink);width:100%}
+  .ck-f.last-q>span{color:var(--terracotta-d)}
+  .chk-carry{border-left:3px solid var(--gold);background:#fdfaf1;border-radius:0 10px 10px 0;padding:10px 14px;margin:12px 0 2px;font-size:13px;line-height:1.5}
+  .chk-carry>b{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);margin-bottom:5px}
+  .chk-carry div span{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink-soft);margin-top:6px}
+  .opts.sm .opt{font-size:12px;padding:5px 10px}
+  /* pre / during / post intake chrome */
+  .phase-hd{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--ink-soft);
+    padding:14px 10px 5px;border-top:1px solid var(--line);margin-top:6px}
+  .stage-list>.phase-hd:first-child{border-top:none;margin-top:0;padding-top:4px}
+  .sec-note{font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin:-4px 0 12px}
+  .verifybox{display:flex;align-items:center;gap:9px;border:1px dashed var(--line);border-radius:10px;padding:10px 12px;
+    background:#fffdf9;font-size:13px;cursor:pointer;margin-top:4px}
+  .verifybox.on{border-style:solid;border-color:#5F7D4F;background:#f4f8f0;color:#3f5a33;font-weight:600}
+  .draftbadge{display:inline-block;margin-left:8px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+    background:var(--gold);color:#5b4a16;border-radius:20px;padding:2px 8px;vertical-align:middle}
+  .fld.is-draft{border-left:3px solid var(--gold);padding-left:12px;border-radius:0 8px 8px 0}
+  .pick-edit{font-size:11px;color:var(--ink-soft);margin:0 0 6px}
+  .pick-edit .linkbtn{font-size:11px;padding:0}
+  /* module help text carried over from the cut intake prompts */
+  .mod-help{border-left:3px solid var(--s-petals);background:#fdf6f8;border-radius:0 10px 10px 0;padding:10px 14px;
+    margin:0 0 14px;font-size:13px;line-height:1.6;color:var(--ink)}
+  .mod-help b{color:var(--ink)}
+  .mod-help span{color:var(--ink-soft);font-size:12.5px}
+  /* goal she joined with */
+  .goal-initial{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;border:1px dashed var(--line);border-radius:10px;
+    padding:8px 12px;margin-bottom:10px;font-size:12.5px;background:#fffdf9}
+  .goal-initial.on{border-style:solid;border-color:var(--gold);background:#fdfaf1}
+  .goal-initial .inline-check{margin-left:0}
+  .gi-ach{color:var(--ink-soft);font-size:12px}
+  /* participant tags */
+  .ph-tagfield{display:flex;flex-direction:column;gap:3px;margin-top:10px;max-width:520px}
+  .ph-tagfield label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-soft)}
+  .ph-tagfield input{border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-family:inherit;font-size:13px;background:#fff}
+  .tag.tag-own{background:#efe7f3;color:#5c4368}
   /* progress snapshot */
   .pg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px}
   .pg-tile{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fffdf9}
@@ -458,6 +509,11 @@
   .sopt{display:flex;align-items:center;gap:8px;font-size:14px;padding:5px 0;cursor:pointer}
   .sopt input{accent-color:var(--terracotta);width:16px;height:16px}
   @media(max-width:1024px){ .ws{grid-template-columns:1fr} .rail,.noterail{position:static} }
+  @media(max-width:620px){
+    .ck-2{grid-template-columns:1fr}
+    .ckv-f{grid-template-columns:1fr;gap:4px;align-items:stretch}
+    .goal-initial{flex-direction:column;align-items:flex-start;gap:6px}
+  }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 </head>
@@ -577,13 +633,67 @@
 // section order. Do not paraphrase, re-case, reorder, or invent. We are the tech layer,
 // not the content layer.
 const STAGES = [
-  // Order and grouping follow Jay's "Participant Update & Roadmap Intake" form exactly
-  // (11 sections, Q1 -> Q84 in sequence). Tools she scoped in the blueprint (budget
-  // builder, needs/wants/wishes board, goals) are attached within the relevant section.
+  // Restructured 2026-09-14 from Jay Bradford's 2026-07-23 feedback session
+  // (docs/MIB Tool - Build Spec - 2026-07-23.md). The flow is now
+  // PRE-MEETING (Jay prefills, then verifies live) -> DURING (the conversation)
+  // -> POST (staff coding). Question wording and talking points remain verbatim
+  // from Jay's "Participant Update & Roadmap Intake" form; only the order,
+  // the grouping, and the cuts she asked for have changed. Items marked
+  // draft:true are wording we authored and Jay has not signed off on yet.
   {
-    key:"meeting", name:"Meeting Information", ac:"var(--terracotta)",
+    key:"pre", name:"Pre-meeting prep & verification", ac:"var(--s-stem)", phase:"pre",
     sections:[
-      { script:["Before we get started, I just want to take a few minutes to connect and talk about why we’re here today.",
+      { title:"Meeting information",
+        note:"Fill this in before the meeting. You will confirm it together at the top of the session.",
+        items:[
+          {id:"q2",q:2,type:"text",label:"Participant Name:",req:true},
+          {id:"q3",q:3,type:"date",label:"Meeting Date:",req:true},
+          {id:"q3time",q:null,type:"time",label:"Meeting Time:"},
+          {id:"q4",q:4,type:"radio",label:"Meeting Type:",req:true,options:["Zoom","Phone","In Person"]},
+          {id:"q5",q:5,type:"radio",label:"Participant Type",req:true,options:["Mothers in Bloom Cohort Member","Original Mothers in Bloom Member","Steering Committee Member"]},
+          // Q74 ("Participant Type": Original 9 / Cohort) was retired here in the
+          // 2026-07-23 redundancy pass — Q5 above asks the same thing and carries
+          // the Steering Committee option too. Existing answers are untouched.
+        ]},
+      { title:"Contact & household — verify together",
+      script:["Next, I’d like to quickly verify some of your contact and household information so we can make sure our records are up to date and we’re able to connect you with opportunities and resources moving forward"],
+        items:[
+          {id:"q24",q:24,type:"text",label:"Please confirm your address."},
+          {id:"q25",q:25,type:"text",label:"Please confirm your phone number."},
+          {id:"q26",q:26,type:"text",label:"Please confirm your email address."},
+          {id:"q27",q:27,type:"radio",label:"Preferred Contact Method",options:["Phone","Text","Email"]},
+          {id:"q28",q:28,type:"number",label:"Number of Children in Household"},
+          {id:"q29",q:29,type:"text",label:"Ages of Children"},
+          {id:"q30",q:30,type:"number",label:"Total Household Size"},
+          {id:"q31",q:31,type:"textarea",label:"Who currently lives in your household?"},
+          {id:"xIep",q:null,type:"textarea",draft:true,label:"Do any of the children in the household have an IEP or an autism-spectrum diagnosis? If so, which children, and what supports are in place?"},
+          {id:"vContact",q:null,type:"verify",label:"Contact & household information verified with the participant"},
+        ]},
+      { title:"Employment — verify together",
+        note:"Prefill from her last record, then confirm it is still accurate.",
+        items:[
+          {id:"q32",q:32,type:"radio",label:"Current Employment Status",options:["Full-Time","Part-Time","Self-Employed","Not Employed"]},
+          {id:"q33",q:33,type:"text",label:"What type of work do you currently do?"},
+          {id:"q34",q:34,type:"text",label:"Current Employer"},
+          {id:"vEmploy",q:null,type:"verify",label:"Employment information verified with the participant"},
+        ]},
+      { title:"Contact preferences, permissions & leadership — verify together",
+        items:[
+          {id:"q62",q:62,type:"radio",label:"How often would you like to hear from Mothers in Bloom?",options:["Weekly","Twice Per Month","Monthly","Quarterly","Only When Opportunities Become Available"]},
+          {id:"q66",q:66,type:"radio",label:"Would you be interested in connecting with other Mothers in Bloom participants through community events, networking opportunities, or online groups?",options:["Yes","No"]},
+          {id:"q69",q:69,type:"radio",label:"May we share your contact information with trusted program partners if a relevant opportunity becomes available?",options:["Yes","No"]},
+          {id:"q70",q:70,type:"radio",label:"Would you like to receive updates about future Mothers in Bloom programs, workshops, events, and opportunities?",options:["Yes","No"]},
+          {id:"xLead",q:null,type:"radio",draft:true,label:"Are you interested in a leadership role with Mothers in Bloom, such as serving on the Steering Committee?",options:["Yes — interested in rolling on","Currently serving","Currently serving, ready to roll off","Not right now"]},
+          {id:"xLeadNote",q:null,type:"textarea",draft:true,label:"Anything to note about her leadership interest?"},
+          {id:"vComms",q:null,type:"verify",label:"Contact preferences and permissions verified with the participant"},
+        ]},
+    ]
+  },
+  {
+    key:"opening", name:"Opening & her story", ac:"var(--terracotta)", phase:"during",
+    sections:[
+      {
+      script:["Before we get started, I just want to take a few minutes to connect and talk about why we’re here today.",
                 "As Mothers in Bloom transitions to CACF, one of the things that’s really important to me is getting to know each mom individually. I don’t just want to know your name and information on paper—I want to understand your story, where you are today, what you’ve accomplished, what challenges you’re facing, and what goals you have for yourself and your family.",
                 "Today is really about checking in, getting updated information, hearing about your experience in the program, and talking about how we can continue to support you moving forward. I want this to feel like a conversation, not an interview. This is a safe space, and I’m here for you. There are no right or wrong answers. Be honest, be yourself, and share whatever you’re comfortable sharing.",
                 "One thing I believe is that while the monthly gift is incredibly valuable, the real power of a program like Mothers in Bloom is how we use the resources, opportunities, connections, and support available to help move us toward our goals. My role is to help connect you to those opportunities and make sure you’re getting the support you need.",
@@ -594,66 +704,54 @@ const STAGES = [
                 "Before we jump into the questions, I’d love to hear a little about you. Tell me about yourself, your family, and what’s been going on in your life lately."],
         items:[
           {id:"q1",q:1,type:"textarea",label:"Tell me a little about yourself, your family, and what’s been going on in your life lately."},
-          {id:"q2",q:2,type:"text",label:"Participant Name:",req:true},
-          {id:"q3",q:3,type:"date",label:"Meeting Date:",req:true},
-          {id:"q4",q:4,type:"radio",label:"Meeting Type:",req:true,options:["Zoom","Phone","In Person"]},
-          {id:"q5",q:5,type:"radio",label:"Participant Type",req:true,options:["Mothers in Bloom Cohort Member","Original Mothers in Bloom Member","Steering Committee Member"]},
         ]},
     ]
   },
   {
-    key:"reflection", name:"Program Reflection & Impact", ac:"var(--s-bloom)",
+    key:"reflection", name:"Program Reflection & Impact", ac:"var(--s-bloom)", phase:"during",
     sections:[
-      { script:["Thank you for sharing that with me. I’d love to spend a little time talking about your Mothers in Bloom journey. The goal here is to understand where you started, what progress you’ve made, how the program has impacted you and your family, and where you’d like to go next.",
+      {
+      script:["Thank you for sharing that with me. I’d love to spend a little time talking about your Mothers in Bloom journey. The goal here is to understand where you started, what progress you’ve made, how the program has impacted you and your family, and where you’d like to go next.",
                 "We’ll talk about your goals, accomplishments, any challenges you’re still working through, and how we can best support you moving forward.",
                 "Let’s start at the beginning. Looking Back- when you first joined Mothers in Bloom, what goals did you have for yourself and your family?"],
         items:[
-          {id:"q6",q:6,type:"textarea",label:"What were your goals when you first joined Mothers in Bloom?"},
-          {id:"q7",q:7,type:"textarea",label:"Which of those goals have you achieved?"},
-          {id:"q8",q:8,type:"textarea",label:"What accomplishments are you most proud of since joining the program?"},
-          {id:"q9",q:9,type:"textarea",label:"What goals are you currently working toward?"},
           {id:"q10",q:10,type:"textarea",label:"How has your experience with Mothers in Bloom been so far? What stands out to you the most?"},
           {id:"q11",q:11,type:"textarea",label:"How has Mothers in Bloom impacted you or your family?"},
+          {id:"q12list",q:12,type:"checkbox",optsKey:"spend",label:"How does the monthly gift affect your day-to-day life right now? What does it help you with?",help:"Starter list — open “Edit list” to match the words mothers actually use."},
           {id:"q12",q:12,type:"textarea",label:"How does the monthly gift affect your day-to-day life right now? What does it help you with?"},
           {id:"q13",q:13,type:"textarea",label:"Since receiving the gift, what, if anything, has changed for you and your family? (Even small changes count.)"},
-          {id:"q14",q:14,type:"radio",label:"Aside from the financial support, do you feel supported by Mothers in Bloom?",options:["Yes","No","Maybe"]},
+          {id:"q8",q:8,type:"textarea",label:"What accomplishments are you most proud of since joining the program?"},
+          {id:"q14",q:14,type:"radio",label:"Aside from the financial support, do you feel supported by Mothers in Bloom?",options:["Yes","No"]},
           {id:"q15",q:15,type:"textarea",label:"Why or why not?"},
-          {id:"q16",q:16,type:"textarea",label:"What has been the most valuable part of the program?"},
-          {id:"q17",q:17,type:"textarea",label:"What support do you still need?"},
-          {id:"q18",q:18,type:"textarea",label:"When you think about the next year or two, what are you most focused on for yourself or your family?"},
           {id:"q19",q:19,type:"textarea",label:"What thoughts or concerns come up when you think about what happens after the program ends?"},
           {id:"q20",q:20,type:"radio",label:"How prepared do you feel for the program eventually ending?",options:["Very Prepared","Somewhat Prepared","Unsure","Concerned","Very Concerned"]},
           {id:"q21",q:21,type:"checkbox",label:"Since joining Mothers in Bloom, have you experienced any of the following? (Check all that apply)",options:["Increased savings","Improved budgeting skills","Improved employment situation","Increased income","Improved housing stability","Improved childcare stability","Reduced debt","Opened a bank account","Improved confidence managing money","Built stronger support networks","Other"]},
           {id:"q22",q:22,type:"radio",label:"On a scale of 1–5, how satisfied are you with Mothers in Bloom?",options:["5 — Very satisfied","4 — Somewhat satisfied","3 — Neither satisfied nor dissatisfied","2 — Somewhat dissatisfied","1 — Very dissatisfied"]},
-          {id:"q23",q:23,type:"radio",label:"Would you recommend Mothers in Bloom to another mother?",options:["Yes","No","Maybe"]},
+          {id:"q23",q:23,type:"radio",label:"Would you recommend Mothers in Bloom to another mother?",options:["Yes","No"]},
+          {id:"xBetter",q:null,type:"textarea",draft:true,label:"What would make your experience with Mothers in Bloom better?"},
+          {id:"q55",q:55,type:"textarea",label:"What would you like to see Mothers in Bloom offer in the future?"},
         ]},
+      { title:"Goals she joined with", module:"goals",
+        note:"Capture the goals she had when she joined and whether she hit them. Tick “Goal she joined with” on each one. This replaces the old questions 6 and 7." },
     ]
   },
   {
-    key:"verification", name:"Participant Information & Verification", ac:"var(--s-stem)",
+    key:"current", name:"Where things stand today", ac:"var(--s-leaves)", phase:"during",
     sections:[
-      { script:["Next, I’d like to quickly verify some of your contact and household information so we can make sure our records are up to date and we’re able to connect you with opportunities and resources moving forward"],
+      {
+      script:["Now I’d like to talk a little about what’s next. We’ve spent some time talking about where you are today, and now I want to learn more about your goals, priorities, and what you want for yourself and your family moving forward.",
+                "One of the goals of Mothers in Bloom is not just to provide support today, but to help mothers build toward the future they want.",
+                "The next few questions will help us identify what’s most important to you right now, what challenges you may be facing, and what support or resources might help you get where you want to go."],
         items:[
-          {id:"q24",q:24,type:"text",label:"Please confirm your address."},
-          {id:"q25",q:25,type:"text",label:"Please confirm your phone number."},
-          {id:"q26",q:26,type:"text",label:"Please confirm your email address."},
-          {id:"q27",q:27,type:"radio",label:"Preferred Contact Method",options:["Phone","Text","Email"]},
-          {id:"q28",q:28,type:"number",label:"Number of Children in Household"},
-          {id:"q29",q:29,type:"text",label:"Ages of Children"},
-          {id:"q30",q:30,type:"number",label:"Total Household Size"},
-          {id:"q31",q:31,type:"textarea",label:"Who currently lives in your household?"},
+          {id:"q46",q:46,type:"textarea",label:"What are the biggest challenges you are facing right now?"},
+          {id:"q47",q:47,type:"textarea",label:"What feels most urgent right now?"},
+          {id:"q48",q:48,type:"textarea",label:"If we could help solve one thing quickly, what would it be?"},
+          {id:"q49",q:49,type:"checkbox",label:"Which areas would you like support with?",options:["Budgeting","Savings","Credit","Employment","Housing","Childcare","Transportation","Mental Health & Wellness","Homeownership","Investing","Entrepreneurship","Parenting","Education/Training"]},
         ]},
-    ]
-  },
-  {
-    key:"snapshot", name:"Employment, Housing & Financial Snapshot", ac:"var(--s-leaves)",
-    sections:[
-      { script:["Next, I’d like to learn a little more about where you are today when it comes to work, housing, and finances. This helps us understand your current situation and identify any resources, opportunities, or support that might be helpful as you continue working toward your goals.",
+      { title:"Employment, housing & finances",
+      script:["Next, I’d like to learn a little more about where you are today when it comes to work, housing, and finances. This helps us understand your current situation and identify any resources, opportunities, or support that might be helpful as you continue working toward your goals.",
                 "This is a judgment-free conversation, and there are no right or wrong answers. Everyone’s situation is different, and you only need to share what you’re comfortable sharing."],
         items:[
-          {id:"q32",q:32,type:"radio",label:"Current Employment Status",options:["Full-Time","Part-Time","Self-Employed","Not Employed"]},
-          {id:"q33",q:33,type:"text",label:"What type of work do you currently do?"},
-          {id:"q34",q:34,type:"text",label:"Current Employer"},
           {id:"q35",q:35,type:"radio",label:"Approximate Monthly Income",options:["Under $1,500","$1,500–$3,000","$3,000–$5,000","$5,000+"]},
           {id:"q36",q:36,type:"radio",label:"Current Housing Situation",options:["Rent","Own","Staying with Others","Temporary Housing","At Risk of Losing Housing"]},
           {id:"q37",q:37,type:"radio",label:"How stable does your housing feel?",options:["Very Stable","Somewhat Stable","Unstable"]},
@@ -663,95 +761,60 @@ const STAGES = [
           {id:"q41",q:41,type:"radio",label:"If an unexpected $500 expense occurred today, how would you most likely handle it?",options:["Savings","Credit Card","Borrow from Family/Friends","Payment Plan","Would Struggle"]},
           {id:"q42",q:42,type:"radio",label:"Do you currently contribute to a retirement account?",options:["Employer 401(k)/403(b)","Personal IRA/Roth IRA","Both","No","Unsure"]},
           {id:"q43",q:43,type:"checkbox",label:"Does your employer offer retirement benefits?",options:["401(k)","403(b)","Pension","Employer Match","Unsure","No Retirement Benefits"]},
-          {id:"q44",q:44,type:"radio",label:"Are you interested in learning more about investing and different investment vehicles?",options:["Yes","No","Maybe"]},
+          {id:"q44",q:44,type:"radio",label:"Are you interested in learning more about investing and different investment vehicles?",options:["Yes","No"]},
           {id:"q45",q:45,type:"checkbox",label:"Which financial topics would you like to learn more about?",options:["Budgeting","Saving","Emergency Funds","Credit Building","Debt Reduction","Retirement Planning","401(k) Benefits","Investing","Stocks & ETFs","Homeownership","Entrepreneurship","Wealth Building for Children","Estate Planning","Insurance"]},
-        ]},
-    ]
-  },
-  {
-    key:"needs", name:"Current Needs & Roadmap Priorities", ac:"var(--s-petals)",
-    sections:[
-      { script:["Now I’d like to talk a little about what’s next. We’ve spent some time talking about where you are today, and now I want to learn more about your goals, priorities, and what you want for yourself and your family moving forward.",
-                "One of the goals of Mothers in Bloom is not just to provide support today, but to help mothers build toward the future they want.",
-                "The next few questions will help us identify what’s most important to you right now, what challenges you may be facing, and what support or resources might help you get where you want to go."],
-        items:[
-          {id:"q46",q:46,type:"textarea",label:"What are the biggest challenges you are facing right now?"},
-          {id:"q47",q:47,type:"textarea",label:"What feels most urgent right now?"},
-          {id:"q48",q:48,type:"textarea",label:"If we could help solve one thing quickly, what would it be?"},
-          {id:"q49",q:49,type:"checkbox",label:"Which areas would you like support with?",options:["Budgeting","Savings","Credit","Employment","Housing","Childcare","Transportation","Mental Health & Wellness","Homeownership","Investing","Entrepreneurship","Parenting","Education/Training"]},
-          {id:"q50",q:50,type:"textarea",label:"What is your biggest NEED right now?"},
-          {id:"q51",q:51,type:"textarea",label:"What is something you WANT to improve over the next year?"},
-          {id:"q52",q:52,type:"textarea",label:"What is a long-term WISH or dream you have for yourself or your family?"},
-          {id:"q53",q:53,type:"textarea",label:"What is the one goal you would most like to focus on over the next 6–12 months?"},
-          {id:"q54",q:54,type:"textarea",label:"What support would help you achieve that goal?"},
         ]},
       { title:"Needs, Wants & Wishes board", module:"nww" },
       { title:"Goals", module:"goals" },
     ]
   },
   {
-    key:"future", name:"Program Evolution & Future Programming", ac:"var(--s-sunlight)",
+    key:"future", name:"Program Evolution & Opportunities", ac:"var(--s-sunlight)", phase:"during",
     sections:[
-      { script:["We’ve talked a lot about your experience and your goals. Before we wrap up, I’d love to hear your thoughts on the future of Mothers in Bloom.",
+      {
+      script:["We’ve talked a lot about your experience and your goals. Before we wrap up, I’d love to hear your thoughts on the future of Mothers in Bloom.",
                 "Your feedback helps us understand what’s working well, what participants want more of, and what types of programs, resources, and opportunities we should be thinking about in the future.",
                 "There are no wrong answers here—this is your chance to help shape what Mothers in Bloom looks like moving forward."],
         items:[
-          {id:"q55",q:55,type:"textarea",label:"What would you like to see Mothers in Bloom offer in the future?"},
           {id:"q56",q:56,type:"checkbox",label:"What topics would you like more support around?",options:["Budgeting","Saving","Credit","Homeownership","Investing","Career Development","Entrepreneurship","Parenting","Mental Health & Self-Care","Relationships","Education","Other"]},
-          {id:"q57",q:57,type:"radio",label:"Would you attend group workshops?",options:["Yes","No","Maybe"]},
-          {id:"q58",q:58,type:"radio",label:"Would you attend social meet-ups with other mothers?",options:["Yes","No","Maybe"]},
-          {id:"q59",q:59,type:"radio",label:"Would you participate in peer accountability groups?",options:["Yes","No","Maybe"]},
-          {id:"q60",q:60,type:"radio",label:"Would you be interested in one-on-one coaching?",options:["Yes","No","Maybe"]},
+          {id:"q57",q:57,type:"radio",label:"Would you attend group workshops?",options:["Yes","No"]},
+          {id:"q58",q:58,type:"radio",label:"Would you attend social meet-ups with other mothers?",options:["Yes","No"]},
+          {id:"q59",q:59,type:"radio",label:"Would you participate in peer accountability groups?",options:["Yes","No"]},
+          {id:"q60",q:60,type:"radio",label:"Would you be interested in one-on-one coaching?",options:["Yes","No"]},
         ]},
-    ]
-  },
-  {
-    key:"comms", name:"Communication & Engagement", ac:"var(--sage)",
-    sections:[
-      { script:["Communication is a big part of making sure participants know about resources, opportunities, events, and support that may be available to them.",
+      { title:"Communication & engagement",
+      script:["Communication is a big part of making sure participants know about resources, opportunities, events, and support that may be available to them.",
                 "We want to make sure we’re communicating in ways that work best for you and meeting people where they are. The next few questions will help us understand how you’d like to stay connected and engaged with Mothers in Bloom moving forward."],
         items:[
           {id:"q61",q:61,type:"checkbox",label:"How do you prefer to receive information and updates from Mothers in Bloom?",options:["Text Message","Email","Phone Call","Social Media","Printed Materials","In-Person Meetings","Other"]},
-          {id:"q62",q:62,type:"radio",label:"How often would you like to hear from Mothers in Bloom?",options:["Weekly","Twice Per Month","Monthly","Quarterly","Only When Opportunities Become Available"]},
-          {id:"q63",q:63,type:"radio",label:"Would you find a Mothers in Bloom website or resource hub helpful?",options:["Yes","No","Maybe"]},
           {id:"q64",q:64,type:"checkbox",label:"Which resources would you most like to access through an online resource hub?",options:["Community Resources","Financial Education Materials","Budgeting Tools","Savings Resources","Housing Resources","Employment Opportunities","Parenting Resources","Mental Health & Wellness Resources","Program Updates","Event Calendar","Workshop Recordings","Newsletters","Community Discussion Forum","Other"]},
-          {id:"q65",q:65,type:"radio",label:"Would you be interested in receiving a Mothers in Bloom newsletter?",options:["Yes","No","Maybe"]},
-          {id:"q66",q:66,type:"radio",label:"Would you be interested in connecting with other Mothers in Bloom participants through community events, networking opportunities, or online groups?",options:["Yes","No","Maybe"]},
-          {id:"q67",q:67,type:"textarea",label:"Is there anything else we can do to improve communication with you?"},
         ]},
-    ]
-  },
-  {
-    key:"optins", name:"Resource & Opportunity Opt-Ins", ac:"var(--gold)",
-    sections:[
-      { script:["One of my goals is to make sure mothers are aware of and connected to opportunities that align with their interests and goals.",
+      { title:"Resource & opportunity opt-ins",
+      script:["One of my goals is to make sure mothers are aware of and connected to opportunities that align with their interests and goals.",
                 "The next few questions will help us understand what types of resources, programs, and opportunities you’d like to learn more about so we can better connect you with the things that may be helpful to you and your family."],
         items:[
           {id:"q68",q:68,type:"checkbox",label:"Which opportunities would you like to learn more about?",options:["Emotional Wellness & Self-Care","Financial Coaching","Investing & Wealth Building","Employment Opportunities","Housing Resources","Homeownership Education","Entrepreneurship","Parenting Support","Leadership Opportunities","CACF Opportunities","FOC Opportunities","Community Workshops & Events","Other"]},
-          {id:"q69",q:69,type:"radio",label:"May we share your contact information with trusted program partners if a relevant opportunity becomes available?",options:["Yes","No"]},
-          {id:"q70",q:70,type:"radio",label:"Would you like to receive updates about future Mothers in Bloom programs, workshops, events, and opportunities?",options:["Yes","No"]},
         ]},
     ]
   },
   {
-    key:"testimonial", name:"Testimonial & Storytelling", ac:"var(--rose)",
+    key:"wrap", name:"Wrap-up & Next Steps", ac:"var(--rose)", phase:"during",
     sections:[
-      { script:["Before we wrap up, I’d love to hear a little more about your experience in your own words.",
+      {
+      script:["Before we wrap up, I’d love to hear a little more about your experience in your own words.",
                 "Stories help us understand the impact of the program beyond the numbers. They also help us share the value of Mothers in Bloom with partners, funders, and future participants.",
                 "Sharing is completely optional, and there is no pressure to participate. We simply want to know if you’d be willing to share your experience."],
         items:[
-          {id:"q71",q:71,type:"radio",label:"Would you be willing to share a testimonial about your experience with Mothers in Bloom?",options:["Yes","No"]},
           {id:"q72",q:72,type:"radio",label:"May we contact you in the future about sharing your story?",options:["Yes","No"]},
-          {id:"q73",q:73,type:"textarea",label:"What would you tell another mother considering Mothers in Bloom? or share your story."},
-          {id:"q74",q:74,type:"radio",label:"Participant Type",options:["Original 9","Cohort"]},
         ]},
       { title:"Wrap-up & next steps", module:"wrap" },
     ]
   },
   {
-    key:"staff", name:"Staff Follow-Up", ac:"var(--s-roots)",
+    key:"post", name:"Post-meeting Coding", ac:"var(--s-roots)", phase:"post",
     sections:[
       { staff:true,
+        note:"Short coding pass after the session. Key themes, key quote and additional notes were retired — the notes tab below is their home now.",
         items:[
           {id:"q75",q:75,type:"checkbox",label:"Based on today’s conversation, which areas has Mothers in Bloom positively impacted? (Select all that apply)",options:["Housing Stability","Childcare Stability","Reduced Financial Stress","Increased Savings","Improved Budgeting Skills","Reduced Debt","Improved Employment Situation","Increased Income","Education or Training Progress","Mental Health & Well-Being","Increased Confidence","Stronger Support Network","Parenting","Other"]},
           {id:"q76",q:76,type:"checkbox",label:"Based on today’s conversation, the monthly gift primarily helps with: (Select all that apply)",options:["Rent/Housing","Utilities","Food","Childcare","Transportation","Savings","Debt Payments","Education","Medical Expenses","Household Expenses","Other"]},
@@ -759,10 +822,7 @@ const STAGES = [
           {id:"q78",q:78,type:"radio",label:"Which stage best describes the participant today?",options:["Stabilizing Basic Needs","Building Financial Habits","Building Savings","Improving Credit","Increasing Income","Preparing for Homeownership","Starting or Growing a Business","Learning About Investing","Building Long-Term Wealth"]},
           {id:"q79",q:79,type:"radio",label:"Participant’s level of concern about the program ending",options:["Not Concerned","Slightly Concerned","Moderately Concerned","Very Concerned","Extremely Concerned"]},
           {id:"q80",q:80,type:"checkbox",label:"Recommended Follow-Up Actions (Select all that apply)",options:["Financial Coaching","Budget Review","Savings Planning","Credit Building Support","Housing Resources","Employment Resources","Mental Health Resources","Parenting Resources","Homeownership Resources","Investing Education","Entrepreneurship Support","Leadership Opportunities","Referral to Community Partner","No Follow-Up Needed","Other"]},
-          {id:"q81",q:81,type:"textarea",label:"Key Themes from Conversation",help:"Examples: Housing stability concerns · Wants to purchase a home · Building savings · Employment advancement · Childcare challenges · Increased confidence"},
-          {id:"q82",q:82,type:"textarea",label:"Key Participant Quote",help:"Capture a meaningful quote in the participant’s own words. Example: “The monthly gift gave me room to breathe and focus on my future instead of just surviving.”"},
-          {id:"q83",q:83,type:"textarea",label:"Additional Notes"},
-          {id:"q84",q:84,type:"radio",label:"Would this participant be a good candidate for future leadership, mentoring, speaking engagements, advisory roles, or storytelling opportunities?",options:["Yes","No","Maybe"]},
+          {id:"q84",q:84,type:"radio",label:"Would this participant be a good candidate for future leadership, mentoring, speaking engagements, advisory roles, or storytelling opportunities?",options:["Yes","No"]},
         ]},
       { title:"Intake notes", module:"intakenotes" },
       { title:"Finish & export", module:"export" },
@@ -774,6 +834,29 @@ const STAGES = [
 const LS_KEY = "mib_studio_v1";
 let DB = load();
 if(!DB.budgets) DB.budgets=[];
+
+/* Editable pick lists. Jay asked for pick lists on "how the gift is spent" and on
+   the check-in "biggest barrier" / "greatest opportunity" but had not sent her own
+   wording yet, so these ship as starter lists drawn from her existing intake
+   options (Q76 and Q49) and are editable in-app — no code change needed. */
+const PICK_DEFAULTS={
+  spend:["Rent/Housing","Utilities","Food","Childcare","Transportation","Savings","Debt Payments","Education","Medical Expenses","Household Expenses","Other"],
+  barriers:["Budgeting","Savings","Credit","Employment","Housing","Childcare","Transportation","Mental Health & Wellness","Homeownership","Investing","Entrepreneurship","Parenting","Education/Training","Other"],
+  opportunities:["Budgeting","Savings","Credit","Employment","Housing","Childcare","Transportation","Mental Health & Wellness","Homeownership","Investing","Entrepreneurship","Parenting","Education/Training","Other"]
+};
+const PICK_LABELS={spend:"How the monthly gift is spent",barriers:"Biggest barrier",opportunities:"Greatest opportunity"};
+if(!DB.settings) DB.settings={};
+Object.keys(PICK_DEFAULTS).forEach(k=>{ if(!Array.isArray(DB.settings[k])||!DB.settings[k].length) DB.settings[k]=PICK_DEFAULTS[k].slice(); });
+function pickList(k){ return (DB.settings&&DB.settings[k])||PICK_DEFAULTS[k]||[]; }
+function pickEdit(k){
+  const cur=pickList(k).join("\n");
+  const v=prompt(PICK_LABELS[k]+" — one option per line. Edit freely; this changes the list everywhere it is used.",cur);
+  if(v===null) return;
+  const arr=v.split("\n").map(x=>x.trim()).filter(Boolean);
+  DB.settings[k]=arr.length?arr:PICK_DEFAULTS[k].slice();
+  persist(); rerender();
+}
+function pickReset(k){ if(!confirm("Reset “"+PICK_LABELS[k]+"” to the starter list?")) return; DB.settings[k]=PICK_DEFAULTS[k].slice(); persist(); rerender(); }
 let activeId = null;
 let activeStage = 0;
 
@@ -795,7 +878,7 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
     created:Date.parse("2026-02-10"), last:Date.parse("2026-06-15"),
     answers:{
       q1:"Single mom of two. I’ve been picking up extra shifts and trying to get back on my feet after a tough year. My kids are my whole world.",
-      q2:"Maya Thompson (Example)", q3:"2026-06-22", q4:"Zoom",
+      q2:"Maya Thompson (Example)", q3:"2026-02-12", q3time:"10:00", q4:"Zoom",
       q5:"Original Mothers in Bloom Member",
       q6:"Get to a place where I’m not living paycheck to paycheck and start saving.",
       q7:"I opened a savings account and started tracking what I spend.",
@@ -803,6 +886,7 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
       q9:"Building an emergency fund and working on my credit.",
       q10:"Having someone in my corner who actually checks in. It keeps me accountable.",
       q11:"It’s taken some of the constant stress off so I can think past this week.",
+      q12list:["Childcare","Food","Savings"],
       q12:"It covers childcare on the days I pick up extra shifts.",
       q13:"I caught up on my electric bill and started putting a little away each month.",
       q14:"Yes",
@@ -816,6 +900,11 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
       q22:"4 — Somewhat satisfied", q23:"Yes",
       q24:"1420 Magnolia St, Apt 3B", q25:"(555) 014-2233", q26:"maya.example@email.com",
       q27:"Text", q28:"2", q29:"4 and 7", q30:"3", q31:"Me and my two children.",
+      xIep:"My seven-year-old has an IEP for speech. The school reevaluates in the fall.",
+      vContact:true, vEmploy:true, vComms:true,
+      xLead:"Yes — interested in rolling on",
+      xLeadNote:"Curious about the Steering Committee but worried about the time commitment.",
+      xBetter:"More evening options. Daytime workshops are hard with my shifts.",
       q32:"Part-Time", q33:"Certified nursing assistant", q34:"Riverside Care Center",
       q35:"$1,500–$3,000", q36:"Rent", q37:"Somewhat Stable",
       q38:"I’ve Tried Before", q39:"Yes", q40:"Less than $500", q41:"Would Struggle",
@@ -849,6 +938,7 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
       q83:"Strong candidate for the homeownership track. Connect with childcare resources first.",
       q84:"Yes"
     },
+    tags:"homeownership track, FIP interested, newsletter",
     intakeNotes:"Anxious about childcare costs eating into extra-shift income. Lit up talking about homeownership — connect with the FOC homeownership track next session. Wants help automating savings.",
     savings:[{id:"sv1",name:"Emergency fund",target:3000,current:1100,monthly:200}],
     debts:[{id:"db1",name:"Visa",balance:2400,apr:24.99,minPayment:75},{id:"db2",name:"Car loan",balance:6800,apr:9.5,minPayment:210}],
@@ -861,8 +951,8 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
     benefits:{"SNAP":{status:"Current",note:""},"Medicaid":{status:"Current",note:"Kids covered."},"Childcare Assistance":{status:"Applied",note:"Pending county review."},"WIC":{status:"No Longer Needed",note:"Youngest aged out."}},
     benefitsOther:[],
     checkins:[
-      {id:"ck1",date:"2026-05-14",notes:"First roadmap session. Walked the budget and Needs·Wants·Wishes together. She lit up talking about owning a home someday.",wins:"Opened a separate savings account.",challenges:"Childcare costs spiking with summer.",homework:"Gather last 2 pay stubs; list all debts.",nextSteps:"Build the debt payoff plan next time.",followUp:"2026-05-28"},
-      {id:"ck2",date:"2026-06-14",notes:"Built the avalanche debt payoff plan and set the emergency-fund goal. Reviewed DTI — healthy at 12%.",wins:"Paid Visa down $200; credit up to 641.",challenges:"Tempted to pause savings to cover a car repair.",homework:"Automate $200/mo into savings.",nextSteps:"Connect with the FOC homeownership track.",followUp:"2026-06-28"}
+      {id:"ck1",date:"2026-05-14",type:"In Person",situation:"Working part-time, picking up extra shifts when childcare allows. Rent is current.",barriers:["Childcare","Budgeting"],barrierNote:"Childcare costs spiking with summer — every extra shift she takes costs her most of what she earns.",opps:["Savings","Homeownership"],oppNote:"She is ready to save consistently and lit up talking about owning a home someday.",wins:"Opened a separate savings account.",finGoals:"Start an emergency fund.",homework:"Gather last 2 pay stubs; list all debts.",nextSteps:"Build the debt payoff plan next time.",notes:"First roadmap session. Walked the budget and Needs\u00b7Wants\u00b7Wishes together.",missed:"Ask about the summer childcare voucher deadline.",testimonialOk:"",testimonial:"",hub:["Budgeting Tools","Housing Resources"],learn:["Financial Coaching"],followUp:"2026-05-28",verifiedAt:"2026-05-14"},
+      {id:"ck2",date:"2026-06-14",type:"Zoom",situation:"Same job, hours steadier. Credit climbing. Car repair came out of savings.",barriers:["Savings"],barrierNote:"Tempted to pause savings to cover a car repair.",opps:["Credit","Homeownership"],oppNote:"Credit up to 641 — the homeownership track is realistic within a year.",wins:"Paid Visa down $200; credit up to 641.",finGoals:"Keep $200/mo going into the emergency fund.",homework:"Automate $200/mo into savings.",nextSteps:"Connect with the FOC homeownership track.",notes:"Built the avalanche debt payoff plan and set the emergency-fund goal. Reviewed DTI \u2014 healthy at 12%.",missed:"Nothing today, she said the questions covered it.",testimonialOk:"Yes, anonymously",testimonial:"The monthly gift gave me room to breathe and actually plan instead of just surviving.",hub:["Budgeting Tools","Event Calendar"],learn:["Homeownership Education","Housing Resources"],followUp:"2026-06-28",verifiedAt:"2026-06-14"}
     ],
     actionPlan:[
       {id:"t1",task:"Gather last 2 pay stubs and list all debts",owner:"Participant",due:"2026-06-13",priority:"High",done:true,notes:""},
@@ -884,7 +974,7 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
       wishes:[{id:uid(),text:"Buy a home with a yard for the kids",pri:"Someday",cost:""}]
     },
     goals:[
-      {id:uid(),goal:"Save $1,000 for an emergency fund by December",cat:"Financial",pri:"High",dueMonth:"2026-12",dueDay:"",binary:false,done:false,measure:"dollars saved",start:0,current:300,target:1000,align:"$1,000 emergency fund",notes:[{id:uid(),date:"2026-06-15",text:"Auto-transfer $75/mo set up; revisit after tax refund."}],smart:{specific:"Open a savings account and build a $1,000 cushion",measurable:"Savings balance reaches $1,000",timebound:"by December 2026"}},
+      {id:uid(),initial:true,initialAchieved:"No",goal:"Save $1,000 for an emergency fund by December",cat:"Financial",pri:"High",dueMonth:"2026-12",dueDay:"",binary:false,done:false,measure:"dollars saved",start:0,current:300,target:1000,align:"$1,000 emergency fund",notes:[{id:uid(),date:"2026-06-15",text:"Auto-transfer $75/mo set up; revisit after tax refund."}],smart:{specific:"Open a savings account and build a $1,000 cushion",measurable:"Savings balance reaches $1,000",timebound:"by December 2026"}},
       {id:uid(),goal:"Raise credit score by 40 points",cat:"Financial",pri:"Medium",dueMonth:"2027-03",dueDay:"",binary:false,done:false,measure:"credit score points gained",start:0,current:0,target:40,align:"Improve credit score",notes:[],smart:{}}
     ]
   };
@@ -895,7 +985,7 @@ if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_remov
     const fut=d=>ago(-d);
     function ex(s){
       const c=newClientObj(); c.draft=false; c.example=true; c.id='ex_'+s.key; c.name=s.name+' (Example)'; c.type=s.type;
-      c.answers={}; const k=Math.round(ITEMS.length*(s.intake||0)); ITEMS.slice(0,k).forEach(it=>{ c.answers[it.id]='—'; }); c.answers.q2=c.name; c.answers.q5=s.type;
+      c.answers={}; const k=Math.round(ITEMS.length*(s.intake||0)); ITEMS.slice(0,k).forEach(it=>{ if(it.type!=='verify') c.answers[it.id]='—'; }); c.answers.q2=c.name; c.answers.q5=s.type;
       if(s.lastAgo!=null){ c.last=ago(s.lastAgo); c.answers.q3=ago(s.lastAgo); c.checkins=[{id:uid(),date:ago(s.lastAgo),notes:s.note||'Coaching session.',wins:s.win||'',challenges:'',homework:'',nextSteps:s.next||'',followUp:s.cfu!=null?fut(s.cfu):''}]; }
       if(s.savings) c.savings=[{id:uid(),name:'Emergency fund',target:s.savings[1],current:s.savings[0],monthly:50}];
       if(s.debt){ c.debts=[{id:uid(),name:'Credit card',balance:s.debt,apr:22,minPayment:Math.max(25,Math.round(s.debt*0.03))}]; c.debtPlan={method:'avalanche',extra:50}; }
@@ -953,7 +1043,7 @@ function renderRoster(){
   const typeSel=document.getElementById("pType");
   if(typeSel){ const types=[...new Set(all.map(id=>DB.clients[id].type).filter(Boolean))];
     typeSel.innerHTML='<option value="">All types</option>'+types.map(t=>`<option ${typeF===t?'selected':''}>${esc(t)}</option>`).join(""); }
-  let ids=all.filter(id=>{ const c=DB.clients[id]; if(q && !(c.name||"").toLowerCase().includes(q)) return false; if(stageF && (c.answers&&c.answers.q78)!==stageF) return false; if(typeF && c.type!==typeF) return false; return true; });
+  let ids=all.filter(id=>{ const c=DB.clients[id]; if(q && !((c.name||"")+" "+(c.tags||"")).toLowerCase().includes(q)) return false; if(stageF && (c.answers&&c.answers.q78)!==stageF) return false; if(typeF && c.type!==typeF) return false; return true; });
   const openN=c=>(c.goals||[]).filter(g=>goalPct(g)<100).length;
   ids.sort((a,b)=>{ const ca=DB.clients[a],cb=DB.clients[b];
     if(sortB==='recent') return (cb.last||0)-(ca.last||0);
@@ -972,13 +1062,13 @@ function renderRoster(){
         <div><div class="name">${esc(c.name||"Untitled")}</div>
         <div class="meta">${c.last?("Last session "+new Date(c.last).toLocaleDateString()):"No sessions yet"}</div></div></div>
       <div class="tags">${c.example?`<span class="tag" style="background:var(--gold);color:#5b4a16;font-weight:700">EXAMPLE</span>`:''}<span class="tag">${esc(c.type||"Participant")}</span>
-        <span class="tag">${esc(c.answers&&c.answers.q78||"Stage —")}</span></div>
+        <span class="tag">${esc(c.answers&&c.answers.q78||"Stage —")}</span>${tagChips(c).map(t=>`<span class="tag tag-own">${esc(t)}</span>`).join("")}</div>
       <div class="stat"><span><b>${open}</b> open goals</span><span><b>${pct}%</b> of intake</span></div>
     </div>`;
   }).join("") + `<div class="addcard" onclick="addClient()">＋ Add participant</div>`;
 }
 function todayISO(){ return new Date().toISOString().slice(0,10); }
-function newClientObj(){ return {id:uid(), draft:true, name:"", type:"Mothers in Bloom Cohort Member", created:Date.now(), last:null, answers:{q3:todayISO()}, intakeNotes:"", budget:{income:[],fixed:[],variable:[],savings:[],debt:[]}, nww:{needs:[],wants:[],wishes:[]}, goals:[], savings:[], debts:[], debtPlan:{method:"avalanche",extra:""}, dti:{income:"",debt:""}, credit:{target:"",history:[],factors:{}}, housing:{}, budgetActuals:{}, referrals:[], benefits:{}, benefitsOther:[], checkins:[], actionPlan:[], planner:{priorities:[],appointments:[],deadlines:[]}}; }
+function newClientObj(){ return {id:uid(), draft:true, name:"", type:"Mothers in Bloom Cohort Member", tags:"", created:Date.now(), last:null, answers:{q3:todayISO()}, intakeNotes:"", budget:{income:[],fixed:[],variable:[],savings:[],debt:[]}, nww:{needs:[],wants:[],wishes:[]}, goals:[], savings:[], debts:[], debtPlan:{method:"avalanche",extra:""}, dti:{income:"",debt:""}, credit:{target:"",history:[],factors:{}}, housing:{}, budgetActuals:{}, referrals:[], benefits:{}, benefitsOther:[], checkins:[], actionPlan:[], planner:{priorities:[],appointments:[],deadlines:[]}}; }
 function addClient(){
   const c=newClientObj(); DB.clients[c.id]=c; draftId=c.id; activeId=c.id; activeStage=0;
   showOnly('viewWorkspace'); hideChip(); setBack("← Cancel", discardDraft);
@@ -1023,6 +1113,7 @@ function renderProfile(){
     <div class="ph-main"><h1>${esc(c.name||"New participant")}</h1>
       <div class="ph-tags">${c.example?`<span class="tag" style="background:var(--gold);color:#5b4a16;font-weight:700">EXAMPLE</span>`:''}<span class="tag">${esc(c.type||"Participant")}</span><span class="tag">${esc((c.answers&&c.answers.q78)||"Stage —")}</span></div>
       <div class="ph-meta">${c.last?("Last session "+new Date(c.last).toLocaleDateString()):"No sessions yet"} · ${pct}% of intake</div>
+      <div class="ph-tagfield"><label>Tags</label><input value="${esc(c.tags||'')}" placeholder="e.g. FIP interested, homeownership track, newsletter" oninput="setTags(this.value)"><span class="help">Comma-separated, in your words. Searchable from the participant list. The full tag system is a later round.</span></div>
     </div></div>`;
   h+=`<div class="card profcard"><div class="pc-head"><h3>📝 Intake</h3><span class="pc-sub">${pct}% complete</span></div>
     <div class="pbar"><i style="width:${pct}%;background-size:${pct>0?Math.round(10000/pct):100}% 100%"></i></div>
@@ -1059,6 +1150,8 @@ function renderProfile(){
   h+=`</div>`;
   document.getElementById("profilePanel").innerHTML=h;
 }
+function setTags(v){ const c=cur(); if(!c) return; c.tags=v; scheduleSave(); }
+function tagChips(c){ return (c.tags||"").split(",").map(t=>t.trim()).filter(Boolean); }
 function toolCard(kind,title,sum){ return `<div class="card tooltool-card" onclick="openTool('${kind}')"><div><div class="tt-title">${title}</div><div class="tt-sum">${sum}</div></div><span class="tt-open">Open →</span></div>`; }
 let workTool=null;
 function openTool(kind){ workTool=kind; nwwEditing=null; let o=document.getElementById('workModal'); if(!o){ o=document.createElement('div'); o.id='workModal'; o.className='bt-overlay'; document.body.appendChild(o); } renderWorkModal(); }
@@ -1074,9 +1167,13 @@ function renderWorkModal(){ const o=document.getElementById('workModal'); if(!o)
 
 function renderRail(){
   const c=cur();
+  const PHASE_HD={pre:"Before the meeting",during:"During the meeting",post:"After the meeting"};
+  let lastPhase=null;
   document.getElementById("stageList").innerHTML = STAGES.map((s,i)=>{
     const cnt=stageCountable(s); const pct=stagePct(c,s);
-    return `<button class="stage-btn ${i===activeStage?'active':''}" style="--ac:${s.ac}" onclick="gotoStage(${i})">
+    let hd="";
+    if(s.phase && s.phase!==lastPhase){ hd=`<div class="phase-hd">${esc(PHASE_HD[s.phase]||s.phase)}</div>`; lastPhase=s.phase; }
+    return hd+`<button class="stage-btn ${i===activeStage?'active':''}" style="--ac:${s.ac}" onclick="gotoStage(${i})">
       <span class="em">${i+1}</span>
       <span class="lbl"><b>${esc(s.name)}</b></span>
       <span class="pct">${cnt?pct+'%':''}</span></button>`;
@@ -1123,7 +1220,8 @@ function photoCrop(src){
 function renderStage(){
   const s=STAGES[activeStage], c=cur();
   const isLast=activeStage===STAGES.length-1, isPreStaff=activeStage===STAGES.length-2;
-  const verb = isLast ? "Staff follow-up · after the session" : ("Participant intake · step "+(activeStage+1)+" of "+STAGES.length);
+  const PHASE={pre:"Before the meeting · you fill this in, then verify it together",during:"During the meeting · the live conversation",post:"After the meeting · staff coding"};
+  const verb = PHASE[s.phase] || ("Participant intake · step "+(activeStage+1)+" of "+STAGES.length);
   let html = `<div class="stagehead" style="--ac:${s.ac}">
       <div class="bigem">${activeStage+1}</div>
       <div><div class="verb">${verb}</div><h2>${esc(s.name)}</h2></div>
@@ -1131,10 +1229,11 @@ function renderStage(){
   s.sections.forEach((sec,si)=>{
     html += `<section class="section ${sec.staff?'staff':''}" style="--ac:${s.ac}">`;
     if(sec.title) html += `<h3>${esc(sec.title)}</h3>`;
+    if(sec.note) html += `<p class="sec-note">${esc(sec.note)}</p>`;
     if(sec.script) html += `<details class="script" style="--ac:${s.ac}"><summary class="who">Jay says — talking points</summary>`+sec.script.map(p=> /Show Blooming Roadmap/i.test(p) ? `<p><button type="button" class="btn sm" onclick="showRoadmap()">🌸 Show Blooming Roadmap</button></p>` : `<p>${esc(p)}</p>`).join("")+`</details>`;
     if(sec.items) sec.items.forEach(it=> html += renderField(it,c));
     if(sec.module==="nww"){ const n=c.nww||{}; const nc=(n.needs||[]).length+(n.wants||[]).length+(n.wishes||[]).length; html += toolCard('nww','🌸 Needs · Wants · Wishes', nc+' item'+(nc===1?'':'s')+' — open to edit'); }
-    if(sec.module==="goals"){ const gc=(c.goals||[]).length; html += toolCard('goals','🎯 Goals', gc+' goal'+(gc===1?'':'s')+' — open to edit'); }
+    if(sec.module==="goals"){ const gc=(c.goals||[]).length; const ini=(c.goals||[]).filter(g=>g.initial).length; html += toolCard('goals','🎯 Goals', gc+' goal'+(gc===1?'':'s')+(ini?(' · '+ini+' she joined with'):'')+' — open to edit'); }
     if(sec.module==="wrap") html += renderWrap(c);
     if(sec.module==="export") html += renderExport(c);
     if(sec.module==="intakenotes") html += renderIntakeNotesBlock(c);
@@ -1156,7 +1255,11 @@ function renderField(it,c){
   const req = it.req ? `<span class="req">*</span>`:"";
   const help = it.help ? `<div class="help">${esc(it.help)}</div>`:"";
   let inner="";
-  if(it.type==="text"||it.type==="number"||it.type==="date"){
+  if(it.type==="verify"){
+    const on=v===true||v==="true";
+    return `<label class="verifybox ${on?'on':''}"><input type="checkbox" data-fid="${it.id}" data-bool="1" ${on?'checked':''}><span>${esc(it.label)}</span></label>`;
+  }
+  if(it.type==="text"||it.type==="number"||it.type==="date"||it.type==="time"){
     inner=`<input type="${it.type}" data-fid="${it.id}" value="${esc(v||"")}">`;
   } else if(it.type==="textarea"){
     inner=`<textarea data-fid="${it.id}">${esc(v||"")}</textarea>`;
@@ -1165,7 +1268,9 @@ function renderField(it,c){
       `<label class="opt ${v===o?'on':''}"><input type="radio" name="${it.id}" data-fid="${it.id}" data-req="${it.req?1:0}" value="${esc(o)}" ${v===o?'checked':''} onclick="radioClick(this)">${esc(o)}</label>`).join("")+`</div>`;
   } else if(it.type==="checkbox"){
     const arr=Array.isArray(v)?v:[];
-    inner=`<div class="opts">`+it.options.map(o=>
+    const opts=it.optsKey?pickList(it.optsKey):it.options;
+    if(it.optsKey) inner+=`<div class="pick-edit">Starter list · <button type="button" class="linkbtn" onclick="pickEdit('${it.optsKey}')">Edit list</button> · <button type="button" class="linkbtn" onclick="pickReset('${it.optsKey}')">Reset</button></div>`;
+    inner+=`<div class="opts">`+opts.map(o=>
       `<label class="opt ${arr.includes(o)?'on':''}"><input type="checkbox" data-fid="${it.id}" data-multi="1" value="${esc(o)}" ${arr.includes(o)?'checked':''}>${esc(o)}</label>`).join("")+`</div>`;
   } else if(it.type==="scale"){
     inner=`<div class="scale">`+it.scale.map((o,idx)=>{
@@ -1173,7 +1278,8 @@ function renderField(it,c){
       return `<label class="opt ${String(v)===val?'on':''}"><input type="radio" name="${it.id}" data-fid="${it.id}" value="${val}" ${String(v)===val?'checked':''}><b>${idx+1}</b><span style="font-size:10px">${esc(o.replace(/^\d+\s—\s/,''))}</span></label>`;
     }).join("")+`</div>`;
   }
-  return `<div class="fld"><label>${qn}${esc(it.label)}${req}</label>${help}${inner}</div>`;
+  const draft = it.draft ? `<span class="draftbadge" title="Wording we drafted — Jay has not confirmed it yet">draft wording</span>`:"";
+  return `<div class="fld ${it.draft?'is-draft':''}"><label>${qn}${esc(it.label)}${req}${draft}</label>${help}${inner}</div>`;
 }
 
 /* autosave (delegated) */
@@ -1190,6 +1296,11 @@ function onField(e){
   const t=e.target; const fid=t.getAttribute && t.getAttribute("data-fid");
   if(!fid||!activeId) return;
   const c=cur();
+  if(t.getAttribute("data-bool")){
+    c.answers[fid]=t.checked;
+    const lab=t.closest(".verifybox"); if(lab) lab.classList.toggle("on",t.checked);
+    scheduleSave(); return;
+  }
   if(t.getAttribute("data-multi")){
     const set=new Set(Array.isArray(c.answers[fid])?c.answers[fid]:[]);
     if(t.checked) set.add(t.value); else set.delete(t.value);
@@ -1358,6 +1469,16 @@ function pickParticipant(cb){
 function toast(msg){ let t=document.getElementById('mibToast'); if(!t){ t=document.createElement('div'); t.id='mibToast'; t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:24px;z-index:300;font-size:14px;box-shadow:0 6px 24px rgba(0,0,0,.3);transition:opacity .3s'; document.body.appendChild(t); } t.textContent=msg; t.style.opacity='1'; clearTimeout(toast._t); toast._t=setTimeout(()=>{t.style.opacity='0';},1800); }
 
 /* ============================ NEEDS / WANTS / WISHES ============================ */
+/* The standalone intake prompts for need / want / wish and for the 6-12 month focus
+   were cut in the 2026-07-23 pass. Jay asked that the wording live on as help text
+   inside the modules where the same ground is now covered. Verbatim from her form. */
+const CUT_PROMPTS={
+  needs:"What is your biggest NEED right now?",
+  wants:"What is something you WANT to improve over the next year?",
+  wishes:"What is a long-term WISH or dream you have for yourself or your family?",
+  goalFocus:"What is the one goal you would most like to focus on over the next 6\u201312 months?",
+  goalSupport:"What support would help you achieve that goal?"
+};
 const NWW_COLS=[["needs","Needs","#C25E3A"],["wants","Wants","#E0A93B"],["wishes","Wishes","#C85C7E"]];
 const NWW_PRI=["Today","This week","This month","This year","Someday","Other"];
 let _drag=null, nwwEditing=null;
@@ -1603,32 +1724,155 @@ function planEdit(list,i,v){ plannerData(cur())[list][i]=v; scheduleSave(); }
 function planEditObj(list,i,f,v){ const o=plannerData(cur())[list][i]; if(o){ o[f]=v; scheduleSave(); } }
 
 /* ============================ COACHING & ACCOUNTABILITY (check-in history) ============================ */
-function checkinList(c){ c.checkins=c.checkins||[]; return c.checkins; }
+/* Rebuilt 2026-09-14 from Jay's 2026-07-23 feedback: a repeating template that is a
+   subset of the intake. The intake shows as check-in #1 (derived, not copied, so the
+   two can never drift). Each check-in re-verifies the pre-meeting information with
+   edit-in-place, and ends with "what didn't I ask" plus an optional testimonial. */
+
+/* The pre-meeting facts re-verified at every check-in. Editing one here writes
+   straight back to the participant's intake answers — one source of truth. */
+const CHK_VERIFY=[
+  ["q24","Address","text"],["q25","Phone","text"],["q26","Email","text"],
+  ["q27","Preferred contact","radio"],["q28","Children in household","number"],
+  ["q30","Household size","number"],["q32","Employment","radio"],
+  ["q35","Approximate monthly income","radio"],["q36","Housing","radio"],
+  ["q62","How often she wants to hear from us","radio"]
+];
+function chkVerifyOpts(id){ for(const st of STAGES) for(const sec of st.sections) for(const it of (sec.items||[])) if(it.id===id) return it.options||null; return null; }
+
+function chkNorm(k){
+  /* Pre-2026-09 check-ins had a single "challenges" box. Jay folded challenges into
+     "biggest barrier", so carry the old text across the first time we see it. */
+  if(k.challenges && !k.barrierNote){ k.barrierNote=k.challenges; delete k.challenges; }
+  ["barriers","opps","hub","learn"].forEach(f=>{ if(!Array.isArray(k[f])) k[f]=[]; });
+  ["type","situation","barrierNote","oppNote","wins","finGoals","homework","nextSteps","notes","missed","testimonialOk","testimonial","followUp","verifiedAt"].forEach(f=>{ if(k[f]==null) k[f]=""; });
+  return k;
+}
+function checkinList(c){ c.checkins=(c.checkins||[]).map(chkNorm); return c.checkins; }
 function checkinSorted(c){ return checkinList(c).slice().sort((a,b)=>(b.date||'').localeCompare(a.date||'')); }
 function checkinTouch(c){ const ds=checkinList(c).map(x=>x.date).filter(Boolean).sort(); if(ds.length) c.last=ds[ds.length-1]; }
-function checkinSummary(c){ const k=c.checkins||[]; if(!k.length) return "no check-ins yet"; const last=k.map(x=>x.date).filter(Boolean).sort().pop(); return k.length+" check-in"+(k.length===1?"":"s")+(last?(" · last "+last):""); }
+function intakeStarted(c){ return overallPct(c)>0; }
+function checkinCount(c){ return (c.checkins||[]).length + (intakeStarted(c)?1:0); }
+function checkinSummary(c){
+  const n=checkinCount(c); if(!n) return "no check-ins yet";
+  const ds=(c.checkins||[]).map(x=>x.date).filter(Boolean); if(intakeStarted(c)&&c.answers.q3) ds.push(c.answers.q3);
+  const last=ds.sort().pop();
+  return n+" check-in"+(n===1?"":"s")+(last?(" · last "+last):"");
+}
+function chkNew(c){ return {id:uid(),date:todayISO(),type:"",situation:"",barriers:[],barrierNote:"",opps:[],oppNote:"",wins:"",finGoals:"",homework:"",nextSteps:"",notes:"",missed:"",testimonialOk:"",testimonial:"",hub:[],learn:[],followUp:"",verifiedAt:""}; }
+
 function renderCheckins(c){
   const ks=checkinSorted(c);
-  let h=`<p class="fp-intro">Log each coaching session — what you covered, her wins and challenges, homework, and next steps. This builds her history over time.</p>`;
-  h+=`<button class="btn primary" onclick="chkAdd()">＋ Log a check-in</button>`;
-  if(!ks.length) h+=`<p class="help" style="margin-top:12px">No check-ins yet.</p>`;
+  const prev=ks[0]||null;
+  let h=`<p class="fp-intro">Every visit after the intake is a check-in. It asks a short subset of the intake, re-verifies her details, and keeps the history in one place. The intake below is check-in #1.</p>`;
+  h+=`<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:4px">
+      <button class="btn primary" onclick="chkAdd()">＋ Start the next check-in</button>
+      <span class="help">${checkinCount(c)} on record</span></div>`;
+  if(prev && (prev.nextSteps||prev.homework)){
+    h+=`<div class="chk-carry"><b>Last time you agreed:</b>
+      ${prev.homework?`<div><span>Her homework</span>${esc(prev.homework)}</div>`:''}
+      ${prev.nextSteps?`<div><span>Your next steps</span>${esc(prev.nextSteps)}</div>`:''}</div>`;
+  }
   h+=`<div class="ck-list">`;
-  ks.forEach((k,i)=>{ h+=`<details class="ck" data-dk="chk-${k.id}" ${i===0?'open':''}>
-    <summary><span class="ck-date">${esc(k.date||'(no date)')}</span><span class="ck-snip">${esc((k.notes||k.wins||k.nextSteps||'').slice(0,52))}</span></summary>
-    <div class="ck-body">
-      <label class="ck-f"><span>Date</span><input type="date" value="${esc(k.date||'')}" onchange="chkEdit('${k.id}','date',this.value)"></label>
-      <label class="ck-f"><span>📝 Meeting notes</span><textarea oninput="chkEdit('${k.id}','notes',this.value)">${esc(k.notes||'')}</textarea></label>
-      <div class="ck-2"><label class="ck-f"><span>🌟 Wins</span><textarea oninput="chkEdit('${k.id}','wins',this.value)">${esc(k.wins||'')}</textarea></label><label class="ck-f"><span>🧗 Challenges</span><textarea oninput="chkEdit('${k.id}','challenges',this.value)">${esc(k.challenges||'')}</textarea></label></div>
-      <label class="ck-f"><span>✅ Homework / action items</span><textarea oninput="chkEdit('${k.id}','homework',this.value)">${esc(k.homework||'')}</textarea></label>
-      <div class="ck-2"><label class="ck-f"><span>→ Next steps</span><textarea oninput="chkEdit('${k.id}','nextSteps',this.value)">${esc(k.nextSteps||'')}</textarea></label><label class="ck-f"><span>🔔 Follow-up date</span><input type="date" value="${esc(k.followUp||'')}" onchange="chkEdit('${k.id}','followUp',this.value)"></label></div>
-      <button class="btn sm" style="color:var(--terracotta-d);align-self:flex-start" onclick="chkDel('${k.id}')">Delete check-in</button>
-    </div></details>`; });
+  ks.forEach((k,i)=>{ h+=chkCard(c,k,i===0); });
+  h+=chkIntakeCard(c);
   h+=`</div>`;
   return h;
 }
-function chkAdd(){ const c=cur(); checkinList(c).unshift({id:uid(),date:todayISO(),notes:"",wins:"",challenges:"",homework:"",nextSteps:"",followUp:""}); checkinTouch(c); persist(); rerender(); }
-function chkDel(id){ const c=cur(); c.checkins=checkinList(c).filter(x=>x.id!==id); checkinTouch(c); persist(); rerender(); }
-function chkEdit(id,f,v){ const c=cur(); const k=checkinList(c).find(x=>x.id===id); if(!k) return; k[f]=v; if(f==='date') checkinTouch(c); scheduleSave(); }
+
+/* The intake rendered as the first check-in. Read-only and derived — it links
+   back to the intake rather than duplicating the answers. */
+function chkIntakeCard(c){
+  if(!intakeStarted(c)) return `<p class="help" style="margin-top:12px">Once you start her intake it will appear here as check-in #1.</p>`;
+  const a=c.answers||{};
+  const line=(lbl,v)=>v?`<div class="ck-ro"><span>${lbl}</span>${esc(Array.isArray(v)?v.join(", "):v)}</div>`:"";
+  return `<details class="ck ck-intake" data-dk="chk-intake">
+    <summary><span class="ck-date">${esc(a.q3||"(no date)")}</span><span class="ck-tag">Intake · check-in #1</span><span class="ck-snip">${esc((a.q1||"").slice(0,52))}</span></summary>
+    <div class="ck-body">
+      ${line("Her story",a.q1)}
+      ${line("Most urgent right now",a.q47)}
+      ${line("Areas she wants support with",a.q49)}
+      ${line("Stage today",a.q78)}
+      ${line("Follow-up actions",a.q80)}
+      <div class="help">This entry is the intake itself, shown here so the history reads in order. Edit it in the intake.</div>
+      <button class="btn sm" style="align-self:flex-start" onclick="closeTool();openIntake(0)">Open the intake →</button>
+    </div></details>`;
+}
+
+function chkCard(c,k,open){
+  const opt=(key,val,lbl)=>`<label class="opt ${k[key]===val?'on':''}" onclick="chkEdit('${k.id}','${key}','${val}')">${lbl}</label>`;
+  let h=`<details class="ck" data-dk="chk-${k.id}" ${open?'open':''}>
+    <summary><span class="ck-date">${esc(k.date||'(no date)')}</span><span class="ck-tag">Check-in</span><span class="ck-snip">${esc((k.situation||k.wins||k.nextSteps||k.notes||'').slice(0,52))}</span></summary>
+    <div class="ck-body">
+      <div class="ck-2">
+        <label class="ck-f"><span>Date</span><input type="date" value="${esc(k.date||'')}" onchange="chkEdit('${k.id}','date',this.value)"></label>
+        <label class="ck-f"><span>How did you meet?</span><div class="opts sm">${opt('type','Zoom','Zoom')}${opt('type','Phone','Phone')}${opt('type','In Person','In Person')}</div></label>
+      </div>`;
+
+  /* re-verify the pre-meeting block, edit in place */
+  h+=`<details class="ck-verify" data-dk="chkv-${k.id}"><summary>🔍 Confirm her details ${k.verifiedAt?`<b class="ok">verified ${esc(k.verifiedAt)}</b>`:'<b class="todo">not confirmed yet</b>'}</summary><div class="ckv-body">
+    <div class="help">Read these back to her. Anything that changed, fix it right here — it updates her record.</div>`;
+  CHK_VERIFY.forEach(([id,lbl,kind])=>{
+    const v=(c.answers||{})[id];
+    const opts=kind==="radio"?chkVerifyOpts(id):null;
+    if(opts) h+=`<label class="ckv-f"><span>${lbl}</span><select onchange="chkVerifySet('${id}',this.value)"><option value="">—</option>${opts.map(o=>`<option ${v===o?'selected':''}>${esc(o)}</option>`).join("")}</select></label>`;
+    else h+=`<label class="ckv-f"><span>${lbl}</span><input type="${kind==='number'?'number':'text'}" value="${esc(v==null?'':v)}" oninput="chkVerifySet('${id}',this.value)"></label>`;
+  });
+  h+=`<button class="btn sm primary" style="align-self:flex-start" onclick="chkVerified('${k.id}')">✓ Confirmed with her today</button>
+    </div></details>`;
+
+  h+=`<label class="ck-f"><span>Where things stand today</span><textarea oninput="chkEdit('${k.id}','situation',this.value)">${esc(k.situation||'')}</textarea></label>`;
+  h+=chkPick(k,'barriers','barrierNote','🧗 Biggest barrier');
+  h+=chkPick(k,'opps','oppNote','🌱 Greatest opportunity');
+  h+=`<div class="ck-2">
+      <label class="ck-f"><span>🌟 Wins</span><textarea oninput="chkEdit('${k.id}','wins',this.value)">${esc(k.wins||'')}</textarea></label>
+      <label class="ck-f"><span>💰 Financial goals</span><textarea oninput="chkEdit('${k.id}','finGoals',this.value)">${esc(k.finGoals||'')}</textarea></label></div>`;
+  h+=`<div class="ck-2">
+      <label class="ck-f"><span>✅ Her homework</span><textarea placeholder="What she is taking away to do…" oninput="chkEdit('${k.id}','homework',this.value)">${esc(k.homework||'')}</textarea></label>
+      <label class="ck-f"><span>→ Your next steps</span><textarea placeholder="What you are taking away to do…" oninput="chkEdit('${k.id}','nextSteps',this.value)">${esc(k.nextSteps||'')}</textarea></label></div>`;
+  h+=`<label class="ck-f"><span>🔔 Follow-up date</span><input type="date" value="${esc(k.followUp||'')}" onchange="chkEdit('${k.id}','followUp',this.value)"></label>`;
+
+  h+=`<details class="ck-more" data-dk="chkm-${k.id}"><summary>➕ Resource hub &amp; opportunities (ask when it fits)</summary><div class="ckv-body">
+    ${chkMulti(k,'hub','What would she most like to see in the resource hub or newsletter?','q64')}
+    ${chkMulti(k,'learn','Which opportunities would she like to learn more about?','q68')}
+  </div></details>`;
+
+  h+=`<label class="ck-f"><span>📝 Notes</span><textarea oninput="chkEdit('${k.id}','notes',this.value)">${esc(k.notes||'')}</textarea></label>`;
+  h+=`<label class="ck-f last-q"><span>Ask this every time — “What didn’t I ask that I should have?”</span><textarea oninput="chkEdit('${k.id}','missed',this.value)">${esc(k.missed||'')}</textarea></label>`;
+  h+=`<details class="ck-more" data-dk="chkt-${k.id}" ${k.testimonial?'open':''}><summary>💬 Anything she wants to share (optional)</summary><div class="ckv-body">
+      <label class="ck-f"><span>Is she willing to have this shared?</span><div class="opts sm">${opt('testimonialOk','Yes, with my name','Yes, with my name')}${opt('testimonialOk','Yes, anonymously','Yes, anonymously')}${opt('testimonialOk','No','No')}</div></label>
+      <label class="ck-f"><span>In her words — for the newsletter or the board</span><textarea oninput="chkEdit('${k.id}','testimonial',this.value)">${esc(k.testimonial||'')}</textarea></label>
+    </div></details>`;
+
+  h+=`<button class="btn sm" style="color:var(--terracotta-d);align-self:flex-start" onclick="chkDel('${k.id}')">Delete check-in</button>
+    </div></details>`;
+  return h;
+}
+
+function chkPick(k,listKey,noteKey,label){
+  const sel=Array.isArray(k[listKey])?k[listKey]:[];
+  const opts=pickList(listKey==='barriers'?'barriers':'opportunities');
+  const setKey=listKey==='barriers'?'barriers':'opportunities';
+  return `<div class="ck-f"><span>${label}</span>
+    <div class="pick-edit">Starter list · <button type="button" class="linkbtn" onclick="pickEdit('${setKey}')">Edit list</button> · <button type="button" class="linkbtn" onclick="pickReset('${setKey}')">Reset</button></div>
+    <div class="opts">${opts.map(o=>`<label class="opt ${sel.includes(o)?'on':''}" onclick="chkToggle('${k.id}','${listKey}',this.getAttribute('data-v'))" data-v="${esc(o)}">${esc(o)}</label>`).join("")}</div>
+    <textarea placeholder="In her words…" oninput="chkEdit('${k.id}','${noteKey}',this.value)">${esc(k[noteKey]||'')}</textarea></div>`;
+}
+
+function chkMulti(k,field,label,qid){
+  const sel=Array.isArray(k[field])?k[field]:[];
+  const opts=chkVerifyOpts(qid)||[];
+  if(!opts.length) return "";
+  return `<div class="ck-f"><span>${esc(label)}</span><div class="opts">${opts.map(o=>`<label class="opt ${sel.includes(o)?'on':''}" onclick="chkToggle('${k.id}','${field}',this.getAttribute('data-v'))" data-v="${esc(o)}">${esc(o)}</label>`).join("")}</div></div>`;
+}
+
+function chkAdd(){ const c=cur(); checkinList(c).unshift(chkNew(c)); checkinTouch(c); persist(); rerender(); }
+function chkDel(id){ const c=cur(); if(!confirm("Delete this check-in? This cannot be undone.")) return; c.checkins=checkinList(c).filter(x=>x.id!==id); checkinTouch(c); persist(); rerender(); }
+function chkGet(id){ const c=cur(); return checkinList(c).find(x=>x.id===id); }
+function chkEdit(id,f,v){ const k=chkGet(id); if(!k) return; const re=(f==='type'||f==='testimonialOk'); k[f]=v; if(f==='date') checkinTouch(cur()); if(re){ persist(); rerender(); } else scheduleSave(); }
+function chkToggle(id,f,val){ const k=chkGet(id); if(!k) return; const set=new Set(Array.isArray(k[f])?k[f]:[]); if(set.has(val)) set.delete(val); else set.add(val); k[f]=[...set]; persist(); rerender(); }
+function chkVerifySet(qid,v){ const c=cur(); if(!c) return; c.answers[qid]=v; scheduleSave(); }
+function chkVerified(id){ const k=chkGet(id); if(!k) return; k.verifiedAt=todayISO(); persist(); rerender(); }
 
 /* ============================ RESOURCES, REFERRALS & BENEFITS ============================ */
 const REFERRAL_CATS=["United Way Family Investment Program","Housing","Employment","Education","Mental Health","Childcare","Transportation","Healthcare","Government Assistance","Financial Coaching","Entrepreneurship","Other"];
@@ -1676,7 +1920,11 @@ function benefitOtherEdit(i,f,v){ const o=benefitOther(cur())[i]; if(!o) return;
 
 function renderNWW(c){
   const n=c.nww||(c.nww={needs:[],wants:[],wishes:[]});
-  let html=`<div class="nww">`;
+  let html=`<div class="mod-help"><b>Ask as you build the board:</b>
+    <div>\u201C${esc(CUT_PROMPTS.needs)}\u201D</div>
+    <div>\u201C${esc(CUT_PROMPTS.wants)}\u201D</div>
+    <div>\u201C${esc(CUT_PROMPTS.wishes)}\u201D</div></div>`;
+  html+=`<div class="nww">`;
   NWW_COLS.forEach(([k,lbl,col])=>{
     html+=`<div class="nwwcol" data-col="${k}" ondragover="nwwOver(event)" ondragleave="nwwLeave(event)" ondrop="nwwDrop(event,'${k}')">
       <h4><span class="em" style="background:${col}">${lbl[0]}</span>${lbl} <span class="nwwcount">${(n[k]||[]).length}</span></h4>`;
@@ -1749,7 +1997,7 @@ const GOAL_CATS=["Personal","Professional","Financial","Physical health","Mental
 function goalPct(g){
   if(g.mode==='milestone'){ const ms=g.milestones||[]; return ms.length?Math.round(100*ms.filter(m=>m.done).length/ms.length):0; }
   const s=Number(g.start)||0, c=(g.current===""||g.current==null)?s:Number(g.current), t=Number(g.target); if(g.target===""||g.target==null||isNaN(t)||t===s) return 0; return Math.max(0,Math.min(100,Math.round((c-s)/(t-s)*100))); }
-function normGoal(g){ if(typeof g.notes==='string'){ g.notes=g.notes.trim()?[{id:uid(),date:'(earlier)',text:g.notes}]:[]; } if(!Array.isArray(g.notes)) g.notes=[]; if(g.mode===undefined) g.mode='measure'; if(!Array.isArray(g.milestones)) g.milestones=[]; if(!Array.isArray(g.align)) g.align=g.align?[g.align]:[]; if(g.dueSpecific===undefined) g.dueSpecific=false; if(g.dueMonth===undefined&&g.due) g.dueMonth=g.due; if(g.smart===undefined) g.smart={}; return g; }
+function normGoal(g){ if(typeof g.notes==='string'){ g.notes=g.notes.trim()?[{id:uid(),date:'(earlier)',text:g.notes}]:[]; } if(!Array.isArray(g.notes)) g.notes=[]; if(g.mode===undefined) g.mode='measure'; if(!Array.isArray(g.milestones)) g.milestones=[]; if(!Array.isArray(g.align)) g.align=g.align?[g.align]:[]; if(g.dueSpecific===undefined) g.dueSpecific=false; if(g.dueMonth===undefined&&g.due) g.dueMonth=g.due; if(g.smart===undefined) g.smart={}; if(g.initial===undefined) g.initial=false; if(g.initialAchieved===undefined) g.initialAchieved=''; return g; }
 function goalSmartHTML(i,g){ const sm=g.smart||{}; const el=(f,b,d,ph)=>`<div class="smart-el"><b>${b}</b> — ${d}<input value="${esc(sm[f]||'')}" oninput="goalSmart(${i},'${f}',this.value)" placeholder="${ph}"></div>`;
   return `<details class="smart" data-dk="smart-${g.id}"><summary>✨ Need help writing a SMART goal?</summary><div class="smart-body">
     ${el('specific','Specific','what exactly will be true?','e.g. I will have opened a savings account')}
@@ -1777,15 +2025,24 @@ function goalNotesHTML(i,g){ const notes=g.notes||[];
     ${notes.map((nt,ni)=>`<div class="gnote"><div class="gn-date">${esc(nt.date)}</div><textarea oninput="goalNoteEdit(${i},${ni},this.value)">${esc(nt.text)}</textarea><button class="xrm" onclick="goalNoteDel(${i},${ni})">✕</button></div>`).join("")||'<div class="help">No notes yet.</div>'}
     <div class="gnote-add"><textarea id="gn-new-${i}" placeholder="Type a note, then Save note (it’s dated automatically)…"></textarea><button class="btn primary sm" onclick="goalNoteAdd(${i})">💾 Save note</button></div>
   </div></details>`; }
+function goalInitial(i,on){ const c=cur(); const g=c.goals[i]; if(!g) return; g.initial=!!on; if(!on) g.initialAchieved=''; persist(); rerender(); }
+function goalInitialAch(i,v){ const c=cur(); const g=c.goals[i]; if(!g) return; g.initialAchieved=v; persist(); rerender(); }
 function renderGoals(c){
   const goals=(c.goals||(c.goals=[])).map(normGoal);
   const cols=[["needs","Need"],["wants","Want"],["wishes","Wish"]];
-  let html=`<datalist id="goalcats">${GOAL_CATS.filter(x=>x!=='Other').map(x=>`<option value="${x}">`).join("")}</datalist>`;
+  let html=`<div class="mod-help"><b>Ask as you go:</b> \u201C${esc(CUT_PROMPTS.goalFocus)}\u201D and \u201C${esc(CUT_PROMPTS.goalSupport)}\u201D<br><span>Tick <b>Goal she joined with</b> on anything she named when she started, and mark whether she got there. That replaces the old intake questions 6 and 7.</span></div>`;
+  html+=`<datalist id="goalcats">${GOAL_CATS.filter(x=>x!=='Other').map(x=>`<option value="${x}">`).join("")}</datalist>`;
   html+=goals.map((g,i)=>{
     const customAligns=(g.align||[]).filter(a=>!cols.some(([col])=>(c.nww[col]||[]).some(x=>x.text===a)));
     return `<div class="goal" data-gi="${i}" style="--ac:var(--s-petals)">
       <div class="gtop"><textarea placeholder="Write the goal…" oninput="goalEditQuiet(${i},'goal',this.value)">${esc(g.goal||"")}</textarea><button class="xrm" onclick="goalDel(${i})">✕</button></div>
       ${goalSmartHTML(i,g)}
+      <div class="goal-initial ${g.initial?'on':''}">
+        <label class="inline-check"><input type="checkbox" ${g.initial?'checked':''} onchange="goalInitial(${i},this.checked)"> <b>Goal she joined with</b></label>
+        ${g.initial?`<span class="gi-ach">Achieved?
+          <label class="inline-check"><input type="radio" name="gia-${g.id}" ${g.initialAchieved==='Yes'?'checked':''} onclick="goalInitialAch(${i},'Yes')"> Yes</label>
+          <label class="inline-check"><input type="radio" name="gia-${g.id}" ${g.initialAchieved==='No'?'checked':''} onclick="goalInitialAch(${i},'No')"> Not yet</label></span>`:''}
+      </div>
       <div class="goal-meta" style="grid-template-columns:1fr 1fr">
         <div><label>Category</label><input list="goalcats" value="${esc(g.cat||'')}" placeholder="Pick or type…" oninput="goalEditQuiet(${i},'cat',this.value)"></div>
         <div><label>Priority</label><select onchange="goalEditQuiet(${i},'pri',this.value)">${["High","Medium","Low"].map(p=>`<option ${g.pri===p?'selected':''}>${p}</option>`).join("")}</select></div>
@@ -1860,7 +2117,7 @@ function renderExport(c){
 }
 
 /* ============================ PROGRESS ============================ */
-function isAns(v){ return Array.isArray(v)?v.length>0:(v!=null&&String(v).trim()!==""); }
+function isAns(v){ if(typeof v==="boolean") return v; return Array.isArray(v)?v.length>0:(v!=null&&String(v).trim()!==""); }
 function budgetFilled(c){ const b=c.budget||{}; return ["income","fixed","variable","savings","debt"].some(k=>(b[k]||[]).some(r=>Number(r.amount)>0)); }
 function nwwFilled(c){ const n=c.nww||{}; return ((n.needs||[]).length+(n.wants||[]).length+(n.wishes||[]).length)>0; }
 function stagePct(c,s){
@@ -1927,7 +2184,8 @@ function exportCSV(){
     "Outcomes experienced":(a.q21||[]).join("; "), "Impact areas (staff)":(a.q75||[]).join("; "),
     "Follow-up actions":(a.q80||[]).join("; "), "Support interests":(a.q49||[]).join("; "),
     "Share w/ partners":a.q69, "Open goals":(c.goals||[]).filter(g=>g.status!=="Done").length,
-    "Roadmap %":overallPct(c), "Key quote":a.q82
+    "Roadmap %":overallPct(c), "Tags":c.tags||"",
+    "Key quote":a.q82||(checkinSorted(c).map(k=>k.testimonial).filter(Boolean)[0]||"")
   };
   const cell=v=>{ let s=String(v==null?"":v); if(/^[=+\-@]/.test(s)) s="'"+s; return '"'+s.replace(/"/g,'""')+'"'; };
   const heads=Object.keys(cols).map(cell), vals=Object.keys(cols).map(h=>cell(cols[h]));
@@ -2004,7 +2262,7 @@ async function generateSummary(opts){
     page.drawText(safe([c.name,a.q3,c.type].filter(Boolean).join('   ·   ')),{x:M,y:H-118,size:11,font:F,color:rgb(1,1,1)});
     y=H-150-26; page.drawText('You are enough.   You are strong.   You are becoming.',{x:M,y:y,size:13,font:FO,color:C.terraD}); y-=26;
     /* intake sections */
-    STAGES.forEach(s=>{ if(s.key==='staff'){ if(!opts.staff) return; } else if(!opts.intake) return; const items=[]; s.sections.forEach(sec=>{ if(sec.items) sec.items.forEach(it=>items.push(it)); }); if(!items.length) return;
+    STAGES.forEach(s=>{ if(s.phase==='post'){ if(!opts.staff) return; } else if(!opts.intake) return; const items=[]; s.sections.forEach(sec=>{ if(sec.items) sec.items.forEach(it=>items.push(it)); }); if(!items.length) return;
       header(s.name, AC[s.ac]||C.terraD); items.forEach(it=>qa((it.q!=null?it.q+'. ':'')+it.label, fmt(a[it.id]))); });
     /* needs/wants/wishes */
     const nwwLine=x=>{ let cost=String(x.cost==null?'':x.cost).trim(); cost=cost?(/^\d/.test(cost)?'$'+cost:cost):''; return '•  '+x.text+(cost?' ('+cost+')':'')+(x.pri?' — '+x.pri:'')+(x.met?'   ✓ met':''); };
@@ -2038,8 +2296,16 @@ async function generateSummary(opts){
         if(k.notes) text('Notes: '+k.notes,M+4,11,F,C.ink);
         if(k.wins) text('Wins: '+k.wins,M+4,11,F,C.ink);
         if(k.challenges) text('Challenges: '+k.challenges,M+4,11,F,C.ink);
+        if(k.situation) text('Where things stand: '+k.situation,M+4,11,F,C.ink);
+        const bar=[(k.barriers||[]).join('; '),k.barrierNote].filter(Boolean).join(' \u2014 ');
+        if(bar) text('Biggest barrier: '+bar,M+4,11,F,C.ink);
+        const opp=[(k.opps||[]).join('; '),k.oppNote].filter(Boolean).join(' \u2014 ');
+        if(opp) text('Greatest opportunity: '+opp,M+4,11,F,C.ink);
+        if(k.finGoals) text('Financial goals: '+k.finGoals,M+4,11,F,C.ink);
         if(k.homework) text('Homework: '+k.homework,M+4,11,F,C.ink);
         if(k.nextSteps) text('Next steps: '+k.nextSteps,M+4,11,F,C.ink);
+        if(k.missed) text('What I should have asked: '+k.missed,M+4,11,F,C.ink);
+        if(k.testimonial) text('In her words: '+k.testimonial+(k.testimonialOk?('  ['+k.testimonialOk+']'):''),M+4,11,F,C.ink);
         if(k.followUp) text('Follow-up: '+k.followUp,M+4,11,F,C.ink); y-=4; }); }
     /* action plan */
     if(opts.actionPlan && c.actionPlan && c.actionPlan.length){ header('Action plan', C.sage); actionSorted(c).forEach(t=>text((t.done?'[x] ':'[ ] ')+(t.task||'Task')+(t.owner?'  ('+t.owner+')':'')+(t.due?'  — due '+t.due:'')+(t.priority?'  · '+t.priority:'')+(t.notes?'  — '+t.notes:''),M+4,11,F,C.ink)); }
@@ -2082,7 +2348,7 @@ function printSummary(opts){ opts=opts||SUMMARY_DEFAULTS;
       <div style="opacity:.92;font-size:13px">${esc(c.name||"")}${a.q3?(" · "+esc(a.q3)):""}${c.type?(" · "+esc(c.type)):""}</div>
     </div>
     <p class="psum-affirm">You are enough. You are strong. You are becoming.</p>`;
-  STAGES.forEach(s=>{ if(s.key==='staff'){ if(!opts.staff) return; } else if(!opts.intake) return;
+  STAGES.forEach(s=>{ if(s.phase==='post'){ if(!opts.staff) return; } else if(!opts.intake) return;
     const items=[]; s.sections.forEach(sec=>{ if(sec.items) sec.items.forEach(it=>items.push(it)); });
     if(!items.length) return;
     h+=`<div class="psec"><h3 style="color:${s.ac};border-color:${s.ac}">${esc(s.name)}</h3>`;
@@ -2096,6 +2362,18 @@ function printSummary(opts){ opts=opts||SUMMARY_DEFAULTS;
      <div class="pqa"><div class="pq">Wants</div><div class="pa">${list(n.wants)}</div></div>
      <div class="pqa"><div class="pq">Wishes</div><div class="pa">${list(n.wishes)}</div></div></div>`;
   if(c.goals&&c.goals.length){ h+=`<div class="psec"><h3 style="color:var(--s-bloom);border-color:var(--s-bloom)">Goals</h3>`+c.goals.map(g=>`<div class="pqa"><div class="pq">${esc(g.goal||"Goal")} — ${goalPct(g)}%</div><div class="pa">${esc(g.cat||"")}${g.dueMonth?(" · target "+esc(g.dueMonth)+(g.dueDay?("-"+esc(String(g.dueDay))):"")):""}${g.align?(" · aligns to: "+esc(g.align)):""}</div></div>`).join("")+`</div>`; }
+  if(opts.checkins && c.checkins && c.checkins.length){
+    const row=(lbl,v)=>v?`<div class="pqa"><div class="pq">${esc(lbl)}</div><div class="pa">${esc(v)}</div></div>`:"";
+    h+=`<div class="psec"><h3 style="color:var(--s-bloom);border-color:var(--s-bloom)">Check-in history</h3>`+
+      checkinSorted(c).map(k=>`<div class="pqa"><div class="pq">${esc(k.date||'(no date)')}${k.type?(" · "+esc(k.type)):""}</div><div class="pa">${esc(k.situation||k.notes||"")}</div></div>`+
+        row('Biggest barrier',[(k.barriers||[]).join('; '),k.barrierNote].filter(Boolean).join(' \u2014 '))+
+        row('Greatest opportunity',[(k.opps||[]).join('; '),k.oppNote].filter(Boolean).join(' \u2014 '))+
+        row('Wins',k.wins)+row('Financial goals',k.finGoals)+
+        row('Her homework',k.homework)+row('Next steps',k.nextSteps)+
+        row('What I should have asked',k.missed)+
+        row('In her words',k.testimonial?(k.testimonial+(k.testimonialOk?('  ['+k.testimonialOk+']'):'')):'')
+      ).join("")+`</div>`;
+  }
   if(budgetFilled(c)){ const b=c.budget||{}, inc=sum(b.income), out=sum(b.fixed)+sum(b.variable)+sum(b.savings)+sum(b.debt), net=inc-out; h+=`<div class="psec"><h3 style="color:var(--s-leaves);border-color:var(--s-leaves)">Monthly budget</h3><div class="pqa"><div class="pa">Income ${money(inc)} · Out the door ${money(out)} · <b>${net>=0?'Surplus':'Deficit'} ${money(net)}</b></div></div></div>`; }
   h+=`<div style="page-break-before:always;text-align:center;padding-top:8px"><div style="font-size:11px;letter-spacing:3px;color:#C25E3A;margin-bottom:8px">YOUR BLOOMING ROADMAP</div><img src="${ROADMAP_DATA}" alt="Blooming Roadmap" style="max-width:100%;height:auto;border-radius:8px"></div>`;
   h+=`<p class="psum-foot">Prepared with you by Mothers in Bloom · ${esc(stamp())}</p></div>`;
@@ -2136,9 +2414,12 @@ function generatePlan(){
   h+=`<div class="p-stage"><h3>Monthly budget</h3>
      <div class="p-qa"><span class="a">Income ${money(inc)} · Out ${money(out)} · <b>${net>=0?'Surplus':'Deficit'} ${money(net)}</b></span></div></div>`;
   // focus + support
+  const focusG=(c.goals||[]).filter(g=>goalPct(g)<100).sort((x,y)=>({High:0,Medium:1,Low:2}[x.pri]??1)-({High:0,Medium:1,Low:2}[y.pri]??1))[0];
+  const focus=a.q53||(focusG&&focusG.goal)||"";
+  const support=a.q54||(focusG&&((focusG.smart||{}).achievable||(focusG.smart||{}).realistic))||"";
   h+=`<div class="p-stage"><h3>Focus for the next 6–12 months</h3>
-     <div class="p-qa"><span class="a">${esc(a.q53||"—")}</span></div>
-     <div class="p-qa"><span class="q">Support that would help:</span> <span class="a">${esc(a.q54||"—")}</span></div></div>`;
+     <div class="p-qa"><span class="a">${esc(focus||"—")}</span></div>
+     <div class="p-qa"><span class="q">Support that would help:</span> <span class="a">${esc(support||"—")}</span></div></div>`;
   h+=`<p style="text-align:center;color:#73624F;font-size:12px;margin-top:20px">Prepared with you by Mothers in Bloom · ${esc(stamp())}</p></div>`;
   document.getElementById("printArea").innerHTML=h;
   document.body.classList.add("printing");

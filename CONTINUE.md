@@ -1,6 +1,6 @@
 # Mothers in Bloom · Roadmap Studio — Continuation Guide
 
-A self-contained handoff so this work can be picked up on any machine (by a person or a fresh AI session). Last updated 2026-06-26.
+A self-contained handoff so this work can be picked up on any machine (by a person or a fresh AI session). Last updated 2026-09-14.
 
 ---
 
@@ -38,13 +38,32 @@ Source docs (on the original machine, `~/Downloads/`):
 The whole app is `Mothers in Bloom - Roadmap Studio.html`. `index.html` is a tiny redirect to it (so the site root loads the app).
 
 - **Data:** `DB.clients{}` keyed by id, persisted to `localStorage` under `mib_studio_v1`. Each client object (see `newClientObj()`) holds `answers{}` plus per-tool data: `budget`, `nww`, `goals`, `savings`, `debts`/`debtPlan`, `dti`, `credit`, `housing`, `budgetActuals`, `referrals`, `benefits`/`benefitsOther`, `checkins`, `actionPlan`, `planner`. Also `DB.budgets[]` for standalone budget worksheets.
+- **Intake shape:** `STAGES[]` is now organised as **pre / during / post** (each stage carries a `phase` of `pre`, `during` or `post`). Stage 1 is Jay's pre-meeting prep, verified live via `type:"verify"` checkboxes; stages 2–6 are the conversation; stage 7 is the post-meeting coding pass. Anything gated as staff-only keys off `s.phase==='post'`, **not** the stage key.
 - **Views:** roster → profile (the hub) → workspace (intake) → tools → dashboard. `showOnly(view)` switches; browser back/forward via History API (`pushNav`/`popstate`).
 - **Profile hub:** opening a participant shows tool cards grouped **Overview / Coaching & accountability / Roadmap / Financial planning / Connections**. Each card opens its tool in a work modal (`openTool(kind)` → `renderWorkModal()`, routed by the `R{}` map).
 - **Find code fast** — search for these banner comments:
   `FINANCIAL PLANNING SYSTEM`, `RESOURCES, REFERRALS & BENEFITS`, `COACHING & ACCOUNTABILITY`, `PROGRESS SNAPSHOT`, `ACTION PLAN`, `TIME MANAGEMENT`, `CASELOAD DASHBOARD`, and the `generateSummary` PDF builder. The example seed is the `if(Object.keys(DB.clients).length===0 ...)` block.
+- **Editable pick lists:** `PICK_DEFAULTS` / `DB.settings` hold the starter lists for "how the gift is spent" and the check-in barrier / opportunity pickers. Jay edits them in-app (`pickEdit`) — do not hard-code her options.
 - **Adding a tool** (the established pattern): add data in `newClientObj()` → write `renderX(c)` + handlers → add a `toolCard()` in `renderProfile()` → add it to the `titles{}` + `R{}` maps in `renderWorkModal()` → add CSS → optionally seed the example and add a section to `generateSummary`.
 
 ---
+
+## Round 2 — built 2026-09-14 from Jay's 2026-07-23 feedback
+
+Source: `MIB Tool - Build Spec - 2026-07-23.md` (OneDrive → CACF Claude → Mothers in Bloom; also in the private `cacfchas/mib-portal` repo under `docs/`).
+
+Done this round:
+- **Intake restructured into pre / during / post**, with her cuts, merges and reorderings applied. Ten stages became seven. Per-block "verified with the participant" checkboxes on the pre-meeting section.
+- **Check-in tool rebuilt** as a repeating subset of the intake: re-verification of her details with edit-in-place (writes straight back to the intake answers), where things stand, biggest barrier and greatest opportunity (pick list + narrative), wins, financial goals, her homework vs. your next steps, notes, "what didn't I ask that I should have", and an optional testimonial. The intake shows as check-in #1, derived rather than copied.
+- **Initial-goal flag** on goals ("goal she joined with" + achieved yes/no), replacing intake Q6 and Q7.
+- **Interim free-text tag field** per participant, shown on the roster card and searchable.
+- **Cut intake prompts reused as in-module help text** in Needs·Wants·Wishes and Goals (`CUT_PROMPTS`).
+
+Questions retired from the intake (data is untouched; existing answers just stop rendering):
+Q6, Q7, Q9, Q16, Q17, Q18, Q50–Q54, Q63, Q65, Q67, Q74, Q81, Q82, Q83. Q71 and Q73 moved to the check-in.
+
+Authored, not Jay's words — these render with a **draft wording** badge and need her sign-off:
+the IEP / autism-spectrum question, the leadership-interest question and its note field, and "What would make your experience better?".
 
 ## What's built (V1 — the full blueprint)
 
@@ -72,10 +91,12 @@ The app works straight from `file://` (roadmap is embedded). If you want `http:/
 
 ## What's next (open items)
 
-1. **Example names** (pending decision): the 6 seeded example moms have invented, demographically-flavored names. Options: leave them, swap to neutral placeholders (Participant A/B/C), a random mix, or names Jay chooses.
-2. **V2 — the hosted portal** (needs a real backend/logins): participant-facing per-mom dashboards, a partner dashboard, scheduling + reminders/automation, and the Graduation / Long-Term Follow-Up workflow. Everything through V1 was intentionally client-side/single-file; V2 is where a backend enters.
-3. **C-Suite CSV mapping:** confirm the exact column list with the org so the exports map cleanly.
-4. **Deliver:** the V1 is complete and demoable — a natural next step is walking Jay through it and collecting her feedback.
+0. **Still blocked on Jay** (from the 2026-07-23 spec): Ella's example action-plan template; the goal-idea card list; her own wording for the gift-spend, barrier and opportunity pick lists (starter lists ship editable in the meantime); the fields she wants reportable/filterable; where the new intake questions should sit and how they should be worded; the tag brainstorm and card-badge priorities; dashboard metric suggestions; the off-ramp plan with Eboni.
+1. **Still to build from that spec:** budget rebuild in the wants-versus-needs layout, goal "idea" cards, reporting/filtering + cohort export, and the printout redesign. Deferred by agreement: the full tag system, the United Way FIP module, the action-plan redesign, the off-ramp/graduation module, dashboard changes, and Outlook reminders.
+2. **Example names** (pending decision): the 6 seeded example moms have invented, demographically-flavored names. Options: leave them, swap to neutral placeholders (Participant A/B/C), a random mix, or names Jay chooses.
+3. **V2 — the hosted portal** (needs a real backend/logins): participant-facing per-mom dashboards, a partner dashboard, scheduling + reminders/automation, and the Graduation / Long-Term Follow-Up workflow. Everything through V1 was intentionally client-side/single-file; V2 is where a backend enters.
+4. **C-Suite CSV mapping:** confirm the exact column list with the org so the exports map cleanly.
+5. **Deliver:** round 2 is ready for Jay to walk through. The draft-wording questions and the starter pick lists are the first things to put in front of her.
 
 ## Blueprint integrations (for V2)
 
