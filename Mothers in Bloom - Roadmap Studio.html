@@ -625,21 +625,21 @@
 <script>
 /* ============================================================
    Mothers in Bloom · Roadmap Studio  —  prototype v1
-   Single-file, schema-driven. Content from Jay's intake form.
+   Single-file, schema-driven. Content from the program lead's intake form.
    ============================================================ */
 
-// NOTE: All questions, option labels, "Jay says" scripts, and section titles below are
-// VERBATIM from Jay's "Participant Update & Roadmap Intake" form (Q1–Q84), in her exact
+// NOTE: All questions, option labels, talking-point scripts, and section titles below are
+// VERBATIM from the program lead's "Participant Update & Roadmap Intake" form (Q1–Q84), in her exact
 // section order. Do not paraphrase, re-case, reorder, or invent. We are the tech layer,
 // not the content layer.
 const STAGES = [
-  // Restructured 2026-09-14 from Jay Bradford's 2026-07-23 feedback session
+  // Restructured 2026-09-14 from the 2026-07-23 feedback session with the program lead
   // (docs/MIB Tool - Build Spec - 2026-07-23.md). The flow is now
-  // PRE-MEETING (Jay prefills, then verifies live) -> DURING (the conversation)
+  // PRE-MEETING (she prefills, then verifies live) -> DURING (the conversation)
   // -> POST (staff coding). Question wording and talking points remain verbatim
-  // from Jay's "Participant Update & Roadmap Intake" form; only the order,
+  // from her "Participant Update & Roadmap Intake" form; only the order,
   // the grouping, and the cuts she asked for have changed. Items marked
-  // draft:true are wording we authored and Jay has not signed off on yet.
+  // draft:true are wording we authored and she has not signed off on yet.
   {
     key:"pre", name:"Pre-meeting prep & verification", ac:"var(--s-stem)", phase:"pre",
     sections:[
@@ -835,7 +835,7 @@ const LS_KEY = "mib_studio_v1";
 let DB = load();
 if(!DB.budgets) DB.budgets=[];
 
-/* Editable pick lists. Jay asked for pick lists on "how the gift is spent" and on
+/* Editable pick lists. The program lead asked for pick lists on "how the gift is spent" and on
    the check-in "biggest barrier" / "greatest opportunity" but had not sent her own
    wording yet, so these ship as starter lists drawn from her existing intake
    options (Q76 and Q49) and are editable in-app — no code change needed. */
@@ -870,7 +870,7 @@ const money = n => "$"+(Number(n)||0).toLocaleString(undefined,{maximumFractionD
 
 /* Seeded EXAMPLE participant — clearly labelled (name says "(Example)" + EXAMPLE badge).
    Seeds once on first run; if deleted it will not come back. Illustrative data only,
-   not a real person. Jay adds real mothers alongside or after deleting this. */
+   not a real person. Real participants are added alongside it, or after deleting it. */
 if(Object.keys(DB.clients).length===0 && localStorage.getItem("mib_example_removed")!=="1"){
   const eid=uid();
   DB.clients[eid]={ id:eid, example:true, name:"Maya Thompson (Example)",
@@ -1230,7 +1230,7 @@ function renderStage(){
     html += `<section class="section ${sec.staff?'staff':''}" style="--ac:${s.ac}">`;
     if(sec.title) html += `<h3>${esc(sec.title)}</h3>`;
     if(sec.note) html += `<p class="sec-note">${esc(sec.note)}</p>`;
-    if(sec.script) html += `<details class="script" style="--ac:${s.ac}"><summary class="who">Jay says — talking points</summary>`+sec.script.map(p=> /Show Blooming Roadmap/i.test(p) ? `<p><button type="button" class="btn sm" onclick="showRoadmap()">🌸 Show Blooming Roadmap</button></p>` : `<p>${esc(p)}</p>`).join("")+`</details>`;
+    if(sec.script) html += `<details class="script" style="--ac:${s.ac}"><summary class="who">What to say — talking points</summary>`+sec.script.map(p=> /Show Blooming Roadmap/i.test(p) ? `<p><button type="button" class="btn sm" onclick="showRoadmap()">🌸 Show Blooming Roadmap</button></p>` : `<p>${esc(p)}</p>`).join("")+`</details>`;
     if(sec.items) sec.items.forEach(it=> html += renderField(it,c));
     if(sec.module==="nww"){ const n=c.nww||{}; const nc=(n.needs||[]).length+(n.wants||[]).length+(n.wishes||[]).length; html += toolCard('nww','🌸 Needs · Wants · Wishes', nc+' item'+(nc===1?'':'s')+' — open to edit'); }
     if(sec.module==="goals"){ const gc=(c.goals||[]).length; const ini=(c.goals||[]).filter(g=>g.initial).length; html += toolCard('goals','🎯 Goals', gc+' goal'+(gc===1?'':'s')+(ini?(' · '+ini+' she joined with'):'')+' — open to edit'); }
@@ -1278,7 +1278,7 @@ function renderField(it,c){
       return `<label class="opt ${String(v)===val?'on':''}"><input type="radio" name="${it.id}" data-fid="${it.id}" value="${val}" ${String(v)===val?'checked':''}><b>${idx+1}</b><span style="font-size:10px">${esc(o.replace(/^\d+\s—\s/,''))}</span></label>`;
     }).join("")+`</div>`;
   }
-  const draft = it.draft ? `<span class="draftbadge" title="Wording we drafted — Jay has not confirmed it yet">draft wording</span>`:"";
+  const draft = it.draft ? `<span class="draftbadge" title="Wording we drafted — the program lead has not confirmed it yet">draft wording</span>`:"";
   return `<div class="fld ${it.draft?'is-draft':''}"><label>${qn}${esc(it.label)}${req}${draft}</label>${help}${inner}</div>`;
 }
 
@@ -1470,7 +1470,7 @@ function toast(msg){ let t=document.getElementById('mibToast'); if(!t){ t=docume
 
 /* ============================ NEEDS / WANTS / WISHES ============================ */
 /* The standalone intake prompts for need / want / wish and for the 6-12 month focus
-   were cut in the 2026-07-23 pass. Jay asked that the wording live on as help text
+   were cut in the 2026-07-23 pass. The program lead asked that the wording live on as help text
    inside the modules where the same ground is now covered. Verbatim from her form. */
 const CUT_PROMPTS={
   needs:"What is your biggest NEED right now?",
@@ -1724,7 +1724,7 @@ function planEdit(list,i,v){ plannerData(cur())[list][i]=v; scheduleSave(); }
 function planEditObj(list,i,f,v){ const o=plannerData(cur())[list][i]; if(o){ o[f]=v; scheduleSave(); } }
 
 /* ============================ COACHING & ACCOUNTABILITY (check-in history) ============================ */
-/* Rebuilt 2026-09-14 from Jay's 2026-07-23 feedback: a repeating template that is a
+/* Rebuilt 2026-09-14 from the 2026-07-23 feedback: a repeating template that is a
    subset of the intake. The intake shows as check-in #1 (derived, not copied, so the
    two can never drift). Each check-in re-verifies the pre-meeting information with
    edit-in-place, and ends with "what didn't I ask" plus an optional testimonial. */
@@ -1741,7 +1741,7 @@ const CHK_VERIFY=[
 function chkVerifyOpts(id){ for(const st of STAGES) for(const sec of st.sections) for(const it of (sec.items||[])) if(it.id===id) return it.options||null; return null; }
 
 function chkNorm(k){
-  /* Pre-2026-09 check-ins had a single "challenges" box. Jay folded challenges into
+  /* Pre-2026-09 check-ins had a single "challenges" box. The program lead folded challenges into
      "biggest barrier", so carry the old text across the first time we see it. */
   if(k.challenges && !k.barrierNote){ k.barrierNote=k.challenges; delete k.challenges; }
   ["barriers","opps","hub","learn"].forEach(f=>{ if(!Array.isArray(k[f])) k[f]=[]; });
@@ -2097,7 +2097,7 @@ function renderWrap(c){
     "We’ll review where you started, what you’ve accomplished, what support systems are in place, and what resources, opportunities, and action steps can help you continue building on the progress you’ve made.",
     "The goal is to make sure you feel prepared, supported, and confident as you move into the next chapter.",
     "Over the next few weeks, I’ll reach back out to schedule that follow-up conversation and share any resources or opportunities that may be helpful in the meantime."];
-  let html=`<details class="script" style="--ac:var(--s-harvest)"><summary class="who">Jay says · ${orig?"Original 9 / Steering Committee":"All participants"} — wrap-up &amp; next steps</summary>`;
+  let html=`<details class="script" style="--ac:var(--s-harvest)"><summary class="who">What to say · ${orig?"Original 9 / Steering Committee":"All participants"} — wrap-up &amp; next steps</summary>`;
   (orig?wrapOrig:wrapAll).forEach(p=>{ html+=`<p>${esc(p)}</p>`; });
   html+=`</details>`;
   return html;
