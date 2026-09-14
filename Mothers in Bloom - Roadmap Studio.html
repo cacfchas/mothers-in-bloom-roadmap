@@ -46,6 +46,8 @@
     padding:8px 14px;border-radius:10px;font-size:13px;font-weight:600;transition:.15s}
   .btn:hover{border-color:var(--terracotta);color:var(--terracotta-d)}
   .btn.primary{background:var(--terracotta);border-color:var(--terracotta);color:#fff}
+  .btn.destructive{background:#B23A48;border-color:#B23A48;color:#fff}
+  .btn.destructive:hover{background:#9c303d;border-color:#9c303d;color:#fff}
   .btn.primary:hover{background:var(--terracotta-d);color:#fff}
   .btn.ghost{background:transparent}
   .btn.sm{padding:5px 10px;font-size:12px}
@@ -418,6 +420,15 @@
   .pk-mv:hover:not(:disabled){background:var(--cream2);color:var(--ink)}
   .pk-mv:disabled{opacity:.3;cursor:default}
   .pk-foot{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+  /* in-app confirm / alert */
+  .ui-dlg{overflow:hidden}
+  .ui-dlg-body{padding:20px 22px 4px}
+  .ui-dlg-body h3{margin:0 0 8px;font-size:17px;font-weight:700;color:var(--ink);line-height:1.3}
+  .ui-dlg-body p{margin:0 0 10px;font-size:13.5px;line-height:1.55;color:var(--ink)}
+  .ui-dlg-list{margin:0 0 10px;padding-left:20px;font-size:13.5px;line-height:1.6;color:var(--ink)}
+  .ui-dlg-note{font-size:12.5px;color:var(--ink-soft)}
+  .ui-dlg-foot{display:flex;gap:8px;flex-wrap:wrap;padding:14px 22px 18px}
+  .ui-dlg-foot .btn:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
   .pick-edit .linkbtn{font-size:11px;padding:0}
   /* module help text carried over from the cut intake prompts */
   .mod-help{border-left:3px solid var(--s-petals);background:#fdf6f8;border-radius:0 10px 10px 0;padding:10px 14px;
@@ -866,6 +877,44 @@ function pickList(k){ return (DB.settings&&DB.settings[k])||PICK_DEFAULTS[k]||[]
    disappears from the screen. */
 function pickOrphans(k,selected){ const set=new Set(pickList(k)); return (selected||[]).filter(v=>!set.has(v)); }
 
+/* ---- in-app dialogs, replacing window.confirm / window.alert ----
+   Callback-based rather than blocking, so every call site hands its follow-on
+   work to onConfirm. Destructive dialogs style the action red, focus Cancel,
+   and deliberately do NOT accept Enter as "yes". */
+function uiDialog(o){
+  const prev=document.getElementById('uiDialog'); if(prev) prev.remove();
+  const el=document.createElement('div');
+  el.id='uiDialog'; el.className='bt-overlay'; el.style.zIndex='260';
+  const btns = o.kind==='alert'
+    ? `<button class="btn primary" data-act="ok">${esc(o.okLabel||'OK')}</button>`
+    : `<button class="btn ${o.danger?'destructive':'primary'}" data-act="ok">${esc(o.okLabel||'Continue')}</button>`+
+      `<button class="btn" data-act="cancel">${esc(o.cancelLabel||'Cancel')}</button>`;
+  el.innerHTML=`<div class="bt-modal ui-dlg" style="max-width:440px" role="alertdialog" aria-modal="true">
+      <div class="ui-dlg-body">
+        <h3>${esc(o.title||'')}</h3>
+        ${o.body?`<p>${esc(o.body)}</p>`:''}
+        ${(o.list&&o.list.length)?`<ul class="ui-dlg-list">${o.list.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+        ${o.note?`<p class="ui-dlg-note">${esc(o.note)}</p>`:''}
+      </div>
+      <div class="ui-dlg-foot">${btns}</div>
+    </div>`;
+  document.body.appendChild(el);
+  const close=()=>{ el.remove(); document.removeEventListener('keydown',key); };
+  const ok=()=>{ close(); if(o.onConfirm) o.onConfirm(); };
+  const cancel=()=>{ close(); if(o.onCancel) o.onCancel(); };
+  el.querySelector('[data-act="ok"]').onclick=ok;
+  const cb=el.querySelector('[data-act="cancel"]'); if(cb) cb.onclick=cancel;
+  el.onclick=e=>{ if(e.target===el) cancel(); };
+  function key(e){
+    if(e.key==='Escape'){ e.preventDefault(); cancel(); }
+    else if(e.key==='Enter' && !o.danger){ e.preventDefault(); ok(); }
+  }
+  document.addEventListener('keydown',key);
+  setTimeout(()=>{ const f=el.querySelector(o.danger?'[data-act="cancel"]':'[data-act="ok"]'); if(f) f.focus(); },30);
+}
+function uiConfirm(o){ uiDialog(Object.assign({kind:'confirm'},o)); }
+function uiAlert(o){ uiDialog(Object.assign({kind:'alert'},o)); }
+
 /* ---- list editor ---- */
 let _pickKey=null, _pickDraft=null;
 function pickEdit(k){
@@ -906,11 +955,15 @@ function pickKey(e,i){
   if(e.key==='Backspace' && _pickDraft[i]==='' && _pickDraft.length>1){ e.preventDefault(); _pickDraft.splice(i,1); pickRender();
     const r=document.querySelectorAll('#pickModal .pk-row input'); const t=r[Math.max(0,i-1)]; if(t){ t.focus(); t.setSelectionRange(t.value.length,t.value.length); } }
 }
-function pickResetDraft(){ if(!confirm("Replace what is in this editor with the starter list? Nothing is saved until you hit Save list.")) return; _pickDraft=PICK_DEFAULTS[_pickKey].slice(); pickRender(); }
+function pickResetDraft(){
+  uiConfirm({title:"Restore the starter list?",
+    body:"This replaces what is in the editor right now. Nothing is saved until you hit Save list, so you can still cancel out.",
+    okLabel:"Restore it", onConfirm:()=>{ _pickDraft=PICK_DEFAULTS[_pickKey].slice(); pickRender(); }});
+}
 function pickSave(){
   const seen=new Set(), out=[];
   _pickDraft.map(x=>String(x).trim()).filter(Boolean).forEach(x=>{ const k=x.toLowerCase(); if(!seen.has(k)){ seen.add(k); out.push(x); } });
-  if(!out.length){ alert("A list needs at least one option. Add one, or hit Cancel to leave it as it was."); return; }
+  if(!out.length){ uiAlert({title:"That list is empty",body:"A list needs at least one option. Add one, or hit Cancel to leave it as it was."}); return; }
   DB.settings[_pickKey]=out; pickClose(); persist(); rerender();
 }
 let activeId = null;
@@ -1140,10 +1193,15 @@ function discardDraft(){ if(draftId){ delete DB.clients[draftId]; draftId=null; 
 function deleteClient(id, ev){
   if(ev) ev.stopPropagation();
   const c=DB.clients[id]; if(!c) return;
-  if(!confirm(`Delete ${c.name||"this participant"} and all of their data? This cannot be undone.`)) return;
-  if(c.example) localStorage.setItem("mib_example_removed","1");
-  delete DB.clients[id]; if(activeId===id){ activeId=null; } draftId=null; persist();
-  hideChip(); setBack("",null); showOnly('viewRoster'); renderRoster();
+  uiConfirm({title:"Delete "+(c.name||"this participant")+"?", danger:true,
+    body:"Everything recorded for her goes with it: intake answers, check-ins, goals, budget and referrals.",
+    note:"This cannot be undone. Download a backup first if you might want her back.",
+    okLabel:"Delete permanently",
+    onConfirm:()=>{
+      if(c.example) localStorage.setItem("mib_example_removed","1");
+      delete DB.clients[id]; if(activeId===id){ activeId=null; } draftId=null; persist();
+      hideChip(); setBack("",null); showOnly('viewRoster'); renderRoster();
+    }});
 }
 
 /* ============================ NAV ============================ */
@@ -1242,8 +1300,12 @@ function gotoStage(i){
 }
 function completeIntake(){
   const c=cur(); const inc=STAGES.filter(stageCountable).filter(s=>stagePct(c,s)<100).map(s=>s.name);
-  if(inc.length && !confirm("These sections aren’t 100% complete:\n\n• "+inc.join("\n• ")+"\n\nComplete the intake and move to staff follow-up anyway?")) return;
-  gotoStage(STAGES.length-1);
+  const go=()=>gotoStage(STAGES.length-1);
+  if(!inc.length) return go();
+  uiConfirm({title:"Some sections aren’t finished",
+    body:"These still have blanks:", list:inc,
+    note:"You can move on and come back to them later. Nothing is lost.",
+    okLabel:"Move on anyway", cancelLabel:"Keep filling in", onConfirm:go});
 }
 /* ---------- photo upload + circular crop ---------- */
 function photoUpload(){ const inp=document.createElement('input'); inp.type='file'; inp.accept='image/*'; inp.onchange=()=>{ const f=inp.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>photoCrop(r.result); r.readAsDataURL(f); }; inp.click(); }
@@ -1507,13 +1569,22 @@ function saveBudgetWorksheet(){
 }
 function saveBudgetToParticipant(){ pickParticipant(function(pid){
   const c=DB.clients[pid]; if(!c) return;
-  if(budgetFilled(c) && !confirm((c.name||'This participant')+' already has a budget. Replace it with this worksheet?')) return;
-  c.budget=JSON.parse(JSON.stringify(budgetCtx));
-  const name=(((document.getElementById('bt-name')||{}).value)||budgetCtxName||((c.name||'')+' budget')).trim();
-  if(budgetCtxId){ const w=DB.budgets.find(x=>x.id===budgetCtxId); if(w){ w.linkedClientId=pid; w.name=name; } }
-  persist(); toast('Saved to '+(c.name||'participant'));
+  const apply=()=>{
+    c.budget=JSON.parse(JSON.stringify(budgetCtx));
+    const name=(((document.getElementById('bt-name')||{}).value)||budgetCtxName||((c.name||'')+' budget')).trim();
+    if(budgetCtxId){ const w=DB.budgets.find(x=>x.id===budgetCtxId); if(w){ w.linkedClientId=pid; w.name=name; } }
+    persist(); toast('Saved to '+(c.name||'participant'));
+  };
+  if(!budgetFilled(c)) return apply();
+  uiConfirm({title:"Replace her existing budget?", danger:true,
+    body:(c.name||'This participant')+" already has a budget in her profile. Saving this worksheet over it replaces every line.",
+    note:"This cannot be undone.", okLabel:"Replace it", onConfirm:apply});
 }); }
-function delBudgetWorksheet(id){ if(!confirm('Delete this worksheet?')) return; DB.budgets=(DB.budgets||[]).filter(w=>w.id!==id); persist(); renderTools(); }
+function delBudgetWorksheet(id){
+  uiConfirm({title:"Delete this worksheet?", danger:true, body:"The saved budget worksheet is removed from this device.",
+    note:"This cannot be undone.", okLabel:"Delete",
+    onConfirm:()=>{ DB.budgets=(DB.budgets||[]).filter(w=>w.id!==id); persist(); renderTools(); }});
+}
 function pickParticipant(cb){
   const ids=Object.keys(DB.clients).filter(id=>!DB.clients[id].draft);
   const o=document.createElement('div'); o.className='bt-overlay'; o.style.zIndex='220';
@@ -1923,7 +1994,13 @@ function chkMulti(k,field,label,qid){
 }
 
 function chkAdd(){ const c=cur(); checkinList(c).unshift(chkNew(c)); checkinTouch(c); persist(); rerender(); }
-function chkDel(id){ const c=cur(); if(!confirm("Delete this check-in? This cannot be undone.")) return; c.checkins=checkinList(c).filter(x=>x.id!==id); checkinTouch(c); persist(); rerender(); }
+function chkDel(id){
+  const c=cur(); const k=chkGet(id);
+  uiConfirm({title:"Delete this check-in?", danger:true,
+    body:"Everything logged on "+((k&&k.date)||"this visit")+" is removed from her history.",
+    note:"This cannot be undone.", okLabel:"Delete",
+    onConfirm:()=>{ c.checkins=checkinList(c).filter(x=>x.id!==id); checkinTouch(c); persist(); rerender(); }});
+}
 function chkGet(id){ const c=cur(); return checkinList(c).find(x=>x.id===id); }
 function chkEdit(id,f,v){ const k=chkGet(id); if(!k) return; const re=(f==='type'||f==='testimonialOk'); k[f]=v; if(f==='date') checkinTouch(cur()); if(re){ persist(); rerender(); } else scheduleSave(); }
 function chkToggle(id,f,val){ const k=chkGet(id); if(!k) return; const set=new Set(Array.isArray(k[f])?k[f]:[]); if(set.has(val)) set.delete(val); else set.add(val); k[f]=[...set]; persist(); rerender(); }
@@ -2195,7 +2272,7 @@ function dl(name,text,type){ const b=new Blob([text],{type:type||"text/plain"});
 
 function exportJSON(){ const c=cur(); dl(`MIB_${(c.name||"participant").replace(/\s+/g,"_")}_${stamp()}.json`, JSON.stringify(c,null,2),"application/json"); }
 function importJSON(){ const f=document.getElementById("importFile"); f.onchange=()=>{ const r=new FileReader();
-  r.onload=()=>{ try{ const obj=JSON.parse(r.result); if(!obj.id) obj.id=uid(); DB.clients[obj.id]=obj; persist(); openClient(obj.id);}catch(e){alert("Could not read that backup.");} }; r.readAsText(f.files[0]); }; f.click(); }
+  r.onload=()=>{ try{ const obj=JSON.parse(r.result); if(!obj.id) obj.id=uid(); DB.clients[obj.id]=obj; persist(); openClient(obj.id);}catch(e){uiAlert({title:"Could not read that backup",body:"The file did not open as a participant backup. Check that it is the JSON file the app produced."});} }; r.readAsText(f.files[0]); }; f.click(); }
 
 function exportAllJSON(){
   const payload={ _mib:true, _kind:"full-backup", _exported:stamp(), clients:DB.clients||{}, budgets:DB.budgets||[] };
@@ -2208,24 +2285,36 @@ function importAllJSON(){
     r.onload=()=>{ try{
       const obj=JSON.parse(r.result);
       const clients=obj&&obj.clients;
-      if(!clients||typeof clients!=="object"){ alert("That doesn't look like a full backup. For one person, use a participant's “Restore from backup” instead."); return; }
+      if(!clients||typeof clients!=="object"){ uiAlert({title:"That is not a full backup",body:"This looks like a single participant’s file. To restore one person, open her profile and use “Restore from backup” there."}); return; }
       const incoming=Object.keys(clients).length;
-      if(!confirm("Restore "+incoming+" participant"+(incoming===1?"":"s")+" from this backup?\n\nMatching records are updated; everyone already on this device is kept.")) return;
-      Object.values(clients).forEach(c=>{ if(c&&c.id) DB.clients[c.id]=c; });
-      if(Array.isArray(obj.budgets)){ DB.budgets=DB.budgets||[]; const have=new Set(DB.budgets.map(b=>b.id)); obj.budgets.forEach(b=>{ if(b&&b.id&&!have.has(b.id)) DB.budgets.push(b); }); }
-      localStorage.setItem("mib_example_removed","1");
-      persist(); renderRoster(); toast("Restored "+incoming+" participant"+(incoming===1?"":"s")+".");
-    }catch(e){ alert("Could not read that backup file."); } };
+      const applyRestore=()=>{
+        Object.values(clients).forEach(c=>{ if(c&&c.id) DB.clients[c.id]=c; });
+        if(Array.isArray(obj.budgets)){ DB.budgets=DB.budgets||[]; const have=new Set(DB.budgets.map(b=>b.id)); obj.budgets.forEach(b=>{ if(b&&b.id&&!have.has(b.id)) DB.budgets.push(b); }); }
+        localStorage.setItem("mib_example_removed","1");
+        persist(); renderRoster(); toast("Restored "+incoming+" participant"+(incoming===1?"":"s")+".");
+      };
+      uiConfirm({title:"Restore "+incoming+" participant"+(incoming===1?"":"s")+"?",
+        body:"Records that match someone already on this device are updated from the backup. Everyone else on this device is kept.",
+        okLabel:"Restore", onConfirm:applyRestore});
+    }catch(e){ uiAlert({title:"Could not read that backup file",body:"The file did not open as a full backup. Check that it is the JSON file the app produced."}); } };
     r.readAsText(file); f.value=""; };
   f.click();
 }
 function clearDevice(){
   const n=Object.keys(DB.clients||{}).length;
-  if(!confirm("This removes all "+n+" participant"+(n===1?"":"s")+" and saved worksheets from THIS browser only.\n\nDownload a backup first — this cannot be undone. Continue?")) return;
-  if(!confirm("Last chance: really clear this device?")) return;
-  DB.clients={}; DB.budgets=[]; activeId=null; draftId=null;
-  localStorage.setItem("mib_example_removed","1");
-  persist(); renderRoster(); toast("This device has been cleared.");
+  const wipe=()=>{
+    DB.clients={}; DB.budgets=[]; activeId=null; draftId=null;
+    localStorage.setItem("mib_example_removed","1");
+    persist(); renderRoster(); toast("This device has been cleared.");
+  };
+  uiConfirm({title:"Clear this device?", danger:true,
+    body:"This removes all "+n+" participant"+(n===1?"":"s")+" and every saved worksheet from this browser. Other devices are not touched.",
+    note:"Download a backup first. This cannot be undone.",
+    okLabel:"Continue", onConfirm:()=>{
+      uiConfirm({title:"Last chance", danger:true,
+        body:"Really clear every record from this browser?",
+        okLabel:"Yes, clear it all", cancelLabel:"Keep my data", onConfirm:wipe});
+    }});
 }
 
 function exportCSV(){
