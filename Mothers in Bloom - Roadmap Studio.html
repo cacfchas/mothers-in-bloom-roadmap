@@ -406,6 +406,18 @@
     background:var(--gold);color:#5b4a16;border-radius:20px;padding:2px 8px;vertical-align:middle}
   .fld.is-draft{border-left:3px solid var(--gold);padding-left:12px;border-radius:0 8px 8px 0}
   .pick-edit{font-size:11px;color:var(--ink-soft);margin:0 0 6px}
+  /* list editor */
+  .pk-list{display:flex;flex-direction:column;gap:6px;max-height:46vh;overflow:auto;padding-right:2px}
+  .pk-row{display:flex;align-items:center;gap:6px}
+  .pk-num{width:20px;flex:none;text-align:right;font-size:11px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .pk-row input{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:8px 10px;
+    font-family:inherit;font-size:13.5px;background:#fff;color:var(--ink)}
+  .pk-row input:focus{outline:2px solid var(--sage);outline-offset:-1px}
+  .pk-mv{flex:none;width:26px;height:26px;border:1px solid var(--line);background:#fff;border-radius:7px;
+    color:var(--ink-soft);font-size:10px;line-height:1;cursor:pointer;padding:0}
+  .pk-mv:hover:not(:disabled){background:var(--cream2);color:var(--ink)}
+  .pk-mv:disabled{opacity:.3;cursor:default}
+  .pk-foot{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
   .pick-edit .linkbtn{font-size:11px;padding:0}
   /* module help text carried over from the cut intake prompts */
   .mod-help{border-left:3px solid var(--s-petals);background:#fdf6f8;border-radius:0 10px 10px 0;padding:10px 14px;
@@ -717,8 +729,8 @@ const STAGES = [
         items:[
           {id:"q10",q:10,type:"textarea",label:"How has your experience with Mothers in Bloom been so far? What stands out to you the most?"},
           {id:"q11",q:11,type:"textarea",label:"How has Mothers in Bloom impacted you or your family?"},
-          {id:"q12list",q:12,type:"checkbox",optsKey:"spend",label:"How does the monthly gift affect your day-to-day life right now? What does it help you with?",help:"Starter list — open “Edit list” to match the words mothers actually use."},
-          {id:"q12",q:12,type:"textarea",label:"How does the monthly gift affect your day-to-day life right now? What does it help you with?"},
+          {id:"q12list",q:12,type:"checkbox",optsKey:"spend",label:"How does the monthly gift affect your day-to-day life right now? What does it help you with?",help:"Tick what it goes toward, then capture her own words underneath."},
+          {id:"q12",q:null,type:"textarea",label:"In her own words"},
           {id:"q13",q:13,type:"textarea",label:"Since receiving the gift, what, if anything, has changed for you and your family? (Even small changes count.)"},
           {id:"q8",q:8,type:"textarea",label:"What accomplishments are you most proud of since joining the program?"},
           {id:"q14",q:14,type:"radio",label:"Aside from the financial support, do you feel supported by Mothers in Bloom?",options:["Yes","No"]},
@@ -848,15 +860,59 @@ const PICK_LABELS={spend:"How the monthly gift is spent",barriers:"Biggest barri
 if(!DB.settings) DB.settings={};
 Object.keys(PICK_DEFAULTS).forEach(k=>{ if(!Array.isArray(DB.settings[k])||!DB.settings[k].length) DB.settings[k]=PICK_DEFAULTS[k].slice(); });
 function pickList(k){ return (DB.settings&&DB.settings[k])||PICK_DEFAULTS[k]||[]; }
+
+/* Options a participant has already got ticked but that are no longer on the list
+   (someone removed or renamed them). Shown anyway so an answer never silently
+   disappears from the screen. */
+function pickOrphans(k,selected){ const set=new Set(pickList(k)); return (selected||[]).filter(v=>!set.has(v)); }
+
+/* ---- list editor ---- */
+let _pickKey=null, _pickDraft=null;
 function pickEdit(k){
-  const cur=pickList(k).join("\n");
-  const v=prompt(PICK_LABELS[k]+" — one option per line. Edit freely; this changes the list everywhere it is used.",cur);
-  if(v===null) return;
-  const arr=v.split("\n").map(x=>x.trim()).filter(Boolean);
-  DB.settings[k]=arr.length?arr:PICK_DEFAULTS[k].slice();
-  persist(); rerender();
+  _pickKey=k; _pickDraft=pickList(k).slice();
+  let o=document.getElementById('pickModal');
+  if(!o){ o=document.createElement('div'); o.id='pickModal'; o.className='bt-overlay'; o.style.zIndex='240'; document.body.appendChild(o); }
+  pickRender(); setTimeout(()=>{ const f=document.querySelector('#pickModal .pk-row input'); if(f) f.focus(); },30);
 }
-function pickReset(k){ if(!confirm("Reset “"+PICK_LABELS[k]+"” to the starter list?")) return; DB.settings[k]=PICK_DEFAULTS[k].slice(); persist(); rerender(); }
+function pickClose(){ const o=document.getElementById('pickModal'); if(o) o.remove(); _pickKey=null; _pickDraft=null; }
+function pickRender(){
+  const o=document.getElementById('pickModal'); if(!o) return;
+  const rows=_pickDraft.map((v,i)=>`<div class="pk-row">
+      <span class="pk-num">${i+1}</span>
+      <input value="${esc(v)}" placeholder="Option text…" oninput="pickSet(${i},this.value)" onkeydown="pickKey(event,${i})">
+      <button class="pk-mv" title="Move up" ${i===0?'disabled':''} onclick="pickMove(${i},-1)">▲</button>
+      <button class="pk-mv" title="Move down" ${i===_pickDraft.length-1?'disabled':''} onclick="pickMove(${i},1)">▼</button>
+      <button class="xrm" title="Remove" onclick="pickDel(${i})">✕</button>
+    </div>`).join("");
+  o.innerHTML=`<div class="bt-modal" style="max-width:560px"><div class="bt-head"><b>Edit list · ${esc(PICK_LABELS[_pickKey]||'Options')}</b><span style="flex:1"></span><button class="btn sm" onclick="pickClose()">✕</button></div>
+    <div class="bt-body">
+      <p class="help" style="margin:0 0 12px">One option per row, in the order they should appear. This changes the list everywhere it is used. Answers already recorded are never altered.</p>
+      <div class="pk-list">${rows||'<p class="help">No options yet. Add the first one below.</p>'}</div>
+      <button class="btn sm" style="margin-top:10px" onclick="pickAdd()">＋ Add option</button>
+      <div class="pk-foot">
+        <button class="btn primary" onclick="pickSave()">Save list</button>
+        <button class="btn" onclick="pickClose()">Cancel</button>
+        <button class="btn ghost" style="margin-left:auto" onclick="pickResetDraft()">Restore starter list</button>
+      </div>
+    </div></div>`;
+}
+function pickSet(i,v){ _pickDraft[i]=v; }            /* no re-render: keeps the caret put */
+function pickAdd(){ _pickDraft.push(""); pickRender(); const r=document.querySelectorAll('#pickModal .pk-row input'); if(r.length) r[r.length-1].focus(); }
+function pickDel(i){ _pickDraft.splice(i,1); pickRender(); }
+function pickMove(i,d){ const j=i+d; if(j<0||j>=_pickDraft.length) return; const t=_pickDraft[i]; _pickDraft[i]=_pickDraft[j]; _pickDraft[j]=t; pickRender(); }
+function pickKey(e,i){
+  if(e.key==='Enter'){ e.preventDefault(); _pickDraft.splice(i+1,0,""); pickRender();
+    const r=document.querySelectorAll('#pickModal .pk-row input'); if(r[i+1]) r[i+1].focus(); }
+  if(e.key==='Backspace' && _pickDraft[i]==='' && _pickDraft.length>1){ e.preventDefault(); _pickDraft.splice(i,1); pickRender();
+    const r=document.querySelectorAll('#pickModal .pk-row input'); const t=r[Math.max(0,i-1)]; if(t){ t.focus(); t.setSelectionRange(t.value.length,t.value.length); } }
+}
+function pickResetDraft(){ if(!confirm("Replace what is in this editor with the starter list? Nothing is saved until you hit Save list.")) return; _pickDraft=PICK_DEFAULTS[_pickKey].slice(); pickRender(); }
+function pickSave(){
+  const seen=new Set(), out=[];
+  _pickDraft.map(x=>String(x).trim()).filter(Boolean).forEach(x=>{ const k=x.toLowerCase(); if(!seen.has(k)){ seen.add(k); out.push(x); } });
+  if(!out.length){ alert("A list needs at least one option. Add one, or hit Cancel to leave it as it was."); return; }
+  DB.settings[_pickKey]=out; pickClose(); persist(); rerender();
+}
 let activeId = null;
 let activeStage = 0;
 
@@ -1268,8 +1324,8 @@ function renderField(it,c){
       `<label class="opt ${v===o?'on':''}"><input type="radio" name="${it.id}" data-fid="${it.id}" data-req="${it.req?1:0}" value="${esc(o)}" ${v===o?'checked':''} onclick="radioClick(this)">${esc(o)}</label>`).join("")+`</div>`;
   } else if(it.type==="checkbox"){
     const arr=Array.isArray(v)?v:[];
-    const opts=it.optsKey?pickList(it.optsKey):it.options;
-    if(it.optsKey) inner+=`<div class="pick-edit">Starter list · <button type="button" class="linkbtn" onclick="pickEdit('${it.optsKey}')">Edit list</button> · <button type="button" class="linkbtn" onclick="pickReset('${it.optsKey}')">Reset</button></div>`;
+    const opts=it.optsKey?pickList(it.optsKey).concat(pickOrphans(it.optsKey,arr)):it.options;
+    if(it.optsKey) inner+=`<div class="pick-edit">Starter list · <button type="button" class="linkbtn" onclick="pickEdit('${it.optsKey}')">Edit list</button></div>`;
     inner+=`<div class="opts">`+opts.map(o=>
       `<label class="opt ${arr.includes(o)?'on':''}"><input type="checkbox" data-fid="${it.id}" data-multi="1" value="${esc(o)}" ${arr.includes(o)?'checked':''}>${esc(o)}</label>`).join("")+`</div>`;
   } else if(it.type==="scale"){
@@ -1851,10 +1907,10 @@ function chkCard(c,k,open){
 
 function chkPick(k,listKey,noteKey,label){
   const sel=Array.isArray(k[listKey])?k[listKey]:[];
-  const opts=pickList(listKey==='barriers'?'barriers':'opportunities');
   const setKey=listKey==='barriers'?'barriers':'opportunities';
+  const opts=pickList(setKey).concat(pickOrphans(setKey,sel));
   return `<div class="ck-f"><span>${label}</span>
-    <div class="pick-edit">Starter list · <button type="button" class="linkbtn" onclick="pickEdit('${setKey}')">Edit list</button> · <button type="button" class="linkbtn" onclick="pickReset('${setKey}')">Reset</button></div>
+    <div class="pick-edit">Starter list · <button type="button" class="linkbtn" onclick="pickEdit('${setKey}')">Edit list</button></div>
     <div class="opts">${opts.map(o=>`<label class="opt ${sel.includes(o)?'on':''}" onclick="chkToggle('${k.id}','${listKey}',this.getAttribute('data-v'))" data-v="${esc(o)}">${esc(o)}</label>`).join("")}</div>
     <textarea placeholder="In her words…" oninput="chkEdit('${k.id}','${noteKey}',this.value)">${esc(k[noteKey]||'')}</textarea></div>`;
 }
