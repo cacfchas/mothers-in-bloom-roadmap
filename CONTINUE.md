@@ -50,7 +50,7 @@ The whole app is `Mothers in Bloom - Roadmap Studio.html`. `index.html` is a tin
 
 ## Round 2 — built 2026-09-14 from Jay's 2026-07-23 feedback
 
-Source: `MIB Tool - Build Spec - 2026-07-23.md` (OneDrive → CACF Claude → Mothers in Bloom; also in the private `cacfchas/mib-portal` repo under `docs/`).
+Source: the build spec written up from that working session. It is deliberately **not** in this repo — it carries internal program detail (cohort filters, eligibility criteria, tagging rules) that goes beyond the code. It lives in the CACF working folder and the private working repo; ask Chas.
 
 Done this round:
 - **Intake restructured into pre / during / post**, with her cuts, merges and reorderings applied. Ten stages became seven. Per-block "verified with the participant" checkboxes on the pre-meeting section.
@@ -91,7 +91,7 @@ The app works straight from `file://` (roadmap is embedded). If you want `http:/
 
 ## What's next (open items)
 
-0. **Still blocked on Jay** (from the 2026-07-23 spec): Ella's example action-plan template; the goal-idea card list; her own wording for the gift-spend, barrier and opportunity pick lists (starter lists ship editable in the meantime); the fields she wants reportable/filterable; where the new intake questions should sit and how they should be worded; the tag brainstorm and card-badge priorities; dashboard metric suggestions; the off-ramp plan with Eboni.
+0. **Still blocked on Jay** (from the 2026-07-23 spec): the example action-plan template from the United Way contact; the goal-idea card list; her own wording for the gift-spend, barrier and opportunity pick lists (starter lists ship editable in the meantime); the fields she wants reportable/filterable; where the new intake questions should sit and how they should be worded; the tag brainstorm and card-badge priorities; dashboard metric suggestions; the off-ramp / graduation plan she is designing internally.
 1. **Still to build from that spec:** budget rebuild in the wants-versus-needs layout, goal "idea" cards, reporting/filtering + cohort export, and the printout redesign. Deferred by agreement: the full tag system, the United Way FIP module, the action-plan redesign, the off-ramp/graduation module, dashboard changes, and Outlook reminders.
 2. **Example names** (pending decision): the 6 seeded example moms have invented, demographically-flavored names. Options: leave them, swap to neutral placeholders (Participant A/B/C), a random mix, or names Jay chooses.
 3. **V2 — the hosted portal** (needs a real backend/logins): participant-facing per-mom dashboards, a partner dashboard, scheduling + reminders/automation, and the Graduation / Long-Term Follow-Up workflow. Everything through V1 was intentionally client-side/single-file; V2 is where a backend enters.
